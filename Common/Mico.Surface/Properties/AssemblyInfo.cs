@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Mico.Window")]
+[assembly: AssemblyTitle("Mico.Surface")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Mico.Window")]
+[assembly: AssemblyProduct("Mico.Surface")]
 [assembly: AssemblyCopyright(Mico.AssemblyInfo.Copyright)]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("3a94d163-dc46-4a2f-b934-c425e5ee7f94")]
+[assembly: Guid("cec26ce4-480a-4b4d-b00c-95d25cf9f8c6")]
 
 // Version information for an assembly consists of the following four values:
 //

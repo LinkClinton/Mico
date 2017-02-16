@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
-namespace Mico.Window
+namespace Mico
 {
     using MessageType = Enum.Message;
 
-    partial class Message
+    [StructLayout(LayoutKind.Sequential)]
+    partial struct Message
     {
         public IntPtr Hwnd;
         public MessageType Type;
@@ -14,6 +16,4 @@ namespace Mico.Window
         public int x;
         public int y;
     }
-
-
 }

@@ -18,15 +18,15 @@ const float default_dpix = 96.f;
 const float default_dpiy = 96.f;
 
 
-extern int __stdcall LowWord(LPARAM lParam);
+extern int LowWord(LPARAM lParam);
 
-extern int __stdcall HighWord(LPARAM lParam);
+extern int HighWord(LPARAM lParam);
 
-extern bool __stdcall IsKeyDown(int keycode);
+extern bool IsKeyDown(int keycode);
 
-extern void __stdcall SetWindowSize(HWND hwnd, int width, int height);
+extern void SetWindowSize(HWND hwnd, int width, int height);
 
-extern HWND __stdcall CreateWindow(LPCWSTR title, LPCWSTR ico,
+extern HWND CreateWindow(LPCWSTR title, LPCWSTR ico,
 	int width, int height, WNDPROC proc);
 
 

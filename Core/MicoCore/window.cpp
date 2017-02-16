@@ -8,17 +8,17 @@ EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 #endif
 
 
-extern int __stdcall LowWord(LPARAM lParam)
+extern int LowWord(LPARAM lParam)
 {
 	return LOWORD(lParam);
 }
 
-extern int __stdcall  HighWord(LPARAM lParam) 
+extern int HighWord(LPARAM lParam) 
 {
 	return HIWORD(lParam);
 }
 
-extern bool __stdcall IsKeyDown(int keycode) 
+extern bool IsKeyDown(int keycode) 
 {
 	if (keycode == 20 ||
 		keycode == 144 ||
@@ -30,12 +30,12 @@ extern bool __stdcall IsKeyDown(int keycode)
 	return KEYDOWN((int)keycode);
 }
 
-extern void __stdcall SetWindowSize(HWND hwnd, int width, int height)
+extern void SetWindowSize(HWND hwnd, int width, int height)
 {
 	SetWindowPos(hwnd, HWND_TOP, 0, 0, width, height, SWP_NOMOVE);
 }
 
-extern HWND __stdcall CreateWindow(LPCWSTR title, LPCWSTR ico,
+extern HWND CreateWindow(LPCWSTR title, LPCWSTR ico,
 	int width, int height, WNDPROC proc)
 {
 	HINSTANCE Hinstance = HINST_THISCOMPONENT;

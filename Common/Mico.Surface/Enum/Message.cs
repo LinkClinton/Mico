@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mico.Window.Enum
+namespace Mico.Enum
 {
     enum Message
     {

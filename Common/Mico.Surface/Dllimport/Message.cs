@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Mico.Window
+
+namespace Mico
 {
-    partial class Message
+    partial struct Message
     {
         [DllImport("MicoCore.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern int LowWord(IntPtr Param);
