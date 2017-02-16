@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mico
+namespace Mico.Window
 {
-    public class Window
+    public partial class Window
     {
 
     }
