@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CEC26CE4-480A-4B4D-B00C-95D25CF9F8C6}</ProjectGuid>
+    <ProjectGuid>{E60CF591-34EF-4DAF-B0D0-EE1125455756}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Mico.Surface</RootNamespace>
-    <AssemblyName>Mico.Surface</AssemblyName>
+    <RootNamespace>Mico.Input</RootNamespace>
+    <AssemblyName>Mico.Input</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,25 +40,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dllimport\Message.cs" />
-    <Compile Include="Dllimport\Surface.cs" />
-    <Compile Include="Enum\Message.cs" />
-    <Compile Include="Event\Surface.cs" />
+    <Compile Include="Dllimport\Input.cs" />
+    <Compile Include="Input.cs" />
+    <Compile Include="Keycode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Surface.cs" />
-    <Compile Include="Value\Message.cs" />
-    <Compile Include="Value\Surface.cs" />
+    <Compile Include="Value\Input.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Mico.Input\Mico.Input.csproj">
-      <Project>{e60cf591-34ef-4daf-b0d0-ee1125455756}</Project>
-      <Name>Mico.Input</Name>
+    <ProjectReference Include="..\Mico.Math\Mico.Math.csproj">
+      <Project>{f9714667-b16e-4f81-a07f-750c3fb569c6}</Project>
+      <Name>Mico.Math</Name>
     </ProjectReference>
     <ProjectReference Include="..\Mico\Mico.csproj">
       <Project>{5809f77e-dbd1-462c-92c1-358cd212fc71}</Project>
       <Name>Mico</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

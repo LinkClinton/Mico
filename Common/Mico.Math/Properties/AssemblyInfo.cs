@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Mico")]
+[assembly: AssemblyTitle("Mico.Math")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Mico")]
+[assembly: AssemblyProduct("Mico.Math")]
 [assembly: AssemblyCopyright(Mico.AssemblyInfo.Copyright)]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("5809f77e-dbd1-462c-92c1-358cd212fc71")]
+[assembly: Guid("f9714667-b16e-4f81-a07f-750c3fb569c6")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -34,5 +34,3 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion(Mico.AssemblyInfo.Version)]
 [assembly: AssemblyFileVersion(Mico.AssemblyInfo.FileVersion)]
-
-[assembly:InternalsVisibleTo("Mico.Surface")]

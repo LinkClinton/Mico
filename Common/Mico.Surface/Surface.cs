@@ -15,7 +15,7 @@ namespace Mico
             g_message.wParam = wParam;
             g_message.lParam = lParam;
             switch (message)
-            {
+            { 
                 case Enum.Message.Destroy:
                     PostQuitMessage(0);
                     break;
