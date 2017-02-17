@@ -31,5 +31,6 @@
     <None Include="window.def">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="readme.md" />
   </ItemGroup>
 </Project>
