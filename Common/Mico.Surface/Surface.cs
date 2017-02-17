@@ -15,7 +15,38 @@ namespace Mico
             g_message.wParam = wParam;
             g_message.lParam = lParam;
             switch (message)
-            { 
+            {
+                case Enum.Message.MouseMove:
+                    Input.g_mousepos = new Math.Vector2(
+                        Message.LowWord(g_message.lParam) / ScaleWidth,
+                        Message.HighWord(g_message.lParam) / ScaleHeight
+                        );
+                    OnMouseMove();
+                    break;
+                case Enum.Message.KeyDown:
+                    OnKeyDown();
+                    break;
+                case Enum.Message.KeyUp:
+                    OnKeyUp();
+                    break;
+                case Enum.Message.LeftButtonDown:
+                    OnLeftButtonDown();
+                    break;
+                case Enum.Message.LeftButtonUp:
+                    OnLeftButtonUp();
+                    break;
+                case Enum.Message.RightButtonDown:
+                    OnRightButtonDown();
+                    break;
+                case Enum.Message.RightButtonUp:
+                    OnRightButtonUp();
+                    break;
+                case Enum.Message.MiddleButtonDown:
+                    OnMiddleButtonDown();
+                    break;
+                case Enum.Message.MiddleButtonUp:
+                    OnMiddleButtonUp();
+                    break;
                 case Enum.Message.Destroy:
                     PostQuitMessage(0);
                     break;

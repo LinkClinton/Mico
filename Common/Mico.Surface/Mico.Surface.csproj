@@ -54,6 +54,10 @@
       <Project>{e60cf591-34ef-4daf-b0d0-ee1125455756}</Project>
       <Name>Mico.Input</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Mico.Math\Mico.Math.csproj">
+      <Project>{f9714667-b16e-4f81-a07f-750c3fb569c6}</Project>
+      <Name>Mico.Math</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Mico\Mico.csproj">
       <Project>{5809f77e-dbd1-462c-92c1-358cd212fc71}</Project>
       <Name>Mico</Name>

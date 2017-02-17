@@ -35,4 +35,3 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion(Mico.AssemblyInfo.Version)]
 [assembly: AssemblyFileVersion(Mico.AssemblyInfo.FileVersion)]
 
-[assembly:InternalsVisibleTo("Mico.Surface")]
