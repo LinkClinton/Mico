@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mico
+namespace Mico.Surface
 {
     public partial class Surface
     {
@@ -17,6 +17,7 @@ namespace Mico
         public virtual void OnMouseMove() { }
         public virtual void OnKeyDown() { }
         public virtual void OnKeyUp() { }
+        public virtual void OnDraw() { }
 
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace Mico
+namespace Mico.Surface
 {
     using MessageType = Enum.Message;
 

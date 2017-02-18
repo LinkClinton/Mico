@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace MicoSample
 {
-    class MySurface : Mico.Surface
+    class MySurface : Mico.Surface.Surface
     {
         public MySurface()
         {
             CreateWindow("Mico", "", 800, 600);
+            
         }
     }
 

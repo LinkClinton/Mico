@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 
 
-namespace Mico
+namespace Mico.Surface
 {
     partial struct Message
     {

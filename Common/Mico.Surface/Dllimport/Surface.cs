@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 
 
-namespace Mico
+namespace Mico.Surface
 {
     delegate IntPtr WndProc(IntPtr Hwnd, Enum.Message message,
       IntPtr wParam, IntPtr lParam);

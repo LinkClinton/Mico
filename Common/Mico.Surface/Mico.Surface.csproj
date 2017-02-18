@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Canvas.cs" />
+    <Compile Include="Device.cs" />
     <Compile Include="Dllimport\Message.cs" />
     <Compile Include="Dllimport\Surface.cs" />
     <Compile Include="Enum\Message.cs" />
