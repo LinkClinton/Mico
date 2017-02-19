@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MicoSample")]
+[assembly: AssemblyTitle("Mico.Shadow")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MicoSample")]
+[assembly: AssemblyProduct("Mico.Shadow")]
 [assembly: AssemblyCopyright(Mico.AssemblyInfo.Copyright)]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("0a7c2f48-5f96-47bf-bc46-0b4cccc92c23")]
+[assembly: Guid("07f6eede-0dd4-433c-b43b-085719a1b261")]
 
 // Version information for an assembly consists of the following four values:
 //

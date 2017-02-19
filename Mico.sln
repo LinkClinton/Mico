@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{C52608
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mico", "Common\Mico\Mico.csproj", "{5809F77E-DBD1-462C-92C1-358CD212FC71}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mico.Shadow", "Common\Mico.Shadow\Mico.Shadow.csproj", "{07F6EEDE-0DD4-433C-B43B-085719A1B261}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,18 @@ Global
 		{5809F77E-DBD1-462C-92C1-358CD212FC71}.Release|x64.Build.0 = Release|Any CPU
 		{5809F77E-DBD1-462C-92C1-358CD212FC71}.Release|x86.ActiveCfg = Release|Any CPU
 		{5809F77E-DBD1-462C-92C1-358CD212FC71}.Release|x86.Build.0 = Release|Any CPU
+		{07F6EEDE-0DD4-433C-B43B-085719A1B261}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07F6EEDE-0DD4-433C-B43B-085719A1B261}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07F6EEDE-0DD4-433C-B43B-085719A1B261}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{07F6EEDE-0DD4-433C-B43B-085719A1B261}.Debug|x64.Build.0 = Debug|Any CPU
+		{07F6EEDE-0DD4-433C-B43B-085719A1B261}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{07F6EEDE-0DD4-433C-B43B-085719A1B261}.Debug|x86.Build.0 = Debug|Any CPU
+		{07F6EEDE-0DD4-433C-B43B-085719A1B261}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07F6EEDE-0DD4-433C-B43B-085719A1B261}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07F6EEDE-0DD4-433C-B43B-085719A1B261}.Release|x64.ActiveCfg = Release|Any CPU
+		{07F6EEDE-0DD4-433C-B43B-085719A1B261}.Release|x64.Build.0 = Release|Any CPU
+		{07F6EEDE-0DD4-433C-B43B-085719A1B261}.Release|x86.ActiveCfg = Release|Any CPU
+		{07F6EEDE-0DD4-433C-B43B-085719A1B261}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,5 +71,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{0A7C2F48-5F96-47BF-BC46-0B4CCCC92C23} = {658D72A6-725E-44E1-A76D-AF4D35643465}
 		{5809F77E-DBD1-462C-92C1-358CD212FC71} = {C5260870-8364-4986-9E77-BACBBC6ED73E}
+		{07F6EEDE-0DD4-433C-B43B-085719A1B261} = {C5260870-8364-4986-9E77-BACBBC6ED73E}
 	EndGlobalSection
 EndGlobal

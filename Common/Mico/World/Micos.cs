@@ -24,6 +24,14 @@ namespace Mico.World
             g_shapes.Remove(shape);
         }
 
+        public static void Import(object Unknown = null)
+        {
+            foreach (Shape item in g_shapes)
+            {
+                item.OnRender(Unknown);
+            }
+        }
+
         public static void Update()
         {
             Time.Update();

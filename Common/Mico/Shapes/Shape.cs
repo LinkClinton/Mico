@@ -10,7 +10,7 @@ namespace Mico.Shapes
     {
         Transform g_transform = new Transform();
 
-        public virtual void OnUpdate() { }
+        public virtual void OnUpdate(object Unknown = null) { }
         public virtual void OnRender(object Unknown = null) { }
         public virtual void OnCreate(object Unknown = null) { }
         public virtual void OnDelete(object Unknown = null) { }
