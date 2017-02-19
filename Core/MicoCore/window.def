@@ -1,9 +1,0 @@
-LIBRARY
-
-EXPORTS
-
-LowWord
-HighWord
-IsKeyDown
-SetWindowSize
-CreateWindow

@@ -17,5 +17,5 @@ If you want use C++ do this,you can go [this][1].
 
 Notice:
 
- - Windows 8.1 or higher.
+ - Windows 10 or higher.
  - .NET 4.5 or higher.

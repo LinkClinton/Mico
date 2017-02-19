@@ -1,3 +1,3 @@
 ﻿# Mico
 
-This is Basic.
+There are core code.
