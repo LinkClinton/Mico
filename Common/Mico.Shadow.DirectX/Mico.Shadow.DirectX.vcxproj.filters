@@ -18,9 +18,15 @@
     <ClInclude Include="pch.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Direct2D.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Direct2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

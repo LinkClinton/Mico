@@ -4,22 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using System.Runtime.InteropServices;
-
-using Mico.Shadow.DirectX;
-
-namespace MicoSample
+namespace Mico.Shadow
 {
-
-   
-
-    class Program
+    class Test
     {
-
-
-        static void Main(string[] args)
+        Test()
         {
-
+            
         }
     }
 }

@@ -22,6 +22,7 @@ namespace Mico.Math
             g_y = y;
         }
 
+
         public float x
         {
             get { return g_x; }
