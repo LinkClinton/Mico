@@ -27,6 +27,7 @@
     <ClInclude Include="pch.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="readme.md" />
     <None Include="Shadow.def" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -11,8 +11,6 @@ using System.Runtime.InteropServices;
 namespace MicoSample
 {
 
-   
-
     class Program
     {
         static void Main(string[] args)

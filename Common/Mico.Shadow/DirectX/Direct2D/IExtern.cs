@@ -8,9 +8,6 @@ using System.Runtime.InteropServices;
 
 namespace Mico.Shadow.DirectX.Direct2D
 {
-    public delegate IntPtr WndProc(IntPtr Hwnd, int message,
-         IntPtr wParam, IntPtr lParam);
-
 
     static class IExtern
     {
@@ -32,10 +29,6 @@ namespace Mico.Shadow.DirectX.Direct2D
 
     public partial class IRenderTarget
     {
-        [DllImport(IExtern.DLLName)]
-        public static extern IntPtr GetWindow([MarshalAs(UnmanagedType.LPStr)] string
-           Title, [MarshalAs(UnmanagedType.LPStr)] string Ico, int Width, int Height,
-           WndProc proc);
 
         [DllImport(IExtern.DLLName)]
         static extern void IRenderTargetCreate(out IntPtr source, IntPtr factory, IntPtr hwnd);
