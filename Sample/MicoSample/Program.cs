@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using System.Runtime.InteropServices;
 
-using Mico.Shadow.DirectX;
+
 
 namespace MicoSample
 {
@@ -15,8 +15,6 @@ namespace MicoSample
 
     class Program
     {
-
-
         static void Main(string[] args)
         {
 

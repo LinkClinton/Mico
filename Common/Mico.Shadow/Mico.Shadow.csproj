@@ -40,14 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DirectX\Direct2D\IExtern.cs" />
+    <Compile Include="DirectX\Direct2D\IFactory.cs" />
+    <Compile Include="DirectX\Direct2D\IRenderTarget.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Test.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Mico.Shadow.DirectX\Mico.Shadow.DirectX.vcxproj">
-      <Project>{d88c5abf-a55a-466a-809a-8d401251fe1c}</Project>
-      <Name>Mico.Shadow.DirectX</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Mico\Mico.csproj">
       <Project>{5809f77e-dbd1-462c-92c1-358cd212fc71}</Project>
       <Name>Mico</Name>

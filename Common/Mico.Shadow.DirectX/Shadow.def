@@ -1,0 +1,26 @@
+LIBRARY
+
+EXPORTS
+
+
+	IFactoryCreate
+	IFactoryDestory
+	IFactoryGetDevice
+	IFactoryGetDesktopDpi
+	IFactoryGetRenderTarget
+
+
+	IRenderTargetClear
+	IRenderTargetCreate
+	IRenderTargetDestory
+	IRenderTargetEndDraw
+	IRenderTargetDrawLine
+	IRenderTargetBeginDraw
+	IRenderTargetDrawRectangle
+	IRenderTargetFillRectangle
+
+
+	GetWindow
+
+
+

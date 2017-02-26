@@ -1,7 +1,6 @@
 #pragma once
 
-#ifdef _DEBUG
-#define DEBUG_LOG(result,expression) if (FAILED(result)) throw gcnew System::NotImplementedException(expression);
-#else 
-#define DEBUG_LOG(result,expression)
-#endif // _DEBUG
+#include<d2d1_3.h>
+
+
+#pragma comment(lib,"d2d1.lib")

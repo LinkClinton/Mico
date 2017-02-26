@@ -49,10 +49,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\Mico.Shadow.DirectX\Mico.Shadow.DirectX.vcxproj">
-      <Project>{d88c5abf-a55a-466a-809a-8d401251fe1c}</Project>
-      <Name>Mico.Shadow.DirectX</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Common\Mico.Shadow\Mico.Shadow.csproj">
       <Project>{07f6eede-0dd4-433c-b43b-085719a1b261}</Project>
       <Name>Mico.Shadow</Name>
