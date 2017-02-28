@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Direct2D\IBrush.cpp" />
     <ClCompile Include="Direct2D\IFactory.cpp" />
     <ClCompile Include="Direct2D\IRenderTarget.cpp" />
     <ClCompile Include="Window.cpp" />

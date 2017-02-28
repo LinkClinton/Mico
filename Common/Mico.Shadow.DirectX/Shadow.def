@@ -19,6 +19,8 @@ EXPORTS
 	IRenderTargetDrawRectangle
 	IRenderTargetFillRectangle
 
+	IBrushCreate
+	IBrushDestory
 
 	GetWindow
 
