@@ -2,12 +2,12 @@
 
 typedef ID2D1HwndRenderTarget This;
 
-void IRenderTargetCreate(This** source, ID2D1Factory1* factory, HWND hwnd) 
+void IRenderTargetCreate(This** source, IFactory* factory, HWND hwnd) 
 {
 	float dpiX;
 	float dpiY;
 
-	factory->GetDesktopDpi(&dpiX, &dpiY);
+	factory->d2d1_factory->GetDesktopDpi(&dpiX, &dpiY);
 
 	RECT rc;
 	GetClientRect(hwnd, &rc);
@@ -15,7 +15,7 @@ void IRenderTargetCreate(This** source, ID2D1Factory1* factory, HWND hwnd)
 	D2D1_SIZE_U size = D2D1::SizeU(rc.right - rc.left,
 		rc.bottom - rc.top);
 
-	factory->CreateHwndRenderTarget(
+	factory->d2d1_factory->CreateHwndRenderTarget(
 		D2D1::RenderTargetProperties(D2D1_RENDER_TARGET_TYPE_DEFAULT,
 			D2D1::PixelFormat(), dpiX, dpiY), D2D1::HwndRenderTargetProperties(hwnd,
 				size), source);

@@ -58,5 +58,13 @@ namespace Mico.Shadow.DirectX.Direct2D
             IntPtr brush);
     }
 
+    public partial class IBrush
+    {
+        [DllImport(IExtern.DLLName)]
+        static extern void IBrushCreate(out IntPtr source, IntPtr target, float r, float g, float b, float a = 1.0f);
+
+        [DllImport(IExtern.DLLName)]
+        static extern void IBrushDestory(IntPtr source);
+    }
 
 }
