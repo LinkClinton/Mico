@@ -26,6 +26,27 @@ namespace Mico.Math
             g_w = w;
         }
 
+        public float Red
+        {
+            get { return g_x; }
+        }
+
+        public float Green
+        {
+            get { return g_y; }
+        }
+
+        public float Blue
+        {
+            get { return g_z; }
+        }
+
+        public float Alpha
+        {
+            get { return g_w; }
+        }
+
+
         public float x
         {
             get { return g_x; }

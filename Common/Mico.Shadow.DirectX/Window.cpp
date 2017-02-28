@@ -7,19 +7,24 @@ EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 #endif
 
 #include<cmath>
+#include<Windows.h>
+
+#ifdef CreateWindow
+#undef CreateWindow
+#endif // CreateWindow
+
 
 const float default_dpix = 96.0f;
 const float default_dpiy = 96.0f;
 
-
-auto GetWindow(LPCWSTR Title, LPCWSTR Ico, int Width, int Height, WNDPROC proc)->HWND
+HWND CreateWindow(LPCWSTR Title, LPCWSTR Ico,
+	int Width, int Height, WNDPROC proc)
 {
 	HINSTANCE Hinstance = HINST_THISCOMPONENT;
 
 	WNDCLASS WindowClass;
 
 	HWND Hwnd;
-
 
 	WindowClass.style = CS_HREDRAW | CS_VREDRAW;
 	WindowClass.lpfnWndProc = proc;
@@ -32,20 +37,21 @@ auto GetWindow(LPCWSTR Title, LPCWSTR Ico, int Width, int Height, WNDPROC proc)-
 	WindowClass.lpszMenuName = NULL;
 	WindowClass.lpszClassName = Title;
 
-
-
 	RegisterClass(&WindowClass);
 
 	FLOAT dpiX;
 	FLOAT dpiY;
 
 	ID2D1Factory* g_factory;
+	HeapSetInformation(NULL, HeapEnableTerminationOnCorruption, NULL, 0);
+
 	D2D1CreateFactory(D2D1_FACTORY_TYPE::D2D1_FACTORY_TYPE_SINGLE_THREADED,
 		(ID2D1Factory**)&g_factory);
 
 	g_factory->ReloadSystemMetrics();
 	g_factory->GetDesktopDpi(&dpiX, &dpiY);
 
+	g_factory->Release();
 
 	RECT rc;
 	rc.top = 0;
@@ -53,15 +59,16 @@ auto GetWindow(LPCWSTR Title, LPCWSTR Ico, int Width, int Height, WNDPROC proc)-
 	rc.right = (LONG)ceil(Width*dpiX / default_dpix);
 	rc.bottom = (LONG)ceil(Height*dpiY / default_dpiy);
 
-
-
 	AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
+
 
 	Hwnd = CreateWindowW(Title, Title, WS_OVERLAPPEDWINDOW,
 		CW_USEDEFAULT, CW_USEDEFAULT,
 		rc.right - rc.left,
 		rc.bottom - rc.top, nullptr, nullptr, Hinstance, nullptr);
 
+
 	ShowWindow(Hwnd, SW_SHOWNORMAL);
+
 	return Hwnd;
 }

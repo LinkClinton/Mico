@@ -15,6 +15,9 @@ namespace Mico.Shadow.DirectX.Direct2D
     }
 
 
+    public delegate IntPtr WndProc(IntPtr Hwnd, uint message,
+       IntPtr wParam, IntPtr lParam);
+
     public partial class IFactory
     {
         [DllImport(IExtern.DLLName)]
@@ -25,6 +28,12 @@ namespace Mico.Shadow.DirectX.Direct2D
 
         [DllImport(IExtern.DLLName)]
         static extern void IFactoryGetDesktopDpi(IntPtr source, out float dpiX, out float dpiY);
+
+        [DllImport(IExtern.DLLName, CallingConvention = CallingConvention.StdCall,
+               CharSet = CharSet.Auto)]
+        public static extern IntPtr CreateWindow([MarshalAs(UnmanagedType.LPStr)] String Title,
+              [MarshalAs(UnmanagedType.LPStr)]  String Ico, int Width, int Height, WndProc proc);
+
     }
 
     public partial class IRenderTarget

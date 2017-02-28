@@ -22,7 +22,7 @@ EXPORTS
 	IBrushCreate
 	IBrushDestory
 
-	GetWindow
+	CreateWindow
 
 
 

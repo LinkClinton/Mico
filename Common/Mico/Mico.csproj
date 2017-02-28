@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Math\Rect.cs" />
     <Compile Include="Math\Vector2.cs" />
     <Compile Include="Math\Vector4.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -28,7 +28,7 @@ namespace Mico.Shadow.DirectX.Direct2D
 
         public void Clear(Vector4 color)
         {
-            IRenderTargetClear(source, color.x, color.y, color.z, color.z);
+            IRenderTargetClear(source, color.Red, color.Green, color.Blue, color.Alpha);
         }
 
         public void BeginDraw()
@@ -45,6 +45,20 @@ namespace Mico.Shadow.DirectX.Direct2D
         {
             if (brush == null) brush = default_brush;
             IRenderTargetDrawLine(source, start.x, start.y, end.x, end.y, brush, width);
+        }
+
+        public void RenderRectangle(Rect rect, IBrush brush = null, float width = 1.0f)
+        {
+            if (brush == null) brush = default_brush;
+            IRenderTargetDrawRectangle(source, rect.Left, rect.Top, rect.Right, rect.Bottom,
+                brush, width);
+        }
+
+        public void FillRectangle(Rect rect, IBrush brush = null)
+        {
+            if (brush == null) brush = default_brush;
+            IRenderTargetFillRectangle(source, rect.Left, rect.Top, rect.Right, rect.Bottom,
+                brush);
         }
 
         public static implicit operator IntPtr(IRenderTarget rendertarget)

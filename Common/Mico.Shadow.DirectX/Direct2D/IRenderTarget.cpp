@@ -15,15 +15,16 @@ void IRenderTargetCreate(This** source, IFactory* factory, HWND hwnd)
 	D2D1_SIZE_U size = D2D1::SizeU(rc.right - rc.left,
 		rc.bottom - rc.top);
 
-	factory->d2d1_factory->CreateHwndRenderTarget(
-		D2D1::RenderTargetProperties(D2D1_RENDER_TARGET_TYPE_DEFAULT,
-			D2D1::PixelFormat(), dpiX, dpiY), D2D1::HwndRenderTargetProperties(hwnd,
-				size), source);
+	HRESULT result =
+		factory->d2d1_factory->CreateHwndRenderTarget(
+			D2D1::RenderTargetProperties(D2D1_RENDER_TARGET_TYPE_DEFAULT,
+				D2D1::PixelFormat(), dpiX, dpiY), D2D1::HwndRenderTargetProperties(hwnd,
+					size), source);
 }
 
 void IRenderTargetDestory(This* source) 
 {
-	if (source = nullptr) return;
+	if (source == nullptr) return;
 	source->Release();
 }
 
@@ -35,6 +36,7 @@ void IRenderTargetClear(This* source, float r, float g, float b, float a = 1.0f)
 void IRenderTargetBeginDraw(This* source) 
 {
 	source->BeginDraw();
+	source->Clear(D2D1::ColorF(D2D1::ColorF::White));
 }
 
 void IRenderTargetEndDraw(This* source) 

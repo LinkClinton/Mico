@@ -12,7 +12,7 @@ namespace Mico.Shadow.DirectX.Direct2D
     {
         IntPtr source;
 
-        public IBrush(IRenderTarget target,Vector4 color)
+        public IBrush(IRenderTarget target, Vector4 color)
         {
             IBrushCreate(out source, target, color.x, color.y, color.z, color.w);
         }

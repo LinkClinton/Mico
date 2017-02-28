@@ -29,7 +29,7 @@ namespace Mico.Shadow.DirectX.Direct2D
         }
 
 
-
+     
 
         public static implicit operator IntPtr(IFactory factory)
         {

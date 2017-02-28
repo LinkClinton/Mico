@@ -9,7 +9,7 @@ void IBrushCreate(This** source, ID2D1RenderTarget* target, float r, float g, fl
 	target->CreateSolidColorBrush(D2D1::ColorF(r, g, b, a),
 		&brush);
 
-	source = (This**)&brush;
+	*source = (This*)brush;
 }
 
 void IBrushDestory(This* source)
