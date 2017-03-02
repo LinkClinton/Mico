@@ -24,7 +24,9 @@ namespace Mico.Shadow.DirectX.Direct2D
 
         public Vector2 GetDesktopDpi()
         {
-            IFactoryGetDesktopDpi(source, out float dpiX, out float dpiY);
+            float dpiX;
+            float dpiY;
+            IFactoryGetDesktopDpi(source, out dpiX, out dpiY);
             return new Vector2(dpiX, dpiY);
         }
 
