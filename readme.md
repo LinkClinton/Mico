@@ -19,3 +19,5 @@ Notice:
 
  - Windows 10 or higher.
  - .NET 4.5 or higher.
+ - Visual Studio 2015 or higher(if you use Visual Studio,you should check the version of C++ Toolset)
+ - Windows SDK 14993
