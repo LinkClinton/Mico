@@ -87,3 +87,10 @@ void IRenderTargetDrawText(This* source, float x, float y,
 }
 
 
+void IRenderTargetDrawBitmap(This* source, float x, float y, ID2D1Bitmap* bitmap) 
+{
+	D2D_SIZE_F size = bitmap->GetSize();
+
+	source->target->DrawBitmap(bitmap,
+		D2D1::RectF(x, y, x + size.width, y + size.height));
+}

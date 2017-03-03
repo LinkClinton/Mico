@@ -17,6 +17,8 @@ namespace MicoSample
         IFactory factory;
         IRenderTarget render;
 
+      
+  
         public Window()
         {
             Hwnd = IFactory.CreateWindow("Mico", "", 800, 600, Window_proc);
@@ -27,7 +29,9 @@ namespace MicoSample
 
         public void OnRender()
         {
-
+            render.BeginDraw();
+         
+            render.EndDraw();
         }
 
         public void Run()
@@ -39,6 +43,9 @@ namespace MicoSample
                 {
                     TranslateMessage(ref message);
                     DispatchMessage(ref message);
+                }else
+                {
+                    OnRender();
                 }
             }
         }

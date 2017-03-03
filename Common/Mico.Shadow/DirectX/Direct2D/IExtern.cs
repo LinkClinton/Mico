@@ -69,6 +69,10 @@ namespace Mico.Shadow.DirectX.Direct2D
         [DllImport(IExtern.DLLName,CharSet = CharSet.Auto)]
         static extern void IRenderTargetDrawText(IntPtr source, float x, float y, string text,
             IntPtr font, IntPtr brush);
+
+        [DllImport(IExtern.DLLName)]
+        static extern void IRenderTargetDrawBitmap(IntPtr source, float x, float y,
+            IntPtr bitmap);
     }
 
     public partial class IBrush
@@ -89,5 +93,25 @@ namespace Mico.Shadow.DirectX.Direct2D
         [DllImport(IExtern.DLLName)]
         static extern void IFontDestory(IntPtr source);
     }
+
+
+    public partial class IBitmap
+    {
+        [DllImport(IExtern.DLLName, CharSet = CharSet.Auto)]
+        static extern void IBitmapCreate(out IntPtr source, IntPtr target, string filename);
+
+        [DllImport(IExtern.DLLName)]
+        static extern void IBitmapDestory(IntPtr source);
+
+        [DllImport(IExtern.DLLName)]
+        static extern float IBitmapGetWidth(IntPtr source);
+
+        [DllImport(IExtern.DLLName)]
+        static extern float IBitmapGetHeight(IntPtr source);
+
+
+    }
+
+
 
 }

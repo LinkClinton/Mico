@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DirectX\Direct2D\IBitmap.cs" />
     <Compile Include="DirectX\Direct2D\IBrush.cs" />
     <Compile Include="DirectX\Direct2D\IExtern.cs" />
     <Compile Include="DirectX\Direct2D\IFactory.cs" />

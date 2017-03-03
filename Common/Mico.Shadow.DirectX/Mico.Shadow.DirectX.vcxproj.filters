@@ -32,6 +32,9 @@
     <ClCompile Include="Direct2D\IFont.cpp">
       <Filter>Source Files\Direct2D</Filter>
     </ClCompile>
+    <ClCompile Include="Direct2D\IBitmap.cpp">
+      <Filter>Source Files\Direct2D</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shadow.def">

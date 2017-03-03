@@ -33,6 +33,13 @@ namespace Mico.Shadow.DirectX.Direct2D
             IRenderTargetClear(source, color.Red, color.Green, color.Blue, color.Alpha);
         }
 
+        public bool Enable
+        {
+            set { if (value == true) IRenderTargetBeginDraw(source);
+                else IRenderTargetEndDraw(source);
+            }
+        }
+
         public void BeginDraw()
         {
             IRenderTargetBeginDraw(source);
@@ -69,6 +76,12 @@ namespace Mico.Shadow.DirectX.Direct2D
             if (font == null) font = default_font;
             IRenderTargetDrawText(source, postion.x, postion.y, text, font, brush);
         }
+
+        public void RenderBitmap(IBitmap bitmap, Vector2 position)
+        {
+            IRenderTargetDrawBitmap(source, position.x, position.y, bitmap);
+        }
+
 
         public static implicit operator IntPtr(IRenderTarget rendertarget)
         {

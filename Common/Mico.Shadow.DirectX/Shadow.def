@@ -17,8 +17,10 @@ EXPORTS
 	IRenderTargetDrawLine
 	IRenderTargetDrawText
 	IRenderTargetBeginDraw
+	IRenderTargetDrawBitmap
 	IRenderTargetDrawRectangle
 	IRenderTargetFillRectangle
+
 
 
 	IBrushCreate
@@ -26,6 +28,11 @@ EXPORTS
 
 	IFontCreate
 	IFontDestory
+
+	IBitmapCreate
+	IBitmapDestory
+	IBitmapGetWidth
+	IBitmapGetHeight
 
 	CreateWindow
 
