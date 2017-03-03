@@ -6,9 +6,6 @@ using System.Threading.Tasks;
 
 namespace Mico.Shadow.DirectX.Direct2D
 {
-    /// <summary>
-    /// Font 
-    /// </summary>
     public partial class IFont
     {
         IntPtr source;

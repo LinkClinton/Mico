@@ -33,17 +33,12 @@ namespace MicoSample
         public void Run()
         {
             Message message = new Message();
-            message.Hwnd = Hwnd;
             while (message.Type != MessageType.Quit)
             {
                 if (PeekMessage(out message, IntPtr.Zero, 0, 0, 1))
                 {
                     TranslateMessage(ref message);
                     DispatchMessage(ref message);
-                }
-                else
-                {
-                    OnRender();
                 }
             }
         }

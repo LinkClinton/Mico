@@ -15,8 +15,8 @@ namespace MicoSample
     {
         static void Main(string[] args)
         {
-            Window window = new Window();
-            window.Run();
+            //Window window = new Window();
+            //window.Run();
         }
     }
 }

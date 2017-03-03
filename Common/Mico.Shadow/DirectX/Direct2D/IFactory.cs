@@ -8,9 +8,6 @@ using Mico.Math;
 
 namespace Mico.Shadow.DirectX.Direct2D
 {
-    /// <summary>
-    /// Factory to Create Object
-    /// </summary>
     public partial class IFactory
     {
         IntPtr source;

@@ -8,9 +8,6 @@ using Mico.Math;
 
 namespace Mico.Shadow.DirectX.Direct2D
 {
-    /// <summary>
-    /// A Surface to render and present to Window
-    /// </summary>
     public partial class IRenderTarget
     {
         IBrush default_brush;
