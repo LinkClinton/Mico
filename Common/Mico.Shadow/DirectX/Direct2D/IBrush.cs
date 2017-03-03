@@ -8,13 +8,16 @@ using Mico.Math;
 
 namespace Mico.Shadow.DirectX.Direct2D
 {
+    /// <summary>
+    /// Brush Source
+    /// </summary>
     public partial class IBrush
     {
         IntPtr source;
 
         public IBrush(IRenderTarget target, Vector4 color)
         {
-            IBrushCreate(out source, target, color.x, color.y, color.z, color.w);
+            IBrushCreate(out source, target, color.Red, color.Green, color.Blue, color.Alpha);
         }
 
         ~IBrush()
