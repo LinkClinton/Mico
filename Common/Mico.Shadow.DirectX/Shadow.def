@@ -15,12 +15,17 @@ EXPORTS
 	IRenderTargetDestory
 	IRenderTargetEndDraw
 	IRenderTargetDrawLine
+	IRenderTargetDrawText
 	IRenderTargetBeginDraw
 	IRenderTargetDrawRectangle
 	IRenderTargetFillRectangle
 
+
 	IBrushCreate
 	IBrushDestory
+
+	IFontCreate
+	IFontDestory
 
 	CreateWindow
 

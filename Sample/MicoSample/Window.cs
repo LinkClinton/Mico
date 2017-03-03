@@ -27,7 +27,7 @@ namespace MicoSample
 
         public void OnRender()
         {
-           
+
         }
 
         public void Run()

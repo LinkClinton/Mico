@@ -43,6 +43,7 @@
     <Compile Include="DirectX\Direct2D\IBrush.cs" />
     <Compile Include="DirectX\Direct2D\IExtern.cs" />
     <Compile Include="DirectX\Direct2D\IFactory.cs" />
+    <Compile Include="DirectX\Direct2D\IFont.cs" />
     <Compile Include="DirectX\Direct2D\IRenderTarget.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

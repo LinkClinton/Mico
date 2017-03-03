@@ -31,8 +31,8 @@ namespace Mico.Shadow.DirectX.Direct2D
 
         [DllImport(IExtern.DLLName, CallingConvention = CallingConvention.StdCall,
                CharSet = CharSet.Auto)]
-        public static extern IntPtr CreateWindow([MarshalAs(UnmanagedType.LPStr)] String Title,
-              [MarshalAs(UnmanagedType.LPStr)]  String Ico, int Width, int Height, WndProc proc);
+        public static extern IntPtr CreateWindow([MarshalAs(UnmanagedType.LPStr)] string Title,
+              [MarshalAs(UnmanagedType.LPStr)]  string Ico, int Width, int Height, WndProc proc);
 
     }
 
@@ -65,6 +65,10 @@ namespace Mico.Shadow.DirectX.Direct2D
         [DllImport(IExtern.DLLName)]
         static extern void IRenderTargetFillRectangle(IntPtr source, float left, float top, float right, float bottom,
             IntPtr brush);
+
+        [DllImport(IExtern.DLLName,CharSet = CharSet.Auto)]
+        static extern void IRenderTargetDrawText(IntPtr source, float x, float y, string text,
+            IntPtr font, IntPtr brush);
     }
 
     public partial class IBrush
@@ -74,6 +78,16 @@ namespace Mico.Shadow.DirectX.Direct2D
 
         [DllImport(IExtern.DLLName)]
         static extern void IBrushDestory(IntPtr source);
+    }
+
+    public partial class IFont
+    {
+        [DllImport(IExtern.DLLName, CharSet = CharSet.Auto)]
+        static extern void IFontCreate(out IntPtr soure, IntPtr target,
+            string fontface, float size, int weight = 400);
+
+        [DllImport(IExtern.DLLName)]
+        static extern void IFontDestory(IntPtr source);
     }
 
 }

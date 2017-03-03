@@ -20,3 +20,11 @@ struct IFactory {
 		write_factory->Release();
 	}
 };
+
+struct IRenderTarget {
+	ID2D1HwndRenderTarget* target;
+	IFactory* factory;
+	~IRenderTarget() {
+		target->Release();
+	}
+};
