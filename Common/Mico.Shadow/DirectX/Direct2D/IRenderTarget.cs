@@ -82,6 +82,21 @@ namespace Mico.Shadow.DirectX.Direct2D
             IRenderTargetDrawBitmap(source, position.x, position.y, bitmap);
         }
 
+        public void Rotate(Vector2 center,float angle)
+        {
+            IRenderTargetRotate(source, center.x, center.y, angle);
+        }
+
+        public void Translate(Vector2 position)
+        {
+            IRenderTargetTranslate(source, position.x, position.y);
+        }
+
+        public void Scale(Vector2 position,Vector2 scale)
+        {
+            IRenderTargetScale(source, position.x, position.y, scale.x, scale.y);
+        }
+
 
         public static implicit operator IntPtr(IRenderTarget rendertarget)
         {

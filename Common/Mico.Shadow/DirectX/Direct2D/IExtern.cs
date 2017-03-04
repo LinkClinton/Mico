@@ -73,6 +73,18 @@ namespace Mico.Shadow.DirectX.Direct2D
         [DllImport(IExtern.DLLName)]
         static extern void IRenderTargetDrawBitmap(IntPtr source, float x, float y,
             IntPtr bitmap);
+
+        [DllImport(IExtern.DLLName)]
+        static extern void IRenderTargetRotate(IntPtr source, float x, float y, float angle);
+
+        [DllImport(IExtern.DLLName)]
+        static extern void IRenderTargetTranslate(IntPtr source, float x, float y);
+
+        [DllImport(IExtern.DLLName)]
+        static extern void IRenderTargetScale(IntPtr source, float x, float y, float scale_x, float scale_y);
+
+        [DllImport(IExtern.DLLName)]
+        static extern void IRenderTargetClearTransform(IntPtr source);
     }
 
     public partial class IBrush

@@ -29,9 +29,9 @@ namespace MicoSample
 
         public void OnRender()
         {
-            render.BeginDraw();
-         
-            render.EndDraw();
+            render.Enable = true;
+            render.RenderLine(new Mico.Math.Vector2(0, 0), new Mico.Math.Vector2(20, 20));
+            render.Enable = false;
         }
 
         public void Run()

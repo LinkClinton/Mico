@@ -86,11 +86,52 @@ void IRenderTargetDrawText(This* source, float x, float y,
 
 }
 
-
-void IRenderTargetDrawBitmap(This* source, float x, float y, ID2D1Bitmap* bitmap) 
+void IRenderTargetDrawBitmap(This* source, float x, float y, ID2D1Bitmap* bitmap)
 {
 	D2D_SIZE_F size = bitmap->GetSize();
 
 	source->target->DrawBitmap(bitmap,
 		D2D1::RectF(x, y, x + size.width, y + size.height));
+}
+
+void IRenderTargetRotate(This* source, float x, float y, float angle)
+{
+	D2D1::Matrix3x2F transform;
+	D2D1::Matrix3x2F matrix = D2D1::Matrix3x2F::Rotation(angle, D2D1::Point2F(x, y));
+
+	source->target->GetTransform(&transform);
+
+	matrix = matrix*transform;
+
+	source->target->SetTransform(matrix);
+}
+
+void IRenderTargetTranslate(This* source, float x, float y)
+{
+	D2D1::Matrix3x2F transform;
+	D2D1::Matrix3x2F matrix = D2D1::Matrix3x2F::Translation(D2D1::SizeF(x, y));
+
+	source->target->GetTransform(&transform);
+
+	matrix = matrix*transform;
+
+	source->target->SetTransform(matrix);
+}
+
+void IRenderTargetScale(This* source, float x, float y, float scale_x, float scale_y)
+{
+	D2D1::Matrix3x2F transform;
+	D2D1::Matrix3x2F matrix = D2D1::Matrix3x2F::Scale(D2D1::SizeF(scale_x, scale_y)
+		, D2D1::Point2F(x, y));
+
+	source->target->GetTransform(&transform);
+
+	matrix = matrix*transform;
+
+	source->target->SetTransform(matrix);
+}
+
+void IRenderTargetClearTransform(This* source)
+{
+	source->target->SetTransform(D2D1::Matrix3x2F::Identity());
 }

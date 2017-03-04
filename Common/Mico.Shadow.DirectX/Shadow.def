@@ -11,15 +11,19 @@ EXPORTS
 
 
 	IRenderTargetClear
+	IRenderTargetScale
 	IRenderTargetCreate
-	IRenderTargetDestory
+	IRenderTargetRotate
+	IRenderTargetDestory	
 	IRenderTargetEndDraw
 	IRenderTargetDrawLine
 	IRenderTargetDrawText
+	IRenderTargetTranslate
 	IRenderTargetBeginDraw
 	IRenderTargetDrawBitmap
 	IRenderTargetDrawRectangle
 	IRenderTargetFillRectangle
+	IRenderTargetClearTransform
 
 
 
