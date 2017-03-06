@@ -55,7 +55,7 @@ namespace Mico.Math
             return new Vector3(vec1.x - vec2.x, vec1.y - vec2.y, vec1.z - vec2.z);
         }
 
-        private float sqr(float x)
+        internal float sqr(float x)
         {
             return x * x;
         }
@@ -64,8 +64,16 @@ namespace Mico.Math
         {
             get
             {
-                float g_len = (float)System.Math.Sqrt(x * x + y * y + z * z);
+                float g_len = Length;
                 return new Vector3(x / g_len, y / g_len, z / g_len);
+            }
+        }
+
+        public float Length
+        {
+            get
+            {
+                return (float)System.Math.Sqrt(sqr(x) + sqr(y) + sqr(z));
             }
         }
 

@@ -49,6 +49,7 @@
     <Compile Include="Math\Vector3.cs" />
     <Compile Include="Math\Vector4.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shapes\Camera.cs" />
     <Compile Include="Shapes\Shape.cs" />
     <Compile Include="Shapes\Transform.cs" />
     <Compile Include="World\Micos.cs" />

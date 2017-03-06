@@ -13,7 +13,7 @@ namespace Mico.Math
         float g_top;
         float g_bottom;
 
-        public Rect(float left,float top,float right,float bottom)
+        public Rect(float left = 0, float top = 0, float right = 0, float bottom = 0)
         {
             g_left = left;
             g_top = top;

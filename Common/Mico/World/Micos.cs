@@ -11,6 +11,7 @@ namespace Mico.World
     public static class Micos
     {
         static List<Shape> g_shapes = new List<Shape>();
+        static Camera g_camera = new Camera();
 
         public static void Add(Shape shape, object Unknown = null)
         {
@@ -30,6 +31,8 @@ namespace Mico.World
             {
                 item.OnRender(Unknown);
             }
+
+            g_camera.OnRender(Unknown);
         }
 
         public static void Update()
@@ -41,6 +44,15 @@ namespace Mico.World
                 item.OnUpdate();
                 item.FixUpdate();
             }
+
+            g_camera.OnUpdate();
+            g_camera.FixUpdate();
+        }
+
+        public static Camera Camera
+        {
+            get { return g_camera; }
+            set { g_camera = value; }
         }
 
 

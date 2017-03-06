@@ -17,6 +17,8 @@ namespace Mico.Shapes
         float g_speed = 0;
         float g_angle = 0;
 
+        internal float g_forward_len;
+
         public Vector3 Position
         {
             get { return g_pos; }
@@ -29,6 +31,7 @@ namespace Mico.Shapes
             set
             {
                 g_forward = (value - Position).Normalize;
+                g_forward_len = (value - Position).Length;
             }
         }
 
