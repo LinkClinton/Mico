@@ -14,9 +14,8 @@ namespace Mico.Math
 
 
         public override string ToString()
-        {
-            return "x = " + g_x + ", y = " + g_y + ", z = " + g_z;
-        }
+            => "x = " + g_x + ", y = " + g_y + ", z = " + g_z;
+        
 
         public Vector3(float x = 0, float y = 0, float z = 0)
         {
@@ -25,40 +24,25 @@ namespace Mico.Math
             g_z = z;
         }
 
-        public float x
-        {
-            get { return g_x; }
-        }
+        public float x { get => g_x; }
+        public float y { get => g_y; }
+        public float z { get => g_z; }
+        
 
-        public float y
-        {
-            get { return g_y; }
-        }
-
-        public float z
-        {
-            get { return g_z; }
-        }
+        
 
         public static Vector3 operator *(Vector3 vec, float value)
-        {
-            return new Vector3(vec.x * value, vec.y * value, vec.z * value);
-        }
-
+            => new Vector3(vec.x * value, vec.y * value, vec.z * value);
+    
         public static Vector3 operator+(Vector3 vec1,Vector3 vec2)
-        {
-            return new Vector3(vec1.x + vec2.x, vec1.y + vec2.y, vec1.z + vec2.z);
-        }
+            => new Vector3(vec1.x + vec2.x, vec1.y + vec2.y, vec1.z + vec2.z);
+        
 
         public static Vector3 operator-(Vector3 vec1,Vector3 vec2)
-        {
-            return new Vector3(vec1.x - vec2.x, vec1.y - vec2.y, vec1.z - vec2.z);
-        }
+            => new Vector3(vec1.x - vec2.x, vec1.y - vec2.y, vec1.z - vec2.z);
 
-        internal float sqr(float x)
-        {
-            return x * x;
-        }
+
+        internal float sqr(float x) => x * x;
 
         public Vector3 Normalize
         {
@@ -71,21 +55,15 @@ namespace Mico.Math
 
         public float Length
         {
-            get
-            {
-                return (float)System.Math.Sqrt(sqr(x) + sqr(y) + sqr(z));
-            }
+            get => (float)System.Math.Sqrt(sqr(x) + sqr(y) + sqr(z));
         }
 
         public float Distance(Vector3 vec)
-        {
-            return (float)System.Math.Sqrt(sqr(x - vec.x) + sqr(y - vec.y) + sqr(z - vec.z));
-        }
+            => (float)System.Math.Sqrt(sqr(x - vec.x) + sqr(y - vec.y) + sqr(z - vec.z));
+        
 
 
-        public static implicit operator Vector2(Vector3 vec)
-        {
-            return new Vector2(vec.x, vec.y);
-        }
+        public static implicit operator Vector2(Vector3 vec) => new Vector2(vec.x, vec.y);
+        
     }
 }

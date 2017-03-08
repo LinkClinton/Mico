@@ -14,9 +14,8 @@ namespace Mico.Math
         float g_w;
 
         public override string ToString()
-        {
-            return "x=" + g_x + " y=" + g_y + " z=" + g_z + " w=" + g_w;
-        }
+            => "x=" + g_x + " y=" + g_y + " z=" + g_z + " w=" + g_w;
+        
 
         public Vector4 (float x,float y,float z,float w)
         {
@@ -26,45 +25,14 @@ namespace Mico.Math
             g_w = w;
         }
 
-        public float Red
-        {
-            get { return g_x; }
-        }
+        public float Red { get => g_x; }
+        public float Green { get => g_y; }
+        public float Blue { get => g_z; }
+        public float Alpha { get => g_w; }
 
-        public float Green
-        {
-            get { return g_y; }
-        }
-
-        public float Blue
-        {
-            get { return g_z; }
-        }
-
-        public float Alpha
-        {
-            get { return g_w; }
-        }
-
-
-        public float x
-        {
-            get { return g_x; }
-        }
-
-        public float y
-        {
-            get { return g_y; }
-        }
-
-        public float z
-        {
-            get { return g_z; }
-        }
-
-        public float w
-        {
-            get { return g_w; }
-        }
+        public float x { get => g_x; }
+        public float y { get => g_y; }
+        public float z { get => g_z; }
+        public float w { get => g_w; }
     }
 }

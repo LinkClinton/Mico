@@ -22,20 +22,20 @@ namespace Mico.Shadow.DirectX.Direct2D
             IFactoryDestory(source);
         }
 
-        public Vector2 GetDesktopDpi()
+        private Vector2 GetDesktopDpi()
         {
-            float dpiX;
-            float dpiY;
-            IFactoryGetDesktopDpi(source, out dpiX, out dpiY);
+            IFactoryGetDesktopDpi(source, out float dpiX, out float dpiY);
             return new Vector2(dpiX, dpiY);
         }
 
 
+        public Vector2 DesktopDpi
+        {
+            get => GetDesktopDpi();
+        }
+
      
 
-        public static implicit operator IntPtr(IFactory factory)
-        {
-            return factory.source;
-        }
+        public static implicit operator IntPtr(IFactory factory) => factory.source;
     }
 }

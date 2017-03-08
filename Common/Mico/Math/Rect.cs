@@ -23,26 +23,26 @@ namespace Mico.Math
 
         public float Left
         {
-            get { return g_left; }
-            set { g_left = value; }
+            get => g_left;
+            set => g_left = value; 
         }
 
         public float Right
         {
-            get { return g_right; }
-            set { g_right = value; }
+            get => g_right;
+            set => g_right = value; 
         }
 
         public float Top
         {
-            get { return g_top; }
-            set { g_top = value; }
+            get => g_top;
+            set => g_top = value;
         }
         
         public float Bottom
         {
-            get { return g_bottom; }
-            set { g_bottom = value; }
+            get => g_bottom;
+            set => g_bottom = value; 
         }
 
 

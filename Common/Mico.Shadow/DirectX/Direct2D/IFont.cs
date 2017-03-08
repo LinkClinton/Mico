@@ -21,9 +21,6 @@ namespace Mico.Shadow.DirectX.Direct2D
             IFontDestory(source);
         }
 
-        public static implicit operator IntPtr(IFont font)
-        {
-            return font.source;
-        }
+        public static implicit operator IntPtr(IFont font) => font.source;
     }
 }

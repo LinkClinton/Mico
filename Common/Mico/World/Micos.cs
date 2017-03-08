@@ -51,8 +51,8 @@ namespace Mico.World
 
         public static Camera Camera
         {
-            get { return g_camera; }
-            set { g_camera = value; }
+            get => g_camera;
+            set => g_camera = value;
         }
 
 

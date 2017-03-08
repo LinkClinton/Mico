@@ -20,8 +20,8 @@ namespace Mico.Shapes
         
         public Vector3 LookAt
         {
-            get { return g_lookat; }
-            set { g_lookat = value; }
+            get => g_lookat;
+            set => g_lookat = value; 
         }
 
 

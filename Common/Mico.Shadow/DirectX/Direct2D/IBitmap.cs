@@ -22,17 +22,14 @@ namespace Mico.Shadow.DirectX.Direct2D
 
         float Width
         {
-            get { return IBitmapGetWidth(source); }
+            get => IBitmapGetWidth(source);
         }
 
         float Height
         {
-            get { return IBitmapGetHeight(source); }
+            get => IBitmapGetHeight(source);
         }
 
-        public static implicit operator IntPtr(IBitmap bitmap)
-        {
-            return bitmap.source;
-        }
+        public static implicit operator IntPtr(IBitmap bitmap) => bitmap.source;
     }
 }

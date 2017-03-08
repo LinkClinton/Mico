@@ -21,12 +21,12 @@ namespace Mico.World
 
         public static DateTime NowTime
         {
-            get { return g_NowTime; }
+            get => g_NowTime;
         }
 
         public static TimeSpan DeltaTime
         {
-            get { return g_DeltaTime; }
+            get => g_DeltaTime;
         }
     }
 }

@@ -12,9 +12,8 @@ namespace Mico.Math
         float g_y;
 
         public override string ToString()
-        {
-            return "x=" + g_x + ",y=" + g_y;
-        }
+            => "x=" + g_x + ",y=" + g_y;
+        
 
         public Vector2(float x = 0, float y = 0)
         {
@@ -23,30 +22,19 @@ namespace Mico.Math
         }
 
 
-        public float x
-        {
-            get { return g_x; }
-        }
-
-        public float y
-        {
-            get { return g_y; }
-        }
+        public float x { get => g_x; }
+        public float y { get => g_y; }
 
         public static Vector2 operator *(Vector2 vec, float value)
-        {
-            return new Vector2(vec.x * value, vec.y * value);
-        }
+            => new Vector2(vec.x * value, vec.y * value);
+        
 
         public static Vector2 operator +(Vector2 vec1, Vector2 vec2)
-        {
-            return new Vector2(vec1.x + vec2.x, vec1.y + vec2.y);
-        }
-
+            => new Vector2(vec1.x + vec2.x, vec1.y + vec2.y);
+        
         public static Vector2 operator -(Vector2 vec1, Vector2 vec2)
-        {
-            return new Vector2(vec1.x - vec2.x, vec1.y - vec2.y);
-        }
+            => new Vector2(vec1.x - vec2.x, vec1.y - vec2.y);
+        
 
         public Vector2 Normalize
         {
@@ -57,14 +45,10 @@ namespace Mico.Math
             }
         }
 
-        private float sqr(float x)
-        {
-            return x * x;
-        }
+        private float sqr(float x) => x * x;
 
         public float Distance(Vector2 vec)
-        {
-            return (float)System.Math.Sqrt(sqr(g_x - vec.g_x) + sqr(g_y - vec.g_y));
-        }
+            => (float)System.Math.Sqrt(sqr(g_x - vec.g_x) + sqr(g_y - vec.g_y));
+        
     }
 }

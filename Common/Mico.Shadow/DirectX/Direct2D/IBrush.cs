@@ -22,9 +22,6 @@ namespace Mico.Shadow.DirectX.Direct2D
             IBrushDestory(source);
         }
 
-        public static implicit operator IntPtr(IBrush brush)
-        {
-            return brush.source;
-        }
+        public static implicit operator IntPtr(IBrush brush) => brush.source;
     }
 }

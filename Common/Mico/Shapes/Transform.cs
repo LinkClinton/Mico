@@ -15,19 +15,18 @@ namespace Mico.Shapes
         Vector3 g_scale = new Vector3(1, 1, 1);
 
         float g_speed = 0;
-        float g_angle = 0;
 
-        internal float g_forward_len;
+        float g_forward_len;
 
         public Vector3 Position
         {
-            get { return g_pos; }
-            set { g_pos = value; }
+            get => g_pos;
+            set => g_pos = value; 
         }
 
         public Vector3 Forward
         {
-            get { return g_forward; }
+            get => g_forward; 
             set
             {
                 g_forward = (value - Position).Normalize;
@@ -37,19 +36,14 @@ namespace Mico.Shapes
 
         public float Speed
         {
-            get { return g_speed; }
-            set { g_speed = value; }
-        }
-
-        public Vector3 Center
-        {
-            get { return g_pos; }
+            get => g_speed; 
+            set => g_speed = value; 
         }
 
         public Vector3 Scale
         {
-            get { return g_scale; }
-            set { g_scale = value; }
+            get => g_scale; 
+            set => g_scale = value; 
         }
     }
 }

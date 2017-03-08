@@ -98,9 +98,6 @@ namespace Mico.Shadow.DirectX.Direct2D
         }
 
 
-        public static implicit operator IntPtr(IRenderTarget rendertarget)
-        {
-            return rendertarget.source;
-        }
+        public static implicit operator IntPtr(IRenderTarget rendertarget) => rendertarget.source;
     }
 }

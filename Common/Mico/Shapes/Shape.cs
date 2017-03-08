@@ -25,8 +25,8 @@ namespace Mico.Shapes
 
         public Transform Transform
         {
-            set { g_transform = value; }
-            get { return g_transform; }
+            get => g_transform;
+            set => g_transform = value;
         }
     }
 }
