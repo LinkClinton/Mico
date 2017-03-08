@@ -1,7 +1,10 @@
 ﻿# Mico.Shadow
 
-There some class to render and create window.
+If you want to render your "Micos",you can use this.
 
-If you use Mico.Shadow,you should make sure the Mico.Shadow.DirectX.dll in your output directory.
+## Include
+- **Mico.Shadow.DirectX**
 
+## Introduction
 
+We use **WindowsAPI** and **DirectX** to help you render your "Mico".

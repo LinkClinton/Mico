@@ -1,5 +1,11 @@
 ﻿# Mico
 
-There are core code.
+Core library.
 
-You can see more information in folder.
+## Include
+- **Mico.World**  
+- **Mico.Math**
+- **Mico.Shape**
+
+## Introduction
+

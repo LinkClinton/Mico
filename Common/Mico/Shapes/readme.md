@@ -1,10 +1,45 @@
 ﻿# Mico.Shapes
 
-A Shape is a object in "Micos"(You can think "Micos" is a world).
+A base object in "Micos".
 
-Shape is a base object.
+## A Base Object
 
-You can inherit "Shape" and describe it.
+The "Micos" can have many kinds object.
 
-## Shape ##
- - Transform: To describe the position,forward,speed and so on.
+Shape is the very basic object.
+
+## Introduction
+
+Shape should be a interface,you should use it by inheriting.
+
+```C#
+public class Life : Shape
+{
+	...
+}
+```
+
+### Event
+
+On some events be occurred,some funciton will be run.
+
+For example,the `Update` will be run when "Micos" update itself.
+
+You can override this function.
+
+```C#
+public class Life : Shape
+{
+	public override void OnUpdate(object Unknown = null) 
+	{
+		Console.WriteLine("updating...");
+	}
+}
+``` 
+
+### Transform
+
+A transofrm can describe a shape in the "Micos".
+
+
+

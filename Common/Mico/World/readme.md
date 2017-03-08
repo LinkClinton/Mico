@@ -1,13 +1,45 @@
 ﻿# Mico.World
 
-"Micos" is a world.
+The world called "Micos".
 
-"Micos" Manager the Shape's "Life".
+## A Simple Framework
 
-If you want update and render your shape,you should add your shape in "Micos".
+When we make game,we need to manager characters,events and so on.
 
-And you should tell the "Micos" to how to update and render shape.
+"Micos" is a simple framework to help you manager this.
 
-Notice:
+## Introduction
 
- - Position you do not need to update.The "Micos" will update it.
+"Micos" expects we can make game more easier.
+
+### Add Shape
+
+You can add [shape](https://github.com/Link-Arthur/Mico/tree/master/Common/Mico/Shapes)
+and delete it.
+
+```C#
+Mico.World.Micos.Add(Shape shape);
+
+Mico.World.Micos.Delete(Shape shape);
+```
+
+If you want a shape be updated and render,you should add it in "Micos".
+
+### Update Micos
+
+"Micos" manager some shapes' information,so you need to update "Micos' to
+update shapes in the "Micos".
+
+```C#
+Mico.World.Micos.Update();
+```
+
+### Export Micos
+
+A world need to output itself.
+
+You can render this world or write it to a file and so on.
+
+```C#
+Mico.World.Micos.Export();
+```

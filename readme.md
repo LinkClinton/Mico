@@ -1,23 +1,19 @@
 # Mico
 
-This lib is based on Windows API and DirectX.
+A library to help makeing game more easier.
 
-## What can we use this do? ##
+## Include
 
- - Make Game or Application in Windows-Desktop.
- - Render some Graphics by using DirectX.
- - and so on.
+- [**Mico**](https://github.com/Link-Arthur/Mico/tree/master/Common/Mico): Core library.
+- [**Mico.Shadow**](https://github.com/Link-Arthur/Mico/tree/master/Common/Mico.Shadow): Render by using DirectX.
 
-
-If you want use C++ do this,you can go [this][1].
-
-
-  [1]: https://github.com/Fununy/ASNET
+## Request
+  - Windows 8.1 or higher.
+  - .NET 4.5 or higher.
 
 
-Notice:
 
- - Windows 10 or higher.
- - .NET 4.5 or higher.
- - Visual Studio 2015 or higher(if you use Visual Studio,you should check the version of C++ Toolset)
- - Windows SDK 14993
+
+ 
+
+
