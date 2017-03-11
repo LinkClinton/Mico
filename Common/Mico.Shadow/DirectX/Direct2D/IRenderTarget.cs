@@ -97,6 +97,11 @@ namespace Mico.Shadow.DirectX.Direct2D
             IRenderTargetScale(source, position.x, position.y, scale.x, scale.y);
         }
 
+        public void ClearTransform()
+        {
+            IRenderTargetClearTransform(source);
+        }
+
 
         public static implicit operator IntPtr(IRenderTarget rendertarget) => rendertarget.source;
     }
