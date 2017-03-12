@@ -4,13 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Runtime.InteropServices;
+
 namespace Mico.Math
 {
+    [StructLayout(LayoutKind.Sequential)]
     public class Rect
     {
         float g_left;
-        float g_right;
         float g_top;
+        float g_right;
         float g_bottom;
 
         public Rect(float left = 0, float top = 0, float right = 0, float bottom = 0)

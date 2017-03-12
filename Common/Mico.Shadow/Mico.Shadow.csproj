@@ -40,12 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DirectX\Direct2D\IBitmap.cs" />
-    <Compile Include="DirectX\Direct2D\IBrush.cs" />
-    <Compile Include="DirectX\Direct2D\IExtern.cs" />
-    <Compile Include="DirectX\Direct2D\IFactory.cs" />
-    <Compile Include="DirectX\Direct2D\IFont.cs" />
-    <Compile Include="DirectX\Direct2D\IRenderTarget.cs" />
+    <Compile Include="DirectX\IBitmap.cs" />
+    <Compile Include="DirectX\IBrush.cs" />
+    <Compile Include="DirectX\IDevice.cs" />
+    <Compile Include="DirectX\IExtern.cs" />
+    <Compile Include="DirectX\IFont.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

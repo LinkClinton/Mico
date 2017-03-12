@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using System.Runtime.InteropServices;
 
-using Mico.Shadow.DirectX.Direct2D;
+using Mico.Shadow.DirectX;
 
 namespace MicoSample
 {
@@ -14,22 +14,27 @@ namespace MicoSample
     {
         IntPtr Hwnd;
 
-        IFactory factory;
-        IRenderTarget render;
+        IDevice device;
+        IBitmap bitmap;
 
       
   
         public Window()
         {
-            Hwnd = IFactory.CreateWindow("Mico", "", 800, 600, Window_proc);
-
-            factory = new IFactory();
-            render = new IRenderTarget(factory, Hwnd);
+            Hwnd = IDevice.CreateWindow("Mico", "", 800, 600, Window_proc);
+            device = new IDevice(Hwnd);
+            bitmap = new IBitmap(device, @"草图.png");
         }
 
         public void OnRender()
         {
-
+            device.Clear(new Mico.Math.Vector4(1, 1, 1, 1));
+            device.RenderBitmap(new Mico.Math.Rect(0, 0, 800, 600), bitmap);
+            device.RenderLine(new Mico.Math.Vector2(0, 0), new Mico.Math.Vector2(100, 100),
+                new IBrush(device, new Mico.Math.Vector4(0, 0, 0, 1)));
+            device.RenderText("Text Test", new Mico.Math.Vector2(100, 100),
+                new IFont(device, "Consolas", 12), new IBrush(device, new Mico.Math.Vector4(0, 0, 0, 1)));
+            device.Present();
         }
 
         public void Run()

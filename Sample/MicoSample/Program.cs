@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using System.Runtime.InteropServices;
 
-using Mico.Shadow.DirectX.Direct2D;
+using Mico.Shadow.DirectX;
 
 namespace MicoSample
 {

@@ -19,11 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Direct2D\IBitmap.cpp" />
-    <ClCompile Include="Direct2D\IBrush.cpp" />
-    <ClCompile Include="Direct2D\IFactory.cpp" />
-    <ClCompile Include="Direct2D\IFont.cpp" />
-    <ClCompile Include="Direct2D\IRenderTarget.cpp" />
+    <ClCompile Include="DirectX\IDirectXBitmap.cpp" />
+    <ClCompile Include="DirectX\IDirectXBrush.cpp" />
+    <ClCompile Include="DirectX\IDirectXDevice.cpp" />
+    <ClCompile Include="DirectX\IDirectXFont.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>

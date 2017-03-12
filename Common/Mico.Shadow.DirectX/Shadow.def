@@ -3,40 +3,26 @@ LIBRARY
 EXPORTS
 
 
-	IFactoryCreate
-	IFactoryDestory
-	IFactoryGetDevice
-	IFactoryGetDesktopDpi
-	IFactoryGetRenderTarget
+	IDirectXDeviceClear
+	IDirectXDeviceCreate
+	IDirectXDeviceDestory
+	IDirectXDevicePresent
+	IDirectXDeviceRenderLine
+	IDirectXDeviceRenderText
+	IDirectXDeviceRenderBitmap
+
+	IDirectXFontCreate
+	IDirectXFontDestory
+
+	IDirectXBrushCreate
+	IDirectXBrushDestory
 
 
-	IRenderTargetClear
-	IRenderTargetScale
-	IRenderTargetCreate
-	IRenderTargetRotate
-	IRenderTargetDestory	
-	IRenderTargetEndDraw
-	IRenderTargetDrawLine
-	IRenderTargetDrawText
-	IRenderTargetTranslate
-	IRenderTargetBeginDraw
-	IRenderTargetDrawBitmap
-	IRenderTargetDrawRectangle
-	IRenderTargetFillRectangle
-	IRenderTargetClearTransform
+	IDirectXBitmapCreate
+	IDirectXBitmapDestory
+	
 
 
-
-	IBrushCreate
-	IBrushDestory
-
-	IFontCreate
-	IFontDestory
-
-	IBitmapCreate
-	IBitmapDestory
-	IBitmapGetWidth
-	IBitmapGetHeight
 
 	CreateWindow
 

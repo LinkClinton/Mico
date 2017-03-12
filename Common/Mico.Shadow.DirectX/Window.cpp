@@ -43,7 +43,6 @@ HWND CreateWindow(LPCWSTR Title, LPCWSTR Ico,
 	FLOAT dpiY;
 
 	ID2D1Factory* g_factory;
-	HeapSetInformation(NULL, HeapEnableTerminationOnCorruption, NULL, 0);
 
 	D2D1CreateFactory(D2D1_FACTORY_TYPE::D2D1_FACTORY_TYPE_SINGLE_THREADED,
 		(ID2D1Factory**)&g_factory);
@@ -56,8 +55,8 @@ HWND CreateWindow(LPCWSTR Title, LPCWSTR Ico,
 	RECT rc;
 	rc.top = 0;
 	rc.left = 0;
-	rc.right = (LONG)ceil(Width*dpiX / default_dpix);
-	rc.bottom = (LONG)ceil(Height*dpiY / default_dpiy);
+	rc.right = (LONG)ceil(Width);
+	rc.bottom = (LONG)ceil(Height);
 
 	AdjustWindowRect(&rc, WS_OVERLAPPEDWINDOW, FALSE);
 
