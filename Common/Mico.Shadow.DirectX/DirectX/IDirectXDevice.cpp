@@ -244,3 +244,8 @@ void IDirectXDeviceRenderBitmap(IDirectXDevice* source, D2D_RECT_F* rect,
 	source->context2d->DrawBitmap(bitmap->source,
 		*rect);
 }
+
+void IDirectXDeviceTransform(IDirectXDevice* source, D2D1::Matrix3x2F matrix)
+{
+	source->context2d->SetTransform(matrix);
+}

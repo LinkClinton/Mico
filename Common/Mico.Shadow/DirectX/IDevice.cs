@@ -47,6 +47,8 @@ namespace Mico.Shadow.DirectX
         public void RenderBitmap(TRect rect, IBitmap bitmap)
             => IDirectXDeviceRenderBitmap(source, rect, bitmap);
 
+        public void Transform(System.Numerics.Matrix3x2 matrix)
+            => IDirectXDeviceTransform(source, matrix);
 
         public static implicit operator IntPtr(IDevice device) 
             => device.source;

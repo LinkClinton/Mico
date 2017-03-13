@@ -32,7 +32,7 @@ namespace MicoSample
         public void OnRender()
         {
             device.Clear(new TVector4(1, 1, 1, 1));
-            IBrush brush = new IBrush(device, new TVector4(1, 0, 0, 1));
+            
             device.Present();
         }
 

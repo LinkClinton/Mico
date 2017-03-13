@@ -64,7 +64,9 @@ namespace Mico.Shadow.DirectX
         static extern void IDirectXDeviceRenderBitmap(IntPtr source,
             TRect rect, IntPtr bitmap);
 
-
+        [DllImport(IExtern.DLLName)]
+        static extern void IDirectXDeviceTransform(IntPtr source,
+            System.Numerics.Matrix3x2 matrix);
 
 
         [DllImport(IExtern.DLLName, CallingConvention = CallingConvention.StdCall,
