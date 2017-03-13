@@ -16,31 +16,35 @@ namespace MicoSample
 
         IDevice device;
         IBitmap bitmap;
+        IFont font;
+        IBrush brush;
 
-      
+
+        event WndProc WindowProc;
   
         public Window()
         {
-            Hwnd = IDevice.CreateWindow("Mico", "", 800, 600, Window_proc);
+            WindowProc += Window_proc;
+            Hwnd = IDevice.CreateWindow("Mico", "", 800, 600, WindowProc);
             device = new IDevice(Hwnd);
             bitmap = new IBitmap(device, @"草图.png");
+            font = new IFont(device, "Consolas", 12);
+            brush = new IBrush(device, new Mico.Math.Vector4(1, 0, 0, 1));
         }
 
         public void OnRender()
         {
             device.Clear(new Mico.Math.Vector4(1, 1, 1, 1));
             device.RenderBitmap(new Mico.Math.Rect(0, 0, 800, 600), bitmap);
-            device.RenderLine(new Mico.Math.Vector2(0, 0), new Mico.Math.Vector2(100, 100),
-                new IBrush(device, new Mico.Math.Vector4(0, 0, 0, 1)));
-            device.RenderText("Text Test", new Mico.Math.Vector2(100, 100),
-                new IFont(device, "Consolas", 12), new IBrush(device, new Mico.Math.Vector4(0, 0, 0, 1)));
+            device.RenderLine(new Mico.Math.Vector2(0, 0), new Mico.Math.Vector2(100, 100), brush);
+            device.RenderText("Text Test", new Mico.Math.Vector2(400, 300), font, brush);
             device.Present();
         }
 
         public void Run()
         {
             Message message = new Message();
-            while (message.Type != MessageType.Quit)
+            while (message.Type != MessageType.Quit) 
             {
                 if (PeekMessage(out message, IntPtr.Zero, 0, 0, 1))
                 {
@@ -70,8 +74,7 @@ namespace MicoSample
         [DllImport("user32.dll")]
         internal static extern void PostQuitMessage(int exitCode);
 
-
-        protected IntPtr Window_proc(IntPtr Hwnd, uint message, IntPtr wParam, IntPtr lParam)
+        protected static IntPtr Window_proc(IntPtr Hwnd, uint message, IntPtr wParam, IntPtr lParam)
         {
             MessageType type = (MessageType)message;
             switch (type)
