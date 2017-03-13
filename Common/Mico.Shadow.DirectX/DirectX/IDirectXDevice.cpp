@@ -197,6 +197,32 @@ void IDirectXDeviceRenderLine(IDirectXDevice* source, D2D_POINT_2F* start,
 		*end, brush->source, width);
 }
 
+void IDirectXDeviceRenderRect(IDirectXDevice* source, D2D_RECT_F* rect,
+	IDirectXBrush* brush, float width = 1.0f)
+{
+	This.context2d->DrawRectangle(*rect, brush->source, width);
+}
+
+void IDirectXDeviceFillRect(IDirectXDevice* source, D2D_RECT_F* rect,
+	IDirectXBrush* brush)
+{
+	This.context2d->FillRectangle(*rect, brush->source);
+}
+
+void IDirectXDeviceRenderEllipse(IDirectXDevice* source, D2D_POINT_2F* center,
+	D2D_POINT_2F* radius, IDirectXBrush* brush, float width = 1.0f)
+{
+	This.context2d->DrawEllipse(D2D1::Ellipse(*center, radius->x, radius->y),
+		brush->source, width);
+}
+
+void IDirectXDeviceFillEllipse(IDirectXDevice* source, D2D_POINT_2F* center,
+	D2D_POINT_2F* radius, IDirectXBrush* brush)
+{
+	This.context2d->FillEllipse(D2D1::Ellipse(*center, radius->x, radius->y),
+		brush->source);
+}
+
 void IDirectXDeviceRenderText(IDirectXDevice* source, LPCWSTR text,
 	D2D_POINT_2F* pos, IDirectXFont* font, IDirectXBrush* brush)
 {

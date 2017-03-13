@@ -39,6 +39,22 @@ namespace Mico.Shadow.DirectX
         static extern void IDirectXDeviceRenderLine(IntPtr source,
             Vector2 start, Vector2 end, IntPtr brush, float width = 1.0f);
 
+        [DllImport(IExtern.DLLName)]
+        static extern void IDirectXDeviceRenderRect(IntPtr source,
+            Rect rect, IntPtr brush, float width = 1.0f);
+
+        [DllImport(IExtern.DLLName)]
+        static extern void IDirectXDeviceFillRect(IntPtr source,
+            Rect rect, IntPtr brush);
+
+        [DllImport(IExtern.DLLName)]
+        static extern void IDirectXDeviceRenderEllipse(IntPtr source,
+            Vector2 center, Vector2 radius, IntPtr brush, float width = 1.0f);
+
+        [DllImport(IExtern.DLLName)]
+        static extern void IDirectXDeviceFillEllipse(IntPtr source,
+            Vector2 center, Vector2 radius, IntPtr brush);
+
         [DllImport(IExtern.DLLName, CharSet = CharSet.Auto)] 
         static extern void IDirectXDeviceRenderText(IntPtr source,
             string text, Vector2 pos, IntPtr font, IntPtr brush);
@@ -46,6 +62,8 @@ namespace Mico.Shadow.DirectX
         [DllImport(IExtern.DLLName, CharSet = CharSet.Auto)]
         static extern void IDirectXDeviceRenderBitmap(IntPtr source,
             Rect rect, IntPtr bitmap);
+
+
 
 
         [DllImport(IExtern.DLLName, CallingConvention = CallingConvention.StdCall,

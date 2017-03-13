@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 using System.Runtime.InteropServices;
 
+using Mico.Math;
 using Mico.Shadow.DirectX;
+
 
 namespace MicoSample
 {
@@ -15,9 +17,6 @@ namespace MicoSample
         IntPtr Hwnd;
 
         IDevice device;
-        IBitmap bitmap;
-        IFont font;
-        IBrush brush;
 
 
         event WndProc WindowProc;
@@ -27,17 +26,11 @@ namespace MicoSample
             WindowProc += Window_proc;
             Hwnd = IDevice.CreateWindow("Mico", "", 800, 600, WindowProc);
             device = new IDevice(Hwnd);
-            bitmap = new IBitmap(device, @"草图.png");
-            font = new IFont(device, "Consolas", 12);
-            brush = new IBrush(device, new Mico.Math.Vector4(1, 0, 0, 1));
         }
 
         public void OnRender()
         {
-            device.Clear(new Mico.Math.Vector4(1, 1, 1, 1));
-            device.RenderBitmap(new Mico.Math.Rect(0, 0, 800, 600), bitmap);
-            device.RenderLine(new Mico.Math.Vector2(0, 0), new Mico.Math.Vector2(100, 100), brush);
-            device.RenderText("Text Test", new Mico.Math.Vector2(400, 300), font, brush);
+            device.Clear(new Vector4(1, 1, 1, 1));
             device.Present();
         }
 

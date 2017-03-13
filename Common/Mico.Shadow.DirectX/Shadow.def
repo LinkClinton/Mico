@@ -7,9 +7,13 @@ EXPORTS
 	IDirectXDeviceCreate
 	IDirectXDeviceDestory
 	IDirectXDevicePresent
+	IDirectXDeviceFillRect
+	IDirectXDeviceFillEllipse
 	IDirectXDeviceRenderLine
+	IDirectXDeviceRenderRect
 	IDirectXDeviceRenderText
 	IDirectXDeviceRenderBitmap
+	IDirectXDeviceRenderEllipse
 
 	IDirectXFontCreate
 	IDirectXFontDestory
