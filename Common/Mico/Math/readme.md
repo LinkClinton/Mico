@@ -4,7 +4,7 @@ To give you some help.
 
 ## Not Compute
 
-Do not use Txxxx to compute,you can use System.Numerics.
+Do not use Txxxx to compute,you can use System.Numerics(SIMD).
 
 ## Introduction
 
