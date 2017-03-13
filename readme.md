@@ -9,7 +9,7 @@ A library to help makeing game more easier.
 
 ## Request
   - Windows 8.1 or higher.
-  - .NET 4.5 or higher.
+  - .NET 4.6.2 or higher.
 
 
 

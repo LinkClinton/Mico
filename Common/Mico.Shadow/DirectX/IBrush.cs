@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 using Mico.Math;
 
 namespace Mico.Shadow.DirectX
@@ -12,7 +13,7 @@ namespace Mico.Shadow.DirectX
     {
         IntPtr source = IntPtr.Zero;
         
-        public IBrush(IDevice device,Vector4 color)
+        public IBrush(IDevice device,TVector4 color)
             => IDirectXBrushCreate(out source, device, color);
 
         ~IBrush() => IDirectXBrushDestory(source);

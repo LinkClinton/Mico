@@ -9,13 +9,13 @@ using System.Runtime.InteropServices;
 namespace Mico.Math
 {
     [StructLayout(LayoutKind.Sequential)]
-    public class Size
+    public class TSize
     {
         float g_width;
         float g_height;
 
 
-        public Size(float width = 0, float height = 0)
+        public TSize(float width = 0, float height = 0)
         {
             g_width = width;
             g_height = height;

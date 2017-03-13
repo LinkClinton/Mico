@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Numerics;
 
 using Mico.Math;
+
+
 
 namespace Mico.Shapes
 {
@@ -29,8 +32,9 @@ namespace Mico.Shapes
             get => g_forward; 
             set
             {
-                g_forward = (value - Position).Normalize;
-                g_forward_len = (value - Position).Length;
+                Vector3 result = (value - Position);
+                g_forward = Vector3.Normalize(result);
+                g_forward_len = result.Length();
             }
         }
 

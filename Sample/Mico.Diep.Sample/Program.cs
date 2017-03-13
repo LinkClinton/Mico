@@ -17,6 +17,17 @@ namespace MicoSample
 
         static void Main(string[] args)
         {
+            //System.Numerics.Vector2 simd = new Mico.Math.TVector2(0, 0);
+            //System.Numerics.Vector2 temp = new Mico.Math.TVector2(1, 1);
+
+            /*DateTime Now = DateTime.Now;
+            for (int i = 1; i <= 10000000; i++)
+            {
+                System.Numerics.Vector2 vec = new Mico.Math.TVector2(1, 1);
+            }
+            Console.WriteLine("Used: " + (DateTime.Now - Now).TotalSeconds);
+            Console.ReadKey();*/
+
             Window window = new Window();
             window.Run();
             

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Numerics;
 using System.Runtime.InteropServices;
 
 using Mico.Math;
@@ -30,7 +31,8 @@ namespace MicoSample
 
         public void OnRender()
         {
-            device.Clear(new Vector4(1, 1, 1, 1));
+            device.Clear(new TVector4(1, 1, 1, 1));
+            IBrush brush = new IBrush(device, new TVector4(1, 0, 0, 1));
             device.Present();
         }
 

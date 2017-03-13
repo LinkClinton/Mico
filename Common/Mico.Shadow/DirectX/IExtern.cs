@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 using System.Runtime.InteropServices;
 
 
@@ -30,38 +31,38 @@ namespace Mico.Shadow.DirectX
         static extern void IDirectXDeviceDestory(IntPtr source);
 
         [DllImport(IExtern.DLLName)]
-        static extern void IDirectXDeviceClear(IntPtr source, Vector4 color);
+        static extern void IDirectXDeviceClear(IntPtr source, TVector4 color);
 
         [DllImport(IExtern.DLLName)]
         static extern void IDirectXDevicePresent(IntPtr source);
 
         [DllImport(IExtern.DLLName)]
         static extern void IDirectXDeviceRenderLine(IntPtr source,
-            Vector2 start, Vector2 end, IntPtr brush, float width = 1.0f);
+            TVector2 start, TVector2 end, IntPtr brush, float width = 1.0f);
 
         [DllImport(IExtern.DLLName)]
         static extern void IDirectXDeviceRenderRect(IntPtr source,
-            Rect rect, IntPtr brush, float width = 1.0f);
+            TRect rect, IntPtr brush, float width = 1.0f);
 
         [DllImport(IExtern.DLLName)]
         static extern void IDirectXDeviceFillRect(IntPtr source,
-            Rect rect, IntPtr brush);
+            TRect rect, IntPtr brush);
 
         [DllImport(IExtern.DLLName)]
         static extern void IDirectXDeviceRenderEllipse(IntPtr source,
-            Vector2 center, Vector2 radius, IntPtr brush, float width = 1.0f);
+            TVector2 center, TVector2 radius, IntPtr brush, float width = 1.0f);
 
         [DllImport(IExtern.DLLName)]
         static extern void IDirectXDeviceFillEllipse(IntPtr source,
-            Vector2 center, Vector2 radius, IntPtr brush);
+            TVector2 center, TVector2 radius, IntPtr brush);
 
         [DllImport(IExtern.DLLName, CharSet = CharSet.Auto)] 
         static extern void IDirectXDeviceRenderText(IntPtr source,
-            string text, Vector2 pos, IntPtr font, IntPtr brush);
+            string text, TVector2 pos, IntPtr font, IntPtr brush);
 
         [DllImport(IExtern.DLLName, CharSet = CharSet.Auto)]
         static extern void IDirectXDeviceRenderBitmap(IntPtr source,
-            Rect rect, IntPtr bitmap);
+            TRect rect, IntPtr bitmap);
 
 
 
@@ -76,7 +77,7 @@ namespace Mico.Shadow.DirectX
     {
         [DllImport(IExtern.DLLName)]
         static extern void IDirectXBrushCreate(out IntPtr source,
-            IntPtr device, Vector4 color);
+            IntPtr device, TVector4 color);
 
         [DllImport(IExtern.DLLName)]
         static extern void IDirectXBrushDestory(IntPtr source);

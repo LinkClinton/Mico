@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Numerics;
 
 
 using Mico.Math;
@@ -11,7 +12,7 @@ namespace Mico.Shapes
 {
     public class Camera : Shape
     {
-        Vector3 g_lookat = new Vector3();
+        Vector3 g_lookat = new Vector3(0, 0, 0);
 
         public Camera()
         {

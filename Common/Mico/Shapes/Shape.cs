@@ -18,8 +18,11 @@ namespace Mico.Shapes
 
         internal void FixUpdate()
         {
+
+
             g_transform.Position =
-                g_transform.Position + g_transform.Forward * g_transform.Speed * (float)World.Time.DeltaTime.TotalSeconds;
+                g_transform.Position + g_transform.Forward *
+                g_transform.Speed * (float)World.Time.DeltaTime.TotalSeconds;
         }
 
 
@@ -28,5 +31,6 @@ namespace Mico.Shapes
             get => g_transform;
             set => g_transform = value;
         }
+        
     }
 }

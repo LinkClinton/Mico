@@ -17,34 +17,34 @@ namespace Mico.Shadow.DirectX
 
         ~IDevice() => IDirectXDeviceDestory(source);
 
-        public void Clear(Vector4 color)
+        public void Clear(TVector4 color)
             => IDirectXDeviceClear(source, color);
 
         public void Present()
             => IDirectXDevicePresent(source);
 
-        public void RenderLine(Vector2 start, Vector2 end,
+        public void RenderLine(TVector2 start, TVector2 end,
             IBrush brush, float width = 1.0f)
             => IDirectXDeviceRenderLine(source, start, end, brush, width);
 
-        public void RenderRect(Rect rect, IBrush brush, float width = 1.0f)
+        public void RenderRect(TRect rect, IBrush brush, float width = 1.0f)
             => IDirectXDeviceRenderRect(source, rect, brush, width);
 
-        public void FillRect(Rect rect, IBrush brush)
+        public void FillRect(TRect rect, IBrush brush)
             => IDirectXDeviceFillRect(source, rect, brush);
 
-        public void RenderEllipse(Vector2 center, Vector2 radius,
+        public void RenderEllipse(TVector2 center, TVector2 radius,
             IBrush brush, float width = 1.0f)
             => IDirectXDeviceRenderEllipse(source, center, radius, brush, width);
 
-        public void FillEllipse(Vector2 center, Vector2 radius, IBrush brush)
+        public void FillEllipse(TVector2 center, TVector2 radius, IBrush brush)
             => IDirectXDeviceFillEllipse(source, center, radius, brush);
 
-        public void RenderText(string text, Vector2 position,
+        public void RenderText(string text, TVector2 position,
             IFont font, IBrush brush)
             => IDirectXDeviceRenderText(source, text, position, font, brush);
 
-        public void RenderBitmap(Rect rect, IBitmap bitmap)
+        public void RenderBitmap(TRect rect, IBitmap bitmap)
             => IDirectXDeviceRenderBitmap(source, rect, bitmap);
 
 
