@@ -16,8 +16,16 @@ namespace Mico.Objects
 
         protected Type g_type = Type.UnKnown;
 
+        TVector3 g_center = new TVector3(0, 0, 0);
 
 
+
+
+        public TVector3 Center
+        {
+            get => g_center;
+            set => g_center = value;
+        }
 
         public Shape Parent
         {

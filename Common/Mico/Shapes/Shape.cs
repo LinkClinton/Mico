@@ -17,14 +17,7 @@ namespace Mico.Shapes
         public virtual void OnRender(object Unknown = null) { }
         public virtual void OnCreate(object Unknown = null) { }
         public virtual void OnDelete(object Unknown = null) { }
-
-
-        internal void FixUpdate()
-        {
-            g_transform.Position =
-                g_transform.Position + g_transform.Forward *
-                g_transform.Speed * (float)World.Time.DeltaTime.TotalSeconds;
-        }
+        public virtual void FixUpdate(object Unknown = null) { }
 
 
         public Collider Collider

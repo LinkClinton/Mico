@@ -54,6 +54,7 @@
     <Compile Include="Objects\BoxCollider.cs" />
     <Compile Include="Objects\Collider.cs" />
     <Compile Include="Objects\Enum.cs" />
+    <Compile Include="Objects\SphereCollider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Objects\Camera.cs" />
     <Compile Include="Shapes\Shape.cs" />

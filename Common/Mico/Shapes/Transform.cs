@@ -33,6 +33,7 @@ namespace Mico.Shapes
             set
             {
                 Vector3 result = (value - Position);
+                if (result == Vector3.Zero) return;
                 g_forward = Vector3.Normalize(result);
                 g_forward_len = result.Length();
             }

@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using Mico.Math;
 using Mico.Shadow.DirectX;
 
+using Mico.Diep.Sample.GameObject;
 
 namespace Mico.Diep.Sample
 {
@@ -21,11 +22,19 @@ namespace Mico.Diep.Sample
 
         event WndProc WindowProc;
   
+        public void InitializeWorld()
+        {
+            World.Micos.Add(new BoxTank(new TVector2(40, 40)));
+        }
+
         public Window()
         {
             WindowProc += Window_proc;
             Hwnd = IDevice.CreateWindow("Mico", "", 800, 600, WindowProc);
             device = new IDevice(Hwnd);
+
+
+            InitializeWorld();
         }
 
         public void OnRender()
