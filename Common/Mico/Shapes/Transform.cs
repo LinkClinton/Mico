@@ -49,5 +49,18 @@ namespace Mico.Shapes
             get => g_scale; 
             set => g_scale = value; 
         }
+
+        public static implicit operator Matrix3x2(Transform transform)
+        {
+            Matrix3x2 matrix = Matrix3x2.Identity;
+
+            float angle = (float)System.Math.Atan2(transform.Forward.Y, transform.Forward.X);
+            
+            matrix *= Matrix3x2.CreateRotation(angle);
+            matrix *= Matrix3x2.CreateScale(transform.Scale.X,transform.Scale.Y);
+            matrix *= Matrix3x2.CreateTranslation(transform.Position.X, transform.Position.Y);
+         
+            return matrix;
+        }
     }
 }

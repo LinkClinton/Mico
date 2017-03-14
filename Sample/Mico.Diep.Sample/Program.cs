@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 
 using Mico.Shadow.DirectX;
 
-namespace MicoSample
+namespace Mico.Diep.Sample
 {
 
     class Program

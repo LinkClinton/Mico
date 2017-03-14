@@ -11,14 +11,13 @@ using Mico.Math;
 using Mico.Shadow.DirectX;
 
 
-namespace MicoSample
+namespace Mico.Diep.Sample
 {
     public partial class Window
     {
         IntPtr Hwnd;
 
         IDevice device;
-
 
         event WndProc WindowProc;
   
@@ -32,7 +31,7 @@ namespace MicoSample
         public void OnRender()
         {
             device.Clear(new TVector4(1, 1, 1, 1));
-            
+            World.Micos.Exports(device);
             device.Present();
         }
 
@@ -49,6 +48,7 @@ namespace MicoSample
                 {
                     OnRender();
                 }
+                World.Micos.Update();
             }
         }
 
@@ -86,6 +86,8 @@ namespace MicoSample
                 case MessageType.KeyUp:
                     break;
                 case MessageType.MouseMove:
+                    GameInput.Input.MousePos = new TVector2(Message.LowWord(lParam),
+                        Message.HighWord(lParam));
                     break;
                 case MessageType.LeftButtonDown:
                     break;

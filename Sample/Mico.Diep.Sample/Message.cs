@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using System.Runtime.InteropServices;
 
-namespace MicoSample
+namespace Mico.Diep.Sample
 {
     enum MessageType
     {
@@ -36,11 +36,10 @@ namespace MicoSample
         public int x;
         public int y;
 
-        [DllImport("Common.Manager.ResourcePool.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int LowWord(IntPtr Param);
+        public static int LowWord(IntPtr number)
+            => (int)number & 0xffff;
 
-        [DllImport("Common.Manager.ResourcePool.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern int HighWord(IntPtr Param);
-
+        public static int HighWord(IntPtr number)
+            => ((int)number >> 16) & 0xffff; 
     }
 }
