@@ -12,8 +12,7 @@ namespace Mico.Diep.Sample
 {
 
     class Program
-    {
-       
+    { 
 
         static void Main(string[] args)
         {

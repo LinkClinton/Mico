@@ -1,0 +1,38 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using Mico.Math;
+using Mico.Shapes;
+
+namespace Mico.Objects
+{ 
+
+    public abstract partial class Collider 
+    {
+        protected Shape g_parent = null;
+
+        protected Type g_type = Type.UnKnown;
+
+
+
+
+        public Shape Parent
+        {
+            get => g_parent;
+        }
+
+        public Type ColliderType
+        {
+            get => g_type;
+        }
+
+        public Transform Transform
+        {
+            get => Parent.Transform;
+        }
+        
+    }
+}

@@ -37,6 +37,10 @@ public class Life : Shape
 }
 ``` 
 
+### Export
+
+You can render or write your shape.
+
 ### Transform
 
 A transofrm can describe a shape in the "Micos".

@@ -7,8 +7,9 @@ using System.Numerics;
 
 
 using Mico.Math;
+using Mico.Shapes;
 
-namespace Mico.Shapes
+namespace Mico.Objects
 {
     public class Camera : Shape
     {

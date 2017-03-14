@@ -4,11 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Mico.Objects;
+
 namespace Mico.Shapes
 {
     public class Shape
     {
         Transform g_transform = new Transform();
+        Collider g_collider = null;
 
         public virtual void OnUpdate(object Unknown = null) { }
         public virtual void OnRender(object Unknown = null) { }
@@ -18,13 +21,17 @@ namespace Mico.Shapes
 
         internal void FixUpdate()
         {
-
-
             g_transform.Position =
                 g_transform.Position + g_transform.Forward *
                 g_transform.Speed * (float)World.Time.DeltaTime.TotalSeconds;
         }
 
+
+        public Collider Collider
+        {
+            get => g_collider;
+            set => g_collider = value;
+        }
 
         public Transform Transform
         {

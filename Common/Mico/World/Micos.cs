@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Mico.Shapes;
+using Mico.Objects;
 
 namespace Mico.World
 {
@@ -35,6 +36,15 @@ namespace Mico.World
             g_camera.OnRender(Unknown);
         }
 
+        static void FixUpdate()
+        {
+            foreach (Shape item in g_shapes)
+            {
+                item.FixUpdate();
+            }
+            g_camera.FixUpdate();
+        }
+
         public static void Update()
         {
             Time.Update();
@@ -42,11 +52,11 @@ namespace Mico.World
             foreach (Shape item in g_shapes)
             {
                 item.OnUpdate();
-                item.FixUpdate();
             }
-
             g_camera.OnUpdate();
-            g_camera.FixUpdate();
+
+
+            FixUpdate();
         }
 
         public static Camera Camera

@@ -43,3 +43,7 @@ You can render this world or write it to a file and so on.
 ```C#
 Mico.World.Micos.Export();
 ```
+
+#### About Camera
+
+If you want to use camera,you should compute how to render by yourself.
