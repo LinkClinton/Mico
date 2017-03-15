@@ -13,7 +13,10 @@ namespace Mico.Diep.Sample.GameInput
         static TVector2 g_mousepos = new TVector2(0, 0);
 
 
-
+        public static bool IsKeyDown(ConsoleKey key)
+        {
+            return Window.GetKeyState((int)key) < 0;
+        }
 
         public static TVector2 MousePos
         {

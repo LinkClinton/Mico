@@ -24,7 +24,16 @@ namespace Mico.Diep.Sample
   
         public void InitializeWorld()
         {
-            World.Micos.Add(new BoxTank(new TVector2(40, 40)));
+            World.Micos.Add(new BoxTank()
+            {
+                IsPlayer = true,
+                Speed = 100,
+                Radius = new TVector2(30, 30)
+            });
+
+
+
+
         }
 
         public Window()
@@ -77,6 +86,9 @@ namespace Mico.Diep.Sample
 
         [DllImport("user32.dll")]
         internal static extern void PostQuitMessage(int exitCode);
+
+        [DllImport("user32.dll")]
+        internal static extern short GetKeyState(int keyCode);
 
         protected static IntPtr Window_proc(IntPtr Hwnd, uint message, IntPtr wParam, IntPtr lParam)
         {

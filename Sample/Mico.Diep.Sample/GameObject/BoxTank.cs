@@ -18,10 +18,9 @@ namespace Mico.Diep.Sample.GameObject
         TVector2 g_radius = new TVector2(0, 0);
         TRect g_rect = new TRect(0, 0, 0, 0);
 
-
-        public BoxTank(TVector2 radius)
+        public BoxTank()
         {
-            Radius = radius;
+
         }
 
         public override void OnRender(object Unknown = null)
@@ -38,12 +37,7 @@ namespace Mico.Diep.Sample.GameObject
         }
 
         public override void OnUpdate(object Unknown = null)
-        {
-            Transform.Forward = new System.Numerics.Vector3(Input.MousePos.x,
-                Input.MousePos.y, 0);
-
-
-            
+        {   
             base.OnUpdate(Unknown);
         }
 

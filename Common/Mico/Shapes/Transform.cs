@@ -17,8 +17,6 @@ namespace Mico.Shapes
         Vector3 g_forward = new Vector3();
         Vector3 g_scale = new Vector3(1, 1, 1);
 
-        float g_speed = 0;
-
         float g_forward_len;
 
         public Vector3 Position
@@ -31,25 +29,22 @@ namespace Mico.Shapes
         {
             get => g_forward; 
             set
-            {
-                Vector3 result = (value - Position);
-                if (result == Vector3.Zero) return;
-                g_forward = Vector3.Normalize(result);
-                g_forward_len = result.Length();
+            { 
+                g_forward = Vector3.Normalize(value);
+                g_forward_len = value.Length();
             }
         }
 
-        public float Speed
-        {
-            get => g_speed; 
-            set => g_speed = value; 
-        }
+  
 
         public Vector3 Scale
         {
             get => g_scale; 
             set => g_scale = value; 
         }
+
+
+
 
         public static implicit operator Matrix3x2(Transform transform)
         {
