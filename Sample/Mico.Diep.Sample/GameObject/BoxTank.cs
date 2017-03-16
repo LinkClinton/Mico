@@ -17,10 +17,12 @@ namespace Mico.Diep.Sample.GameObject
     {
         TVector2 g_radius = new TVector2(0, 0);
         TRect g_rect = new TRect(0, 0, 0, 0);
+        CommonGun g_gun = null;
+
 
         public BoxTank()
         {
-
+            g_gun = new CommonGun(this, new System.Numerics.Vector3(30, 0, 0));
         }
 
         public override void OnRender(object Unknown = null)
@@ -32,6 +34,8 @@ namespace Mico.Diep.Sample.GameObject
             device.RenderRect(g_rect, new IBrush(device, new TVector4(0, 0, 0, 1)), 0.5f);
 
             device.Transform(System.Numerics.Matrix3x2.Identity);
+
+            g_gun.OnRender(Unknown);
 
             base.OnRender(Unknown);
         }

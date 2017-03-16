@@ -10,6 +10,8 @@ namespace Mico.Shapes
 {
     public class Shape
     {
+        Shape g_parent = null;
+
         Transform g_transform = new Transform();
         Collider g_collider = null;
 
@@ -30,6 +32,12 @@ namespace Mico.Shapes
         {
             get => g_transform;
             set => g_transform = value;
+        }
+
+        public Shape Parent
+        {
+            get => g_parent;
+            set => g_parent = value;
         }
         
     }
