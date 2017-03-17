@@ -13,13 +13,13 @@ namespace Mico.Diep.Sample.GameObject
 {
     class CommonGun : GunSource
     {
+
         public CommonGun(Shape parent, Vector3 position)
         {
             Parent = parent;
 
             Transform = new Transform()
             {
-                Forward = parent.Transform.Forward,
                 Position = position
             };
         }
@@ -35,7 +35,7 @@ namespace Mico.Diep.Sample.GameObject
             device.Transform(result);
 
             device.RenderRect(new Math.TRect(-20, -10, 20, 10),
-                new IBrush(device, new Math.TVector4(0, 0, 0, 1)));
+                GameResource.Brush.Black);
 
             device.Transform(Matrix3x2.Identity);
 

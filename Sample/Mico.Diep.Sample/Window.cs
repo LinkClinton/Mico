@@ -24,15 +24,12 @@ namespace Mico.Diep.Sample
   
         public void InitializeWorld()
         {
-            World.Micos.Add(new BoxTank()
+            new BoxTank()
             {
                 IsPlayer = true,
                 Speed = 100,
                 Radius = new TVector2(30, 30)
-            });
-
-
-
+            };
 
         }
 
@@ -42,12 +39,14 @@ namespace Mico.Diep.Sample
             Hwnd = IDevice.CreateWindow("Mico", "", 800, 600, WindowProc);
             device = new IDevice(Hwnd);
 
+            GameResource.Brush.Initialize(device);
 
             InitializeWorld();
         }
 
         public void OnRender()
-        {
+        { 
+
             device.Clear(new TVector4(1, 1, 1, 1));
             World.Micos.Exports(device);
             device.Present();
@@ -111,12 +110,16 @@ namespace Mico.Diep.Sample
                         Message.HighWord(lParam));
                     break;
                 case MessageType.LeftButtonDown:
+                    GameInput.Input.LeftMouse = true;
                     break;
                 case MessageType.LeftButtonUp:
+                    GameInput.Input.LeftMouse = false;
                     break;
                 case MessageType.RightButtonDown:
+                    GameInput.Input.RightMouse = true;
                     break;
                 case MessageType.RightButtonUp:
+                    GameInput.Input.RightMouse = false;
                     break;
                 case MessageType.MiddleButtonDown:
                     break;

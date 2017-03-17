@@ -19,11 +19,12 @@ namespace Mico.Diep.Sample.GameObject
 
         float g_speed = 0;
 
+        List<BulletSource> g_bullet = new List<BulletSource>();
+
         public TankSource()
         {
-
+            Micos.Add(this);
         }
-
 
         public override void OnUpdate(object Unknown = null)
         {
@@ -45,6 +46,15 @@ namespace Mico.Diep.Sample.GameObject
             base.OnUpdate(Unknown);
         }
 
+        public virtual void Destory()
+        {
+            Micos.Remove(this);
+        }
+
+        public virtual void Shoot()
+        {
+
+        }
 
         public float Speed
         {
@@ -56,6 +66,11 @@ namespace Mico.Diep.Sample.GameObject
         {
             get => g_isplaer;
             set => g_isplaer = true;
+        }
+
+        public List<BulletSource> Bullet
+        {
+            get => g_bullet;
         }
     }
 }

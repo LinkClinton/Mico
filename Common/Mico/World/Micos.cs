@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-using Mico.Shapes;
 using Mico.Objects;
+using Mico.Shapes;
+using System.Collections.Generic;
 
 namespace Mico.World
 {
@@ -14,16 +11,19 @@ namespace Mico.World
         static List<Shape> g_shapes = new List<Shape>();
         static Camera g_camera = new Camera();
 
+        static List<Shape> g_add_list = new List<Shape>();
+        static List<Shape> g_remove_list = new List<Shape>();
+
         public static void Add(Shape shape, object Unknown = null)
         {
             shape.OnCreate(Unknown);
-            g_shapes.Add(shape);
+            g_add_list.Add(shape);
         }
 
-        public static void Delete(Shape shape, object Unknown = null)
+        public static void Remove(Shape shape, object Unknown = null)
         {
             shape.OnDelete(Unknown);
-            g_shapes.Remove(shape);
+            g_remove_list.Add(shape);
         }
 
         public static void Exports(object Unknown = null)
@@ -45,6 +45,18 @@ namespace Mico.World
             g_camera.FixUpdate();
         }
 
+        static void UpdateShapeList()
+        {
+            foreach (Shape item in g_add_list)
+                g_shapes.Add(item);
+
+            foreach (Shape item in g_remove_list)
+                g_shapes.Remove(item);
+
+            g_add_list.Clear();
+            g_remove_list.Clear();
+        }
+
         public static void Update()
         {
             Time.Update();
@@ -57,6 +69,8 @@ namespace Mico.World
 
 
             FixUpdate();
+
+            UpdateShapeList();
         }
 
         public static Camera Camera

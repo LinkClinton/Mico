@@ -31,7 +31,7 @@ namespace Mico.Diep.Sample.GameObject
 
             device.Transform(Transform);
 
-            device.RenderRect(g_rect, new IBrush(device, new TVector4(0, 0, 0, 1)), 0.5f);
+            device.RenderRect(g_rect, GameResource.Brush.Black, 0.5f);
 
             device.Transform(System.Numerics.Matrix3x2.Identity);
 
@@ -41,11 +41,23 @@ namespace Mico.Diep.Sample.GameObject
         }
 
         public override void OnUpdate(object Unknown = null)
-        {   
+        {
+
+            if (IsPlayer is true && Input.LeftMouse is true)
+                Shoot();
             base.OnUpdate(Unknown);
         }
 
+        public override void Shoot()
+        {
+            new CommonBullet(this, new Shapes.Transform()
+            {
+                Forward = Transform.Forward,
+                Position = Transform.Position + g_gun.Transform.Position
+            });
 
+            base.Shoot();
+        }
 
         public TVector2 Radius
         {

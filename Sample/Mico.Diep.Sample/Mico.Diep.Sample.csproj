@@ -46,9 +46,12 @@
   <ItemGroup>
     <Compile Include="GameInput\Input.cs" />
     <Compile Include="GameObject\BoxTank.cs" />
+    <Compile Include="GameObject\BulletSource.cs" />
+    <Compile Include="GameObject\CommonBullet.cs" />
     <Compile Include="GameObject\CommonGun.cs" />
     <Compile Include="GameObject\GunSource.cs" />
     <Compile Include="GameObject\TankSource.cs" />
+    <Compile Include="GameResource\Brush.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
