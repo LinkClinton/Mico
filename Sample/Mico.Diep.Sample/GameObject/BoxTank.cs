@@ -53,7 +53,7 @@ namespace Mico.Diep.Sample.GameObject
             new CommonBullet(this, new Shapes.Transform()
             {
                 Forward = Transform.Forward,
-                Position = Transform.Position + g_gun.Transform.Position
+                Position = new System.Numerics.Vector3(g_gun.ShootPosition, 0)
             });
 
             base.Shoot();

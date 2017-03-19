@@ -22,6 +22,10 @@ namespace Mico.Diep.Sample.GameObject
             {
                 Position = position
             };
+
+            Matrix3x2 result = Matrix3x2.CreateTranslation(Transform.Position.X,
+               Transform.Position.Y) * Parent.Transform;
+            g_shoot_position = Vector2.Transform(Vector2.Zero, result);
         }
 
         //do not join the micos world.
@@ -32,6 +36,8 @@ namespace Mico.Diep.Sample.GameObject
             Matrix3x2 result = Matrix3x2.CreateTranslation(Transform.Position.X,
                 Transform.Position.Y) * Parent.Transform;
 
+            g_shoot_position = Vector2.Transform(Vector2.Zero, result);
+          
             device.Transform(result);
 
             device.RenderRect(new Math.TRect(-20, -10, 20, 10),
