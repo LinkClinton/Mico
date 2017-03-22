@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Mico.Math;
 using Mico.Shapes;
 
-namespace Mico.Objects
+namespace Mico.Shapes
 {
     public class BoxCollider : Collider
     {

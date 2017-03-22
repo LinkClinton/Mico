@@ -51,10 +51,10 @@
     <Compile Include="Math\TVector2.cs" />
     <Compile Include="Math\TVector3.cs" />
     <Compile Include="Math\TVector4.cs" />
-    <Compile Include="Objects\Collider\BoxCollider.cs" />
-    <Compile Include="Objects\Collider\Collider.cs" />
-    <Compile Include="Objects\Enum.cs" />
-    <Compile Include="Objects\Collider\SphereCollider.cs" />
+    <Compile Include="Shapes\Collider\BoxCollider.cs" />
+    <Compile Include="Shapes\Collider\Collider.cs" />
+    <Compile Include="Shapes\Enum.cs" />
+    <Compile Include="Shapes\Collider\SphereCollider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Objects\Camera.cs" />
     <Compile Include="Shapes\Shape.cs" />

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mico.Objects
+namespace Mico.Shapes
 {
     public partial class Collider
     {
