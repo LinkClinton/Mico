@@ -50,14 +50,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="readme.md" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Mico\Mico.csproj">
       <Project>{5809f77e-dbd1-462c-92c1-358cd212fc71}</Project>
       <Name>Mico</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="readme.md" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,6 +8,7 @@ using System.Numerics;
 using System.Runtime.InteropServices;
 
 using Mico.Math;
+using Mico.Objects;
 using Mico.Shadow.DirectX;
 
 using Mico.Diep.Sample.GameObject;
@@ -21,7 +22,10 @@ namespace Mico.Diep.Sample
         IDevice device;
 
         event WndProc WindowProc;
-  
+
+
+        FpsCounter fps;
+
         public void InitializeWorld()
         {
             new BoxTank()
@@ -31,6 +35,9 @@ namespace Mico.Diep.Sample
                 Radius = new TVector2(30, 30)
             };
 
+            fps = new FpsCounter();
+
+            World.Micos.Add(fps);
         }
 
         public Window()
@@ -61,10 +68,8 @@ namespace Mico.Diep.Sample
                 {
                     TranslateMessage(ref message);
                     DispatchMessage(ref message);
-                }else
-                {
-                    OnRender();
                 }
+                OnRender();
                 World.Micos.Update();
             }
         }

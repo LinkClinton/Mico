@@ -25,7 +25,7 @@ namespace Mico.Diep.Sample.GameObject
             g_gun = new CommonGun(this, new System.Numerics.Vector3(30, 0, 0));
         }
 
-        public override void OnRender(object Unknown = null)
+        public override void OnExport(object Unknown = null)
         {
             IDevice device = Unknown as IDevice;
 
@@ -35,9 +35,9 @@ namespace Mico.Diep.Sample.GameObject
 
             device.Transform(System.Numerics.Matrix3x2.Identity);
 
-            g_gun.OnRender(Unknown);
+            g_gun.OnExport(Unknown);
 
-            base.OnRender(Unknown);
+            base.OnExport(Unknown);
         }
 
         public override void OnUpdate(object Unknown = null)

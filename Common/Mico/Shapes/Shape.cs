@@ -16,7 +16,7 @@ namespace Mico.Shapes
         Collider g_collider = null;
 
         public virtual void OnUpdate(object Unknown = null) { }
-        public virtual void OnRender(object Unknown = null) { }
+        public virtual void OnExport(object Unknown = null) { }
         public virtual void OnCreate(object Unknown = null) { }
         public virtual void OnDelete(object Unknown = null) { }
         public virtual void FixUpdate(object Unknown = null) { }

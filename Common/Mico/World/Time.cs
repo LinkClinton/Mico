@@ -8,9 +8,9 @@ namespace Mico.World
 {
     public static class Time
     {
-        internal static DateTime g_LastTime = DateTime.Now;
-        internal static DateTime g_NowTime = DateTime.Now;
-        internal static TimeSpan g_DeltaTime = g_NowTime - g_LastTime;
+        static DateTime g_LastTime = DateTime.Now;
+        static DateTime g_NowTime = DateTime.Now;
+        static TimeSpan g_DeltaTime = g_NowTime - g_LastTime;
 
         internal static void Update()
         {

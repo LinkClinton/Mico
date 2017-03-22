@@ -10,8 +10,8 @@ namespace Mico.Objects
     {
         public enum Type
         {
-            Box,
-            Sphere,
+            eBox,
+            eSphere,
             UnKnown
         }
     }

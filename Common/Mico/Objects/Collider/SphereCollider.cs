@@ -9,21 +9,25 @@ using Mico.Shapes;
 
 namespace Mico.Objects
 {
-    public class BoxCollider : Collider
+    public class SphereCollider : Collider
     {
         TVector3 g_radius = new TVector3(0, 0, 0);
+       
 
-        public BoxCollider(Shape shape)
+
+
+
+        public SphereCollider(Shape shape)
         {
             g_parent = shape;
-            g_type = Type.Box;
+            g_type = Type.eSphere;
         }
-
 
         public TVector3 Radius
         {
             get => g_radius;
             set => g_radius = value;
         }
+
     }
 }

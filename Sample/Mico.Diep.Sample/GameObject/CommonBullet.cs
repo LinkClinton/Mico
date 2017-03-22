@@ -30,7 +30,7 @@ namespace Mico.Diep.Sample.GameObject
             base.OnUpdate(Unknown);
         }
 
-        public override void OnRender(object Unknown = null)
+        public override void OnExport(object Unknown = null)
         {
             IDevice device = Unknown as IDevice;
 
@@ -41,7 +41,7 @@ namespace Mico.Diep.Sample.GameObject
 
             device.Transform(Matrix3x2.Identity);
 
-            base.OnRender(Unknown);
+            base.OnExport(Unknown);
         }
 
 

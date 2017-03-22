@@ -8,7 +8,8 @@ namespace Mico.World
 {
     public static class Micos
     {
-        static List<Shape> g_shapes = new List<Shape>();
+
+        static List<Shape> g_shapes_list = new List<Shape>();
         static Camera g_camera = new Camera();
 
         static List<Shape> g_add_list = new List<Shape>();
@@ -28,17 +29,17 @@ namespace Mico.World
 
         public static void Exports(object Unknown = null)
         {
-            foreach (Shape item in g_shapes)
+            foreach (Shape item in g_shapes_list)
             {
-                item.OnRender(Unknown);
+                item.OnExport(Unknown);
             }
 
-            g_camera.OnRender(Unknown);
+            g_camera.OnExport(Unknown);
         }
 
         static void FixUpdate()
         {
-            foreach (Shape item in g_shapes)
+            foreach (Shape item in g_shapes_list)
             {
                 item.FixUpdate();
             }
@@ -48,10 +49,10 @@ namespace Mico.World
         static void UpdateShapeList()
         {
             foreach (Shape item in g_add_list)
-                g_shapes.Add(item);
+                g_shapes_list.Add(item);
 
             foreach (Shape item in g_remove_list)
-                g_shapes.Remove(item);
+                g_shapes_list.Remove(item);
 
             g_add_list.Clear();
             g_remove_list.Clear();
@@ -61,7 +62,7 @@ namespace Mico.World
         {
             Time.Update();
 
-            foreach (Shape item in g_shapes)
+            foreach (Shape item in g_shapes_list)
             {
                 item.OnUpdate();
             }
@@ -79,6 +80,8 @@ namespace Mico.World
             set => g_camera = value;
         }
 
+
+       
 
     }
 }
