@@ -1,17 +1,28 @@
 #pragma once
 
+
+#include<string>
+#include<vector>
+#include<fstream>
+
+
 #include<d2d1_3.h>
 #include<d3d11_3.h>
 #include<dwrite_3.h>
 #include<wincodec.h>
+#include<d3dcompiler.h>
+
 
 
 #pragma comment(lib,"d2d1.lib")
 #pragma comment(lib,"d3d11.lib")
 #pragma comment(lib,"dwrite.lib")
 #pragma comment(lib,"windowscodecs.lib")
+#pragma comment(lib,"D3DCompiler.lib")
 
 #define This (*source)
+#define VERTEX 0
+#define PIXEL 1
 
 template<typename Interface>
 void release(Interface &T) {
@@ -39,6 +50,22 @@ public:
 	ID2D1Bitmap* source;
 
 	~IDirectXBitmap();
+};
+
+typedef void ID3D11Shader;
+
+class IDirectXShader {
+public:
+	int shadertype;
+	ID3DBlob* shaderblob;
+	
+
+	std::wstring filename;
+	std::string function;
+
+	std::vector<byte> shadercode;
+
+	~IDirectXShader();
 };
 
 class IDirectXDevice {

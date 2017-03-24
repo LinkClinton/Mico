@@ -23,7 +23,7 @@ namespace Mico.Diep.Sample
 
         event WndProc WindowProc;
 
-
+      
         FpsCounter fps;
 
         public void InitializeWorld()
@@ -36,7 +36,7 @@ namespace Mico.Diep.Sample
             };
 
             fps = new FpsCounter();
-
+          
             World.Micos.Add(fps);
         }
 

@@ -103,9 +103,19 @@ namespace Mico.Shadow.DirectX
 
         [DllImport(IExtern.DLLName)]
         static extern void IDirectXBitmapDestory(IntPtr source);
+    }
 
+    public partial class IShader
+    {
+        [DllImport(IExtern.DLLName, CharSet = CharSet.Auto)]
+        static extern void IDirectXShaderCreate(out IntPtr source,
+            string filename, string entrypoint, Type type);
 
+        [DllImport(IExtern.DLLName)]
+        static extern void IDirectXShaderDestory(IntPtr source);
 
+        [DllImport(IExtern.DLLName)]
+        static extern void IDirectXShaderCompile(IntPtr source);
     }
 
 

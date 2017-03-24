@@ -27,7 +27,9 @@ EXPORTS
 	IDirectXBitmapCreate
 	IDirectXBitmapDestory
 	
-
+	IDirectXShaderCreate
+	IDirectXShaderDestory
+	IDirectXShaderCompile
 
 
 	CreateWindow

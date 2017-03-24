@@ -23,6 +23,7 @@
     <ClCompile Include="DirectX\IDirectXBrush.cpp" />
     <ClCompile Include="DirectX\IDirectXDevice.cpp" />
     <ClCompile Include="DirectX\IDirectXFont.cpp" />
+    <ClCompile Include="DirectX\IDirectXShader.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
