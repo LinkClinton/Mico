@@ -19,7 +19,6 @@ namespace Mico.Diep.Sample.GameObject
         TRect g_rect = new TRect(0, 0, 0, 0);
         CommonGun g_gun = null;
 
-
         public BoxTank()
         {
             g_gun = new CommonGun(this, new System.Numerics.Vector3(30, 0, 0));
@@ -42,7 +41,7 @@ namespace Mico.Diep.Sample.GameObject
 
         public override void OnUpdate(object Unknown = null)
         {
-
+            
             if (IsPlayer is true && Input.LeftMouse is true)
                 Shoot();
             base.OnUpdate(Unknown);
@@ -50,6 +49,7 @@ namespace Mico.Diep.Sample.GameObject
 
         public override void Shoot()
         {
+          
             new CommonBullet(this, new Shapes.Transform()
             {
                 Forward = Transform.Forward,

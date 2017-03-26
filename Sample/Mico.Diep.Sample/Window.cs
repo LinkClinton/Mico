@@ -26,6 +26,7 @@ namespace Mico.Diep.Sample
       
         FpsCounter fps;
 
+
         public void InitializeWorld()
         {
             new BoxTank()
@@ -36,6 +37,8 @@ namespace Mico.Diep.Sample
             };
 
             fps = new FpsCounter();
+
+      
           
             World.Micos.Add(fps);
         }
@@ -47,6 +50,7 @@ namespace Mico.Diep.Sample
             device = new IDevice(Hwnd);
 
             GameResource.Brush.Initialize(device);
+            GameResource.Font.Initialize(device);
 
             InitializeWorld();
         }
@@ -56,6 +60,8 @@ namespace Mico.Diep.Sample
 
             device.Clear(new TVector4(1, 1, 1, 1));
             World.Micos.Exports(device);
+            device.RenderText(fps.Fps.ToString(), new TVector2(0, 0), 
+                GameResource.Font.Consolas12, GameResource.Brush.Black);
             device.Present();
         }
 

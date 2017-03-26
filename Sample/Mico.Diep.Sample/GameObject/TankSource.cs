@@ -19,6 +19,8 @@ namespace Mico.Diep.Sample.GameObject
 
         float g_speed = 0;
 
+        float g_shoot_limit;
+
         List<BulletSource> g_bullet = new List<BulletSource>();
 
         public TankSource()
@@ -71,6 +73,12 @@ namespace Mico.Diep.Sample.GameObject
         public List<BulletSource> Bullet
         {
             get => g_bullet;
+        }
+
+        public float ShootLimit
+        {
+            get => g_shoot_limit;
+            set => g_shoot_limit = value;
         }
     }
 }
