@@ -14,12 +14,12 @@ namespace Mico.Diep.Sample
     class Program
     {
 
-      
+    
+
         static void Main(string[] args)
         {
-            
-            //Window window = new Window();
-            //window.Run();
+            Window window = new Window();
+            window.Run();
         }
     }
 }

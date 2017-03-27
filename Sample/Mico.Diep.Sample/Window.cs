@@ -38,9 +38,6 @@ namespace Mico.Diep.Sample
 
             fps = new FpsCounter();
 
-      
-          
-            World.Micos.Add(fps);
         }
 
         public Window()

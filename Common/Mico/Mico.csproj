@@ -60,6 +60,7 @@
     <Compile Include="Shapes\Shape.cs" />
     <Compile Include="Shapes\Transform.cs" />
     <Compile Include="Objects\FpsCounter.cs" />
+    <Compile Include="World\CoutineEnumerator.cs" />
     <Compile Include="World\Micos.cs" />
     <Compile Include="World\Time.cs" />
   </ItemGroup>

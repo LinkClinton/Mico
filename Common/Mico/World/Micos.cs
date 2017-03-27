@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 using Mico.Objects;
@@ -16,6 +17,8 @@ namespace Mico.World
         static List<Shape> g_add_list = new List<Shape>();
         static List<Shape> g_remove_list = new List<Shape>();
 
+        static List<IEnumerator> g_enumerator = new List<IEnumerator>();
+
         public static void Add(Shape shape, object Unknown = null)
         {
             shape.OnCreate(Unknown);
@@ -26,6 +29,18 @@ namespace Mico.World
         {
             shape.OnDelete(Unknown);
             g_remove_list.Add(shape);
+        }
+
+        public static int StartCoutine(IEnumerator countine)
+        {
+            g_enumerator.Add(countine);
+            return g_enumerator.Count;
+        }
+
+        public static void StopCoutine(int countineID)
+        {
+            g_enumerator[countineID].Reset();
+            g_enumerator.RemoveAt(countineID);
         }
 
         public static void Exports(object Unknown = null)
@@ -71,6 +86,11 @@ namespace Mico.World
 
 
             FixUpdate();
+
+            foreach (var item in g_enumerator)
+            {
+                item.MoveNext();
+            }
 
             UpdateShapeList();
         }

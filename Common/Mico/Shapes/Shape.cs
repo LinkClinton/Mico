@@ -8,8 +8,10 @@ using Mico.Objects;
 
 namespace Mico.Shapes
 {
+    
+
     public class Shape
-    {
+    { 
         Shape g_parent = null;
 
         Transform g_transform = new Transform();

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,13 +20,15 @@ namespace Mico.Diep.Sample.GameObject
 
         float g_speed = 0;
 
-        float g_shoot_limit;
+        float g_shoot_limit = 0;
+        bool g_shoot_enable = true;
 
         List<BulletSource> g_bullet = new List<BulletSource>();
 
         public TankSource()
         {
             Micos.Add(this);
+            Micos.StartCoutine(UpdateShootEnable());
         }
 
         public override void OnUpdate(object Unknown = null)
@@ -43,11 +46,30 @@ namespace Mico.Diep.Sample.GameObject
 
                 Transform.Position +=
                     Speed * off * (float)Time.DeltaTime.TotalSeconds;
+
+                if (GameInput.Input.LeftMouse is true && g_shoot_enable is true)
+                    Shoot();
             }
 
             base.OnUpdate(Unknown);
         }
 
+        IEnumerator UpdateShootEnable()
+        {
+            float PassTime = 0;
+            while (true)
+            {
+                PassTime += (float)Time.DeltaTime.TotalSeconds;
+                if (PassTime >= ShootLimit)
+                {
+                    PassTime -= ShootLimit;
+                    g_shoot_enable = true;
+                }
+                yield return null;
+            }
+        }
+
+       
         public virtual void Destory()
         {
             Micos.Remove(this);
@@ -55,7 +77,7 @@ namespace Mico.Diep.Sample.GameObject
 
         public virtual void Shoot()
         {
-
+            g_shoot_enable = false;
         }
 
         public float Speed

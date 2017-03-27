@@ -15,6 +15,10 @@ namespace Mico.Objects
         float g_pass_time = 0;
         int g_fps = 0;
 
+        public FpsCounter()
+        {
+            Micos.Add(this);
+        }
 
         public override void OnUpdate(object Unknown = null)
         {
