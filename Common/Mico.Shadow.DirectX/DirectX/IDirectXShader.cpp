@@ -54,9 +54,16 @@ void IDirectXShaderCompile(IDirectXShader* source)
 		break;
 	}
 
+#ifdef _DEBUG
+	int flag = D3DCOMPILE_DEBUG | D3DCOMPILE_SKIP_OPTIMIZATION;
+#else
+	int flag = D3DCOMPILE_OPTIMIZATION_LEVEL2;
+#endif // _DEBUG
+
+
 	D3DCompileFromFile(&source->filename[0], nullptr,
 		D3D_COMPILE_STANDARD_FILE_INCLUDE, &source->function[0],
-		target, D3DCOMPILE_OPTIMIZATION_LEVEL2, 0, &source->shaderblob,
+		target, flag, 0, &source->shaderblob,
 		&errorblob);
 
 	release(errorblob);

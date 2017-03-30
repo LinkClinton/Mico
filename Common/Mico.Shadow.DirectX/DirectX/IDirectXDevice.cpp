@@ -229,7 +229,7 @@ void IDirectXDeviceRenderText(IDirectXDevice* source, LPCWSTR text,
 
 	IDWriteTextLayout* layout = nullptr;
 
-	This.write_factory->CreateTextLayout(text, wcslen(text), font->source,
+	This.write_factory->CreateTextLayout(text, (UINT32)wcslen(text), font->source,
 		INT16_MAX, INT16_MAX, &layout);
 
 	This.context2d->DrawTextLayout(*pos, layout,
