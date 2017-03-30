@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Numerics;
 using System.Threading.Tasks;
 
 using Mico.Math;
@@ -11,7 +12,7 @@ namespace Mico.Shapes
 {
     public class BoxCollider : Collider
     {
-        TVector3 g_radius = new TVector3(0, 0, 0);
+        Vector3 g_radius = new Vector3(0, 0, 0);
 
         public BoxCollider(Shape shape)
         {
@@ -19,8 +20,15 @@ namespace Mico.Shapes
             g_type = Type.eBox;
         }
 
+        protected override void UpdateProjection()
+        {        
+            //need update
+            base.UpdateProjection();
+        }
+        
 
-        public TVector3 Radius
+
+        public Vector3 Radius
         {
             get => g_radius;
             set => g_radius = value;

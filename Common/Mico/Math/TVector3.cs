@@ -31,15 +31,37 @@ namespace Mico.Math
         public float y { get => g_y; }
         public float z { get => g_z; }
 
-        public static implicit operator TVector2(TVector3 vec) => new TVector2(vec.x, vec.y);
-
-
-
         public static implicit operator TVector3(System.Numerics.Vector3 vec)
             => new TVector3(vec.X, vec.Y, vec.Z);
 
         public static implicit operator System.Numerics.Vector3(TVector3 vec)
             => new System.Numerics.Vector3(vec.x, vec.y, vec.z);
         
+
+        public static TVector3 Forward
+        {
+            get => new TVector3(0, 0, 1);
+        }
+
+        public static TVector3 Left
+        {
+            get => new TVector3(-1, 0, 0);
+        }
+
+        public static TVector3 Right
+        {
+            get => new TVector3(1, 0, 0);
+        }
+
+        public static TVector3 Up
+        {
+            get => new TVector3(0, 1, 0);
+        }
+
+        public static TVector3 Down
+        {
+            get => new TVector3(0, -1, 0);
+        }
+
     }
 }

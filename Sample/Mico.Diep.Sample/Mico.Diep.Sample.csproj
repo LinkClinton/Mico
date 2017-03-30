@@ -46,12 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameInput\Input.cs" />
-    <Compile Include="GameObject\BoxTank.cs" />
-    <Compile Include="GameObject\BulletSource.cs" />
-    <Compile Include="GameObject\CommonBullet.cs" />
-    <Compile Include="GameObject\CommonGun.cs" />
-    <Compile Include="GameObject\GunSource.cs" />
-    <Compile Include="GameObject\TankSource.cs" />
     <Compile Include="GameResource\Brush.cs" />
     <Compile Include="GameResource\Font.cs" />
     <Compile Include="Message.cs" />
@@ -72,6 +66,9 @@
       <Project>{5809f77e-dbd1-462c-92c1-358cd212fc71}</Project>
       <Name>Mico</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GameObject\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

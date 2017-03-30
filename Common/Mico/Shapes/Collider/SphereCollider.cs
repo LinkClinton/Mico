@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Numerics;
 using System.Threading.Tasks;
 
 using Mico.Math;
@@ -11,11 +12,34 @@ namespace Mico.Shapes
 {
     public class SphereCollider : Collider
     {
-        TVector3 g_radius = new TVector3(0, 0, 0);
-       
+        float g_radius = 0;
 
 
+        protected override void UpdateProjection()
+        {
+            Vector3 global = GlobalCenter;
 
+            g_project = new Projection()
+            {
+                XAxis = new Vector2()
+                {
+                    X = global.X - Radius,
+                    Y = global.X + Radius
+                },
+                YAxis = new Vector2()
+                {
+                    X = global.Y - Radius,
+                    Y = global.Y + Radius
+                },
+                ZAxis = new Vector2()
+                {
+                    X = global.Z - Radius,
+                    Y = global.Z + Radius
+                }    
+            };
+
+            base.UpdateProjection();
+        }
 
         public SphereCollider(Shape shape)
         {
@@ -23,7 +47,7 @@ namespace Mico.Shapes
             g_type = Type.eSphere;
         }
 
-        public TVector3 Radius
+        public float Radius
         {
             get => g_radius;
             set => g_radius = value;

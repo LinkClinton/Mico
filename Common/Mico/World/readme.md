@@ -47,3 +47,5 @@ Mico.World.Micos.Export();
 #### About Camera
 
 If you want to use camera,you should compute how to render by yourself.
+
+We use **left-handed coordinate system**.

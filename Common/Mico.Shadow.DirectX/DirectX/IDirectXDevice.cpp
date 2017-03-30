@@ -28,6 +28,8 @@ void IDirectXDeviceCreate(IDirectXDevice** source, HWND hwnd, bool windowed = tr
 	UINT width = rc.right - rc.left;
 	UINT height = rc.bottom - rc.top;
 
+	This->width = (float)width;
+	This->height = (float)height;
 
 	//Direct2D Factory
 	CoInitialize(nullptr);
@@ -193,8 +195,9 @@ void IDirectXDevicePresent(IDirectXDevice* source)
 void IDirectXDeviceRenderLine(IDirectXDevice* source, D2D_POINT_2F* start,
 	D2D_POINT_2F* end, IDirectXBrush* brush, float width = 1.0f)
 {
-	source->context2d->DrawLine(*start,
-		*end, brush->source, width);
+
+	source->context2d->DrawLine(*start, *end, 
+		brush->source, width);
 }
 
 void IDirectXDeviceRenderRect(IDirectXDevice* source, D2D_RECT_F* rect,
@@ -212,15 +215,14 @@ void IDirectXDeviceFillRect(IDirectXDevice* source, D2D_RECT_F* rect,
 void IDirectXDeviceRenderEllipse(IDirectXDevice* source, D2D_POINT_2F* center,
 	D2D_POINT_2F* radius, IDirectXBrush* brush, float width = 1.0f)
 {
-	This.context2d->DrawEllipse(D2D1::Ellipse(*center, radius->x, radius->y),
-		brush->source, width);
+	This.context2d->DrawEllipse(D2D1::Ellipse(*center, radius->x, radius->y), brush->source, width);
 }
 
 void IDirectXDeviceFillEllipse(IDirectXDevice* source, D2D_POINT_2F* center,
 	D2D_POINT_2F* radius, IDirectXBrush* brush)
 {
-	This.context2d->FillEllipse(D2D1::Ellipse(*center, radius->x, radius->y),
-		brush->source);
+	This.context2d->FillEllipse(D2D1::Ellipse(*center, 
+		radius->x, radius->y), brush->source);
 }
 
 void IDirectXDeviceRenderText(IDirectXDevice* source, LPCWSTR text,

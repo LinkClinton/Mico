@@ -20,7 +20,7 @@ namespace Mico.Objects
             Micos.Add(this);
         }
 
-        public override void OnUpdate(object Unknown = null)
+        internal override void OnUpdate(object Unknown = null)
         {
             g_pass_time += (float)Time.DeltaTime.TotalSeconds;
 
@@ -35,7 +35,7 @@ namespace Mico.Objects
             base.OnUpdate(Unknown);
         }
 
-        public override void OnExport(object Unknown = null)
+        internal override void OnExport(object Unknown = null)
         {
             g_export_cnt++;
 

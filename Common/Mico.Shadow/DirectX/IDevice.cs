@@ -53,5 +53,7 @@ namespace Mico.Shadow.DirectX
         public static implicit operator IntPtr(IDevice device) 
             => device.source;
 
+        
+
     }
 }

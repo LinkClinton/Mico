@@ -93,9 +93,14 @@ public:
 	float dpiX;
 	float dpiY;
 
+	float width;
+	float height;
+
 	D3D_FEATURE_LEVEL feature;
 	UINT MSAA4xQuality;
 	
 
 	~IDirectXDevice();
 };
+
+

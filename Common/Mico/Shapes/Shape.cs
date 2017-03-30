@@ -17,11 +17,11 @@ namespace Mico.Shapes
         Transform g_transform = new Transform();
         Collider g_collider = null;
 
-        public virtual void OnUpdate(object Unknown = null) { }
-        public virtual void OnExport(object Unknown = null) { }
-        public virtual void OnCreate(object Unknown = null) { }
-        public virtual void OnDelete(object Unknown = null) { }
-        public virtual void FixUpdate(object Unknown = null) { }
+        internal virtual void OnUpdate(object Unknown = null) { }
+        internal virtual void OnExport(object Unknown = null) { }
+        internal virtual void OnCreate(object Unknown = null) { }
+        internal virtual void OnDelete(object Unknown = null) { }
+        internal virtual void FixUpdate(object Unknown = null) { g_collider?.Update(); }
 
 
         public Collider Collider

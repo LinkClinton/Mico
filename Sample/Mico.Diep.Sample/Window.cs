@@ -11,7 +11,6 @@ using Mico.Math;
 using Mico.Objects;
 using Mico.Shadow.DirectX;
 
-using Mico.Diep.Sample.GameObject;
 
 namespace Mico.Diep.Sample
 {
@@ -23,19 +22,15 @@ namespace Mico.Diep.Sample
 
         event WndProc WindowProc;
 
+        int Width = 800;
+        int Height = 600;
       
         FpsCounter fps;
 
 
         public void InitializeWorld()
         {
-            new BoxTank()
-            {
-                IsPlayer = true,
-                Speed = 100,
-                Radius = new TVector2(30, 30)
-            };
-
+           
             fps = new FpsCounter();
 
         }
@@ -43,7 +38,7 @@ namespace Mico.Diep.Sample
         public Window()
         {
             WindowProc += Window_proc;
-            Hwnd = IDevice.CreateWindow("Mico", "", 800, 600, WindowProc);
+            Hwnd = IDevice.CreateWindow("Mico", "", Width, Height, WindowProc);
             device = new IDevice(Hwnd);
 
             GameResource.Brush.Initialize(device);
@@ -97,7 +92,7 @@ namespace Mico.Diep.Sample
         [DllImport("user32.dll")]
         internal static extern short GetKeyState(int keyCode);
 
-        protected static IntPtr Window_proc(IntPtr Hwnd, uint message, IntPtr wParam, IntPtr lParam)
+        protected IntPtr Window_proc(IntPtr Hwnd, uint message, IntPtr wParam, IntPtr lParam)
         {
             MessageType type = (MessageType)message;
             switch (type)
@@ -115,7 +110,7 @@ namespace Mico.Diep.Sample
                     break;
                 case MessageType.MouseMove:
                     GameInput.Input.MousePos = new TVector2(Message.LowWord(lParam),
-                        Message.HighWord(lParam));
+                       Message.HighWord(lParam));
                     break;
                 case MessageType.LeftButtonDown:
                     GameInput.Input.LeftMouse = true;
