@@ -21,8 +21,17 @@
 #pragma comment(lib,"D3DCompiler.lib")
 
 #define This (*source)
-#define VERTEX 0
-#define PIXEL 1
+
+enum ShaderType :int {
+	eVertexShader,
+	ePixelShader
+};
+
+enum BufferType :int {
+	eVertexBuffer,
+	eIndexBuffer,
+	eConstBuffer
+};
 
 template<typename Interface>
 void release(Interface &T) {
@@ -30,43 +39,6 @@ void release(Interface &T) {
 	T->Release();
 	T = nullptr;
 }
-
-class IDirectXBrush {
-public:
-	ID2D1Brush* source;
-
-	~IDirectXBrush();
-};
-
-class IDirectXFont {
-public:
-	IDWriteTextFormat* source;
-
-	~IDirectXFont();
-};
-
-class IDirectXBitmap {
-public:
-	ID2D1Bitmap* source;
-
-	~IDirectXBitmap();
-};
-
-typedef void ID3D11Shader;
-
-class IDirectXShader {
-public:
-	int shadertype;
-	ID3DBlob* shaderblob;
-	
-
-	std::wstring filename;
-	std::string function;
-
-	std::vector<byte> shadercode;
-
-	~IDirectXShader();
-};
 
 class IDirectXDevice {
 public:
@@ -98,9 +70,61 @@ public:
 
 	D3D_FEATURE_LEVEL feature;
 	UINT MSAA4xQuality;
-	
+
 
 	~IDirectXDevice();
+};
+
+
+
+class IDirectXBrush {
+public:
+	ID2D1Brush* source;
+
+	~IDirectXBrush();
+};
+
+class IDirectXFont {
+public:
+	IDWriteTextFormat* source;
+
+	~IDirectXFont();
+};
+
+class IDirectXBitmap {
+public:
+	ID2D1Bitmap* source;
+
+	~IDirectXBitmap();
+};
+
+typedef void ID3D11Shader;
+
+class IDirectXShader {
+public:
+	ShaderType shadertype;
+	ID3DBlob* shaderblob;
+	
+
+	std::wstring filename;
+	std::string function;
+
+	std::vector<byte> shadercode;
+
+	~IDirectXShader();
+};
+
+class IDirectXBuffer {
+public:
+	BufferType buffertype;
+
+	ID3D11Buffer* source;
+
+	IDirectXDevice* device;
+	
+	~IDirectXBuffer();
+
+
 };
 
 

@@ -14,4 +14,14 @@ namespace Mico.Shadow.DirectX
             ePixelShader
         }
     }
+
+    public partial class IBuffer
+    {
+        public enum Type
+        {
+            eVertexBuffer,
+            eIndexBuffer,
+            eConstBuffer
+        }
+    }
 }

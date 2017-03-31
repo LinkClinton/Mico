@@ -21,7 +21,9 @@
   <ItemGroup>
     <ClCompile Include="DirectX\IDirectXBitmap.cpp" />
     <ClCompile Include="DirectX\IDirectXBrush.cpp" />
-    <ClCompile Include="DirectX\IDirectXDevice.cpp" />
+    <ClCompile Include="DirectX\IDirectXBuffer.cpp" />
+    <ClCompile Include="DirectX\IDirectXDirect2D.cpp" />
+    <ClCompile Include="DirectX\IDirectXDirect3D.cpp" />
     <ClCompile Include="DirectX\IDirectXFont.cpp" />
     <ClCompile Include="DirectX\IDirectXShader.cpp" />
     <ClCompile Include="Window.cpp" />

@@ -27,12 +27,17 @@ namespace Mico.Diep.Sample
       
         FpsCounter fps;
 
+        IShader shader;
 
         public void InitializeWorld()
         {
            
             fps = new FpsCounter();
+            shader = new IShader(@"C:\Users\linka\Documents\Visual Studio 2017\Projects\Mico\Sample\Mico.Diep.Sample\GameResource\VertexShader.hlsl",
+                "main", IShader.Type.eVertexShader);
 
+            shader.Compile();
+            device.SetShader(shader);
         }
 
         public Window()

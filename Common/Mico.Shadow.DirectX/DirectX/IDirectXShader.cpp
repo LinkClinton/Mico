@@ -14,8 +14,7 @@ void IDirectXShaderCreate(IDirectXShader** source,LPCWSTR filename,
 	This = new IDirectXShader();
 
 	This->filename = filename;
-	This->shadertype = type;
-	
+	This->shadertype = (ShaderType)type;
 	
 	int function_len = lstrlen(entrypoint);
 
@@ -44,10 +43,10 @@ void IDirectXShaderCompile(IDirectXShader* source)
 
 	switch (source->shadertype)
 	{
-	case VERTEX: 
+	case ShaderType::eVertexShader: 
 		target = "vs_5_0";
 		break;
-	case PIXEL:
+	case ShaderType::ePixelShader:
 		target = "ps_5_0";
 		break;
 	default:
@@ -65,6 +64,7 @@ void IDirectXShaderCompile(IDirectXShader* source)
 		D3D_COMPILE_STANDARD_FILE_INCLUDE, &source->function[0],
 		target, flag, 0, &source->shaderblob,
 		&errorblob);
+
 
 	release(errorblob);
 }

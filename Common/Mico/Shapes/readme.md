@@ -4,7 +4,7 @@ A base object in `Micos`.
 
 ## A Base Object
 
-The "Micos" can have many kinds object.
+The `Micos` can have many kinds object.
 
 Shape is the very basic object.
 
@@ -57,7 +57,7 @@ If you change rotate,the forward will be changed.
 
 We use `heading-pitch-bank`,and the value's range is `(0,360)`.
 
-First,we rotate `Y-axis`,then `X-axis`,last `Z-axis`.
+First,we **rotate** `Y-axis`,then `X-axis`,last `Z-axis`.
 
 ### Collider
 

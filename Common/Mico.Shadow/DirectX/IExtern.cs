@@ -68,6 +68,9 @@ namespace Mico.Shadow.DirectX
         static extern void IDirectXDeviceTransform(IntPtr source,
             System.Numerics.Matrix3x2 matrix);
 
+        [DllImport(IExtern.DLLName)]
+        static extern void IDirectXDeviceSetShader(IntPtr source, IntPtr shader);
+
 
         [DllImport(IExtern.DLLName, CallingConvention = CallingConvention.StdCall,
               CharSet = CharSet.Auto)]
@@ -116,6 +119,19 @@ namespace Mico.Shadow.DirectX
 
         [DllImport(IExtern.DLLName)]
         static extern void IDirectXShaderCompile(IntPtr source);
+    }
+
+    public partial class IBuffer
+    {
+        [DllImport(IExtern.DLLName)]
+        static extern void IDirectXBufferCreate(out IntPtr source,
+            IntPtr device, object bufferdata, int size, Type type);
+
+        [DllImport(IExtern.DLLName)]
+        static extern void IDirectXBufferDestory(IntPtr source);
+
+        [DllImport(IExtern.DLLName)]
+        static extern void IDirectXBufferUpdate(IntPtr source, object data);
     }
 
 

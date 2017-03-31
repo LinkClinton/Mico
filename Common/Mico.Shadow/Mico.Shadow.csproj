@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="DirectX\IBitmap.cs" />
     <Compile Include="DirectX\IBrush.cs" />
+    <Compile Include="DirectX\IBuffer.cs" />
     <Compile Include="DirectX\IDevice.cs" />
     <Compile Include="DirectX\Enum.cs" />
     <Compile Include="DirectX\IExtern.cs" />

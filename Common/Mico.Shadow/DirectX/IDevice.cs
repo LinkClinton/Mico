@@ -50,6 +50,10 @@ namespace Mico.Shadow.DirectX
         public void Transform(System.Numerics.Matrix3x2 matrix)
             => IDirectXDeviceTransform(source, matrix);
 
+        public void SetShader(IShader shader)
+            => IDirectXDeviceSetShader(source, shader);
+
+
         public static implicit operator IntPtr(IDevice device) 
             => device.source;
 

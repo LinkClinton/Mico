@@ -16,6 +16,8 @@ EXPORTS
 	IDirectXDeviceRenderBitmap
 	IDirectXDeviceRenderEllipse
 
+	IDirectXDeviceSetShader
+
 
 	IDirectXFontCreate
 	IDirectXFontDestory
@@ -30,6 +32,10 @@ EXPORTS
 	IDirectXShaderCreate
 	IDirectXShaderDestory
 	IDirectXShaderCompile
+
+	IDirectXBufferCreate
+	IDirectXBufferUpdate
+	IDirectXBufferDestory
 
 
 	CreateWindow

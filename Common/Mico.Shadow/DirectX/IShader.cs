@@ -18,5 +18,9 @@ namespace Mico.Shadow.DirectX
 
         public void Compile() => IDirectXShaderCompile(source);
 
+
+        public static implicit operator IntPtr(IShader shader)
+            => shader.source;
+
     }
 }
