@@ -19,9 +19,19 @@ namespace Mico.Shapes
 
         internal virtual void OnUpdate(object Unknown = null) { }
         internal virtual void OnExport(object Unknown = null) { }
-        internal virtual void OnCreate(object Unknown = null) { }
+
+        internal virtual void OnCreate(object Unknown = null)
+        {
+            g_collider?.Update();
+        }
+
         internal virtual void OnDelete(object Unknown = null) { }
-        internal virtual void FixUpdate(object Unknown = null) { g_collider?.Update(); }
+
+
+        internal virtual void FixUpdate(object Unknown = null)
+        {
+            g_collider?.Update();
+        }
 
 
         public Collider Collider

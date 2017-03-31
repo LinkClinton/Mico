@@ -19,12 +19,16 @@ namespace Mico.Diep.Sample
         static void Main(string[] args)
         {
             Shape a = new Shape();
-            float PI = (float)System.Math.PI;
-            a.Transform.Rotate = new System.Numerics.Vector3(PI, 0, 0);
-            Console.WriteLine(a.Transform.Forward);
+            a.Collider = new BoxCollider(a);
+            (a.Collider as BoxCollider).Radius = new System.Numerics.Vector3(1, 1, 1);
+            a.Transform.Rotate = new System.Numerics.Vector3(90, 45, 0);
 
-            Window window = new Window();
-            window.Run();
+            World.Micos.Add(a);
+            World.Micos.Update();
+
+            Console.ReadKey();
+            //Window window = new Window();
+            //window.Run();
         }
     }
 }

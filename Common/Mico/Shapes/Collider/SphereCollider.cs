@@ -21,21 +21,9 @@ namespace Mico.Shapes
 
             g_project = new Projection()
             {
-                XAxis = new Vector2()
-                {
-                    X = global.X - Radius,
-                    Y = global.X + Radius
-                },
-                YAxis = new Vector2()
-                {
-                    X = global.Y - Radius,
-                    Y = global.Y + Radius
-                },
-                ZAxis = new Vector2()
-                {
-                    X = global.Z - Radius,
-                    Y = global.Z + Radius
-                }    
+                XAxis = new Vector2(global.X - Radius, global.X + Radius),
+                YAxis = new Vector2(global.Y - Radius, global.Y + Radius),
+                ZAxis = new Vector2(global.Z - Radius, global.Z + Radius)
             };
 
             base.UpdateProjection();

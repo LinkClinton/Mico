@@ -36,7 +36,6 @@ namespace Mico.Math
 
         public static implicit operator System.Numerics.Vector3(TVector3 vec)
             => new System.Numerics.Vector3(vec.x, vec.y, vec.z);
-        
 
         public static TVector3 Forward
         {

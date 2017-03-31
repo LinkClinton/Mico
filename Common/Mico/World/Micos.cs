@@ -78,6 +78,8 @@ namespace Mico.World
         {
             Time.Update();
 
+            UpdateShapeList();
+
             foreach (Shape item in g_shapes_list)
             {
                 item.OnUpdate();
@@ -92,7 +94,7 @@ namespace Mico.World
                 item.MoveNext();
             }
 
-            UpdateShapeList();
+         
         }
 
         public static Camera Camera

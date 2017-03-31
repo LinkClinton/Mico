@@ -1,6 +1,6 @@
 ﻿# Mico.Shapes
 
-A base object in "Micos".
+A base object in `Micos`.
 
 ## A Base Object
 
@@ -23,7 +23,7 @@ public class Life : Shape
 
 On some events be occurred,some funciton will be run.
 
-For example,the `Update` will be run when "Micos" update itself.
+For example,the `Update` will be run when `Micos` update itself.
 
 You can override this function.
 
@@ -43,8 +43,21 @@ You can render or write your shape.
 
 ### Transform
 
-A transofrm can describe a shape in the "Micos".
+A transofrm can describe a shape in the `Micos`.
 
+#### Forward:
+default is `(0,0,1)`.
+
+If you change forward,the rotate will be changed.
+#### Rotate: 
+
+default is `(0,0,0)`.
+
+If you change rotate,the forward will be changed.
+
+We use `heading-pitch-bank`,and the value's range is `(0,360)`.
+
+First,we rotate `Y-axis`,then `X-axis`,last `Z-axis`.
 
 ### Collider
 

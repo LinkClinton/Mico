@@ -23,7 +23,7 @@ HWND CreateWindow(LPCWSTR Title, LPCWSTR Ico,
 	HINSTANCE Hinstance = HINST_THISCOMPONENT;
 
 	WNDCLASS WindowClass;
-
+	
 	HWND Hwnd;
 
 	WindowClass.style = CS_HREDRAW | CS_VREDRAW;
