@@ -22,6 +22,8 @@ void IDirectXDeviceSetShader(IDirectXDevice* source, IDirectXShader* shader)
 		}
 
 		This.context3d->VSSetShader(vertexshader, nullptr, 0);
+
+		This.vertexshader = shader;
 		break;
 	}
 	case ShaderType::ePixelShader: {
@@ -43,6 +45,8 @@ void IDirectXDeviceSetShader(IDirectXDevice* source, IDirectXShader* shader)
 
 		This.context3d->PSSetShader(pixelshader, nullptr, 0);
 
+
+		This.pixelshader = shader;
 		break;
 	}
 	default:

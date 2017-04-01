@@ -32,10 +32,14 @@ EXPORTS
 	IDirectXShaderCreate
 	IDirectXShaderDestory
 	IDirectXShaderCompile
+	IDirectXShaderSetBuffer
 
 	IDirectXBufferCreate
 	IDirectXBufferUpdate
 	IDirectXBufferDestory
+
+	IDirectXBufferInputCreate
+	IDirectXBufferInputDestory
 
 
 	CreateWindow

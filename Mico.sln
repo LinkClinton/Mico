@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.26228.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{03DD817E-BC54-4AAF-85C4-47918C21DCC0}"
 	ProjectSection(SolutionItems) = preProject
@@ -19,6 +19,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Mico.Shadow.DirectX", "Common\Mico.Shadow.DirectX\Mico.Shadow.DirectX.vcxproj", "{886461C1-BA45-4F39-8749-0B4AC0AA5326}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mico.Diep.Sample", "Sample\Mico.Diep.Sample\Mico.Diep.Sample.csproj", "{7F8FC46E-2A46-4958-AB0D-BB77B154424B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mico.Test.Sample", "Sample\Mico.Test.Sample\Mico.Test.Sample.csproj", "{261686A1-1560-43BD-AB39-DE5B700CE417}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -76,6 +78,18 @@ Global
 		{7F8FC46E-2A46-4958-AB0D-BB77B154424B}.Release|x64.Build.0 = Release|Any CPU
 		{7F8FC46E-2A46-4958-AB0D-BB77B154424B}.Release|x86.ActiveCfg = Release|Any CPU
 		{7F8FC46E-2A46-4958-AB0D-BB77B154424B}.Release|x86.Build.0 = Release|Any CPU
+		{261686A1-1560-43BD-AB39-DE5B700CE417}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{261686A1-1560-43BD-AB39-DE5B700CE417}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{261686A1-1560-43BD-AB39-DE5B700CE417}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{261686A1-1560-43BD-AB39-DE5B700CE417}.Debug|x64.Build.0 = Debug|Any CPU
+		{261686A1-1560-43BD-AB39-DE5B700CE417}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{261686A1-1560-43BD-AB39-DE5B700CE417}.Debug|x86.Build.0 = Debug|Any CPU
+		{261686A1-1560-43BD-AB39-DE5B700CE417}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{261686A1-1560-43BD-AB39-DE5B700CE417}.Release|Any CPU.Build.0 = Release|Any CPU
+		{261686A1-1560-43BD-AB39-DE5B700CE417}.Release|x64.ActiveCfg = Release|Any CPU
+		{261686A1-1560-43BD-AB39-DE5B700CE417}.Release|x64.Build.0 = Release|Any CPU
+		{261686A1-1560-43BD-AB39-DE5B700CE417}.Release|x86.ActiveCfg = Release|Any CPU
+		{261686A1-1560-43BD-AB39-DE5B700CE417}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -85,5 +99,6 @@ Global
 		{07F6EEDE-0DD4-433C-B43B-085719A1B261} = {C5260870-8364-4986-9E77-BACBBC6ED73E}
 		{886461C1-BA45-4F39-8749-0B4AC0AA5326} = {C5260870-8364-4986-9E77-BACBBC6ED73E}
 		{7F8FC46E-2A46-4958-AB0D-BB77B154424B} = {658D72A6-725E-44E1-A76D-AF4D35643465}
+		{261686A1-1560-43BD-AB39-DE5B700CE417} = {658D72A6-725E-44E1-A76D-AF4D35643465}
 	EndGlobalSection
 EndGlobal

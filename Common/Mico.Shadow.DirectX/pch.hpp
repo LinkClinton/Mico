@@ -1,10 +1,13 @@
 #pragma once
 
+#ifdef _DEBUG
+#include<iostream>
+#endif // _DEBUG
+
 
 #include<string>
 #include<vector>
 #include<fstream>
-
 
 #include<d2d1_3.h>
 #include<d3d11_3.h>
@@ -22,6 +25,8 @@
 
 #define This (*source)
 
+class IDirectXShader;
+
 enum ShaderType :int {
 	eVertexShader,
 	ePixelShader
@@ -31,6 +36,13 @@ enum BufferType :int {
 	eVertexBuffer,
 	eIndexBuffer,
 	eConstBuffer
+};
+
+enum ElementSize {
+	eFLOAT1,
+	eFLOAT2,
+	eFLOAT3,
+	eFLOAT4
 };
 
 template<typename Interface>
@@ -71,6 +83,9 @@ public:
 	D3D_FEATURE_LEVEL feature;
 	UINT MSAA4xQuality;
 
+	//current_shader
+	IDirectXShader* vertexshader;
+	IDirectXShader* pixelshader;
 
 	~IDirectXDevice();
 };
@@ -98,8 +113,6 @@ public:
 	~IDirectXBitmap();
 };
 
-typedef void ID3D11Shader;
-
 class IDirectXShader {
 public:
 	ShaderType shadertype;
@@ -123,6 +136,18 @@ public:
 	IDirectXDevice* device;
 	
 	~IDirectXBuffer();
+};
+
+struct IBufferInputElement {
+	LPCSTR Tag;
+	ElementSize Size;
+};
+
+class IDirectXBufferInput {
+public:
+	ID3D11InputLayout* source;
+
+	~IDirectXBufferInput();
 
 
 };

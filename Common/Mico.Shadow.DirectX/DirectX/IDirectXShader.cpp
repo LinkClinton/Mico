@@ -2,13 +2,19 @@
 
 #include<wchar.h>
 
+#ifdef _DEBUG
+#include<iostream>
+#endif // _DEBUG
 
-IDirectXShader::~IDirectXShader() {
+
+IDirectXShader::~IDirectXShader() 
+{
 	release(shaderblob);
 }
 
 void IDirectXShaderCreate(IDirectXShader** source,LPCWSTR filename,
-	LPCWSTR entrypoint, int type) {
+	LPCWSTR entrypoint, int type) 
+{
 	std::ifstream shaderfile;
 
 	This = new IDirectXShader();
@@ -30,7 +36,8 @@ void IDirectXShaderCreate(IDirectXShader** source,LPCWSTR filename,
 	This->shadercode.pop_back();
 }
 
-void IDirectXShaderDestory(IDirectXShader* source) {
+void IDirectXShaderDestory(IDirectXShader* source)
+{
 	if (source == nullptr) return;
 	delete source;
 }
@@ -65,9 +72,34 @@ void IDirectXShaderCompile(IDirectXShader* source)
 		target, flag, 0, &source->shaderblob,
 		&errorblob);
 
+#ifdef _DEBUG
+	if (errorblob != nullptr) {
+		std::cout << "Compile Shader Error" << std::endl;
+		std::cout << (char*)errorblob->GetBufferPointer() << std::endl;
+	}
+#endif // _DEBUG
+
 
 	release(errorblob);
 }
 
+void IDirectXShaderSetBuffer(IDirectXShader* shader, IDirectXBuffer* buffer, int bufferid)
+{
+	switch (shader->shadertype)
+	{
+	case ShaderType::eVertexShader: {
+		buffer->device->context3d->VSSetConstantBuffers(bufferid,
+			1, &buffer->source);
+		break;
+	}
+	case ShaderType::ePixelShader: {
+		buffer->device->context3d->PSSetConstantBuffers(bufferid,
+			1, &buffer->source);
+		break;
+	}
+	default:
+		break;
+	}
+}
 
 

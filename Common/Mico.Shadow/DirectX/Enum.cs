@@ -24,4 +24,15 @@ namespace Mico.Shadow.DirectX
             eConstBuffer
         }
     }
+
+    public partial class IBufferInput
+    {
+        public enum ElementSize
+        {
+            eFLOAT1,
+            eFLOAT2,
+            eFLOAT3,
+            eFLOAT4
+        }
+    }
 }

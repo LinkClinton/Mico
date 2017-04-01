@@ -12,7 +12,7 @@ using Mico.Objects;
 using Mico.Shadow.DirectX;
 
 
-namespace Mico.Diep.Sample
+namespace Mico.Test.Sample
 {
     public partial class Window
     {
@@ -32,18 +32,32 @@ namespace Mico.Diep.Sample
 
         public void InitializeWorld()
         {
-           
-            fps = new FpsCounter();
+            device = new IDevice(Hwnd);
+
+            shader = new IShader(@"C:\Users\linka\Documents\Visual Studio 2017\Projects\Mico\Sample\Mico.Test.Sample\VertexShader.hlsl",
+                "main", IShader.Type.eVertexShader);
+            shader.Compile();
+
+            device.SetShader(shader);
+
+            IBufferInput.Element[] element = new IBufferInput.Element[2];
+
+            element[0].Tag = "POSITION";
+            element[0].Size = IBufferInput.ElementSize.eFLOAT3;
+
+            element[1].Tag = "COLOR";
+            element[1].Size = IBufferInput.ElementSize.eFLOAT4;
+
+            bufferinput = new IBufferInput(device, element);
         }
 
         public Window()
         {
             WindowProc += Window_proc;
             Hwnd = IDevice.CreateWindow("Mico", "", Width, Height, WindowProc);
-            device = new IDevice(Hwnd);
+            
 
-            GameResource.Brush.Initialize(device);
-            GameResource.Font.Initialize(device);
+       
 
             InitializeWorld();
         }
@@ -52,9 +66,8 @@ namespace Mico.Diep.Sample
         { 
 
             device.Clear(new TVector4(1, 1, 1, 1));
-            World.Micos.Exports(device);
-            device.RenderText(fps.Fps.ToString(), new TVector2(0, 0), 
-                GameResource.Font.Consolas12, GameResource.Brush.Black);
+          
+      
             device.Present();
         }
 
@@ -69,7 +82,6 @@ namespace Mico.Diep.Sample
                     DispatchMessage(ref message);
                 }
                 OnRender();
-                World.Micos.Update();
             }
         }
 
@@ -108,22 +120,6 @@ namespace Mico.Diep.Sample
                 case MessageType.KeyDown:
                     break;
                 case MessageType.KeyUp:
-                    break;
-                case MessageType.MouseMove:
-                    GameInput.Input.MousePos = new TVector2(Message.LowWord(lParam),
-                       Message.HighWord(lParam));
-                    break;
-                case MessageType.LeftButtonDown:
-                    GameInput.Input.LeftMouse = true;
-                    break;
-                case MessageType.LeftButtonUp:
-                    GameInput.Input.LeftMouse = false;
-                    break;
-                case MessageType.RightButtonDown:
-                    GameInput.Input.RightMouse = true;
-                    break;
-                case MessageType.RightButtonUp:
-                    GameInput.Input.RightMouse = false;
                     break;
                 case MessageType.MiddleButtonDown:
                     break;

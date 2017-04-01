@@ -119,6 +119,9 @@ namespace Mico.Shadow.DirectX
 
         [DllImport(IExtern.DLLName)]
         static extern void IDirectXShaderCompile(IntPtr source);
+
+        [DllImport(IExtern.DLLName)]
+        static extern void IDirectXShaderSetBuffer(IntPtr source, IntPtr buffer, int bufferid);
     }
 
     public partial class IBuffer
@@ -134,5 +137,16 @@ namespace Mico.Shadow.DirectX
         static extern void IDirectXBufferUpdate(IntPtr source, object data);
     }
 
+    public partial class IBufferInput
+    {
+        [DllImport(IExtern.DLLName, CharSet = CharSet.Auto)]
+        static extern void IDirectXBufferInputCreate(out IntPtr source,
+            IntPtr device, Element[] element, int elementsize);
+
+        [DllImport(IExtern.DLLName)]
+        static extern void IDirectXBufferInputDestory(IntPtr source);
+
+
+    }
 
 }
