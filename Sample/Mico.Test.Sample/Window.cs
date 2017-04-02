@@ -11,6 +11,7 @@ using Mico.Math;
 using Mico.Objects;
 using Mico.Shadow.DirectX;
 
+using Mico.Test.Sample.DirectX;
 
 namespace Mico.Test.Sample
 {
@@ -27,8 +28,13 @@ namespace Mico.Test.Sample
       
         FpsCounter fps;
 
+
         IShader shader;
         IBufferInput bufferinput;
+        Camera camera;
+
+        IObject cube;
+        
 
         public void InitializeWorld()
         {
@@ -49,6 +55,18 @@ namespace Mico.Test.Sample
             element[1].Size = IBufferInput.ElementSize.eFLOAT4;
 
             bufferinput = new IBufferInput(device, element);
+
+            camera = new Camera()
+            {
+                LookAt = new Vector3(0, 0, 0),
+                Up = new Vector3(0, 1, 0)
+            };
+            camera.Transform.Position = new Vector3(0, -1, -10);
+
+
+            cube = IObject.CreateBox(device, 1, 1, 1);
+            
+
         }
 
         public Window()

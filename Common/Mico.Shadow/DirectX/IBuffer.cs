@@ -10,7 +10,7 @@ namespace Mico.Shadow.DirectX
     {
         IntPtr source;
 
-        public IBuffer(IDevice device, object data, int size, Type type)
+        public IBuffer(IDevice device, IntPtr data, int size, Type type)
             => IDirectXBufferCreate(out source, device, data, size, type);
 
         ~IBuffer() => IDirectXBufferDestory(source);

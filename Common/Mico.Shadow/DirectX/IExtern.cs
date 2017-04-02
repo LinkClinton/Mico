@@ -144,7 +144,7 @@ namespace Mico.Shadow.DirectX
     {
         [DllImport(IExtern.DLLName)]
         static extern void IDirectXBufferCreate(out IntPtr source,
-            IntPtr device, object bufferdata, int size, Type type);
+            IntPtr device, IntPtr bufferdata, int size, Type type);
 
         [DllImport(IExtern.DLLName)]
         static extern void IDirectXBufferDestory(IntPtr source);
