@@ -11,7 +11,9 @@ void IDirectXBrushCreate(IDirectXBrush** source, IDirectXDevice* device, D2D1::C
 
 	ID2D1SolidColorBrush* brush = nullptr;
 
-	device->context2d->CreateSolidColorBrush(*color, &brush);
+	HRESULT result = device->context2d->CreateSolidColorBrush(*color, &brush);
+
+	DEBUG_LOG(result, DEBUG_DIRECT2D "Create SolidBrush failed");
 
 	This->source = brush;
 }

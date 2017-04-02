@@ -18,18 +18,26 @@ void IDirectXBitmapCreate(IDirectXBitmap** source, IDirectXDevice* device,
 		filename, nullptr, GENERIC_READ,
 		WICDecodeMetadataCacheOnLoad, &pDecoder);
 
-	pDecoder->GetFrame(0, &pSource);
+	DEBUG_LOG(result, DEBUG_WIC "Create Decoder from file failed");
 
-	device->image_factory->CreateFormatConverter(&pConverter);
+	result = pDecoder->GetFrame(0, &pSource);
 
-	pConverter->Initialize(pSource,
+	DEBUG_LOG(result, DEBUG_WIC "Get first Frame failed");
+
+	result = device->image_factory->CreateFormatConverter(&pConverter);
+
+	DEBUG_LOG(result, DEBUG_WIC "Create FormatConverter failed");
+
+	result = pConverter->Initialize(pSource,
 		GUID_WICPixelFormat32bppPBGRA, WICBitmapDitherTypeNone,
 		nullptr, 0.f, WICBitmapPaletteTypeMedianCut);
+	
+	DEBUG_LOG(result, DEBUG_WIC "Initialize FormatConverter failed");
 
-
-
-	device->context2d->CreateBitmapFromWicBitmap(
+	result = device->context2d->CreateBitmapFromWicBitmap(
 		pConverter, nullptr, &This->source);
+
+	DEBUG_LOG(result, DEBUG_DIRECT2D "Create Bitmap from Wic failed");
 
 	pConverter->Release();
 	pSource->Release();

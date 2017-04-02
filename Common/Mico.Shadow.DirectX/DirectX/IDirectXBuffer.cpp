@@ -25,7 +25,7 @@ void IDirectXBufferCreate(IDirectXBuffer** source, IDirectXDevice* device, void*
 
 	switch (This->buffertype)
 	{
-	case BufferType::eVertexBuffer: 
+	case BufferType::eVertexBuffer:
 		desc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 		break;
 	case BufferType::eIndexBuffer:
@@ -38,7 +38,9 @@ void IDirectXBufferCreate(IDirectXBuffer** source, IDirectXDevice* device, void*
 		break;
 	}
 
-	device->device3d->CreateBuffer(&desc, &data, &This->source);
+	HRESULT result = device->device3d->CreateBuffer(&desc, &data, &This->source);
+
+	DEBUG_LOG(result, DEBUG_DIRECT3D "Create Buffer failed");
 }
 
 void IDirectXBufferDestory(IDirectXBuffer* source) 

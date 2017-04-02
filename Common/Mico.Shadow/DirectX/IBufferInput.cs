@@ -26,5 +26,8 @@ namespace Mico.Shadow.DirectX
             => IDirectXBufferInputDestory(source);
 
 
+        public static implicit operator IntPtr(IBufferInput bufferinput)
+            => bufferinput.source;
+
     }
 }

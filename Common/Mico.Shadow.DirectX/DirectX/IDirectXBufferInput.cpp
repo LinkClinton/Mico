@@ -44,6 +44,7 @@ void IDirectXBufferInputCreate(IDirectXBufferInput** source,
 			break;
 		}
 		default:
+			throw "BufferInput Element: Unknown Type";
 			break;
 		}
 
@@ -64,11 +65,7 @@ void IDirectXBufferInputCreate(IDirectXBufferInput** source,
 			device->vertexshader->shadercode.size(), &This->source);
 	}
 
-#ifdef _DEBUG
-	if (FAILED(result)) {
-		std::cout << "Create BufferInput Failed" << std::endl;
-	}
-#endif // _DEBUG
+	DEBUG_LOG(result, DEBUG_DIRECT3D "Create BufferInput failed");
 
 }
 

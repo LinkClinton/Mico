@@ -1,10 +1,5 @@
 #pragma once
 
-#ifdef _DEBUG
-#include<iostream>
-#endif // _DEBUG
-
-
 #include<string>
 #include<vector>
 #include<fstream>
@@ -15,6 +10,23 @@
 #include<wincodec.h>
 #include<d3dcompiler.h>
 
+#define DEBUG_WIC "WIC: "
+#define DEBUG_DXGI "DXGI: "
+#define DEBUG_DIRECT3D "Direct3D: "
+#define DEBUG_DIRECT2D "Direct2D: "
+
+#ifdef _DEBUG
+#include<iostream>
+
+#ifdef _CONSOLE
+#define DEBUG_LOG(result,expression) if (FAILED(result)) std::cout << expression << std::endl;
+#else 
+#define DEBUG_LOG(result,expression) if (FAILED(result)) MessageBox(nullptr, TEXT(expression), L"ErrorBox", 0);
+#endif // _CONSOLE
+
+#else
+#define DEBUG_LOG(result,expression) 
+#endif // _DEBUG
 
 
 #pragma comment(lib,"d2d1.lib")

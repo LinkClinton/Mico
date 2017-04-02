@@ -53,6 +53,22 @@ namespace Mico.Shadow.DirectX
         public void SetShader(IShader shader)
             => IDirectXDeviceSetShader(source, shader);
 
+        public void SetBufferInput(IBufferInput bufferinput)
+            => IDirectXDeviceSetBufferInput(source, bufferinput);
+
+        public void SetIndexBuffer(IBuffer buffer)
+            => IDirectXDeviceSetIndexBuffer(source, buffer);
+
+        public void SetVertexBuffer(IBuffer buffer, int eachsize)
+            => IDirectXDeviceSetVertexBuffer(source, buffer, eachsize);
+
+        public void Draw(int vertexcount, int startlocation = 0,
+            PrimitiveType type = PrimitiveType.Triangle)
+            => IDirectXDeviceRenderBuffer(source, vertexcount, startlocation, type);
+
+        public void DrawIndex(int indexcount, int startlocation = 0,
+            PrimitiveType type = PrimitiveType.Triangle, int vertexlocation = 0)
+            => IDirectXDeviceRenderBufferIndex(source, indexcount, startlocation, vertexlocation, type);
 
         public static implicit operator IntPtr(IDevice device) 
             => device.source;

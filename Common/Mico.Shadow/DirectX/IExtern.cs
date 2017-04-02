@@ -71,6 +71,22 @@ namespace Mico.Shadow.DirectX
         [DllImport(IExtern.DLLName)]
         static extern void IDirectXDeviceSetShader(IntPtr source, IntPtr shader);
 
+        [DllImport(IExtern.DLLName)]
+        static extern void IDirectXDeviceSetBufferInput(IntPtr source, IntPtr bufferinput);
+
+        [DllImport(IExtern.DLLName)]
+        static extern void IDirectXDeviceSetIndexBuffer(IntPtr source, IntPtr buffer);
+
+        [DllImport(IExtern.DLLName)]
+        static extern void IDirectXDeviceSetVertexBuffer(IntPtr source, IntPtr buffer, int eachsize);
+
+        [DllImport(IExtern.DLLName)]
+        static extern void IDirectXDeviceRenderBuffer(IntPtr source, int vertexcount,
+            int startlocation, PrimitiveType type);
+
+        [DllImport(IExtern.DLLName)]
+        static extern void IDirectXDeviceRenderBufferIndex(IntPtr source, int indexcount,
+            int startlocation, int vertexlocation, PrimitiveType type);
 
         [DllImport(IExtern.DLLName, CallingConvention = CallingConvention.StdCall,
               CharSet = CharSet.Auto)]

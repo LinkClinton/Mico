@@ -10,10 +10,14 @@ void IDirectXFontCreate(IDirectXFont** source, IDirectXDevice* device, LPCWSTR f
 {
 	This = new IDirectXFont();
 
-	device->write_factory->CreateTextFormat(
+	HRESULT result;
+
+	result = device->write_factory->CreateTextFormat(
 		font, nullptr, (DWRITE_FONT_WEIGHT)weight,
 		DWRITE_FONT_STYLE_NORMAL, DWRITE_FONT_STRETCH_NORMAL,
 		size, L"Local", &This->source);
+
+	DEBUG_LOG(result, DEBUG_DIRECT2D "Create Font failed");
 
 }
 

@@ -17,6 +17,11 @@ EXPORTS
 	IDirectXDeviceRenderEllipse
 
 	IDirectXDeviceSetShader
+	IDirectXDeviceRenderBuffer
+	IDirectXDeviceSetBufferInput
+	IDirectXDeviceSetIndexBuffer
+	IDirectXDeviceSetVertexBuffer
+	IDirectXDeviceRenderBufferIndex
 
 
 	IDirectXFontCreate

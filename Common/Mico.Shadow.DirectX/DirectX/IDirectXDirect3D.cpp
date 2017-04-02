@@ -2,6 +2,8 @@
 
 void IDirectXDeviceSetShader(IDirectXDevice* source, IDirectXShader* shader)
 {
+	HRESULT result;
+
 	switch (shader->shadertype)
 	{
 	case ShaderType::eVertexShader: {
@@ -13,13 +15,15 @@ void IDirectXDeviceSetShader(IDirectXDevice* source, IDirectXShader* shader)
 			vertexshader->Release(), vertexshader = nullptr;
 
 		if (shader->shaderblob != nullptr) {
-			This.device3d->CreateVertexShader(shader->shaderblob->GetBufferPointer(),
+			result = This.device3d->CreateVertexShader(shader->shaderblob->GetBufferPointer(),
 				shader->shaderblob->GetBufferSize(), nullptr, &vertexshader);
 		}
 		else {
-			This.device3d->CreateVertexShader(&shader->shadercode[0],
+			result = This.device3d->CreateVertexShader(&shader->shadercode[0],
 				shader->shadercode.size(), nullptr, &vertexshader);
 		}
+
+		DEBUG_LOG(result, DEBUG_DIRECT3D "Create VertexShader failed");
 
 		This.context3d->VSSetShader(vertexshader, nullptr, 0);
 
@@ -35,16 +39,17 @@ void IDirectXDeviceSetShader(IDirectXDevice* source, IDirectXShader* shader)
 			pixelshader->Release(), pixelshader = nullptr;
 
 		if (shader->shaderblob != nullptr) {
-			This.device3d->CreatePixelShader(shader->shaderblob->GetBufferPointer(),
+			result = This.device3d->CreatePixelShader(shader->shaderblob->GetBufferPointer(),
 				shader->shaderblob->GetBufferSize(), nullptr, &pixelshader);
 		}
 		else {
-			This.device3d->CreatePixelShader(&shader->shadercode[0],
+			result = This.device3d->CreatePixelShader(&shader->shadercode[0],
 				shader->shadercode.size(), nullptr, &pixelshader);
 		}
 
-		This.context3d->PSSetShader(pixelshader, nullptr, 0);
+		DEBUG_LOG(result, DEBUG_DIRECT3D "Create PixelShader failed");
 
+		This.context3d->PSSetShader(pixelshader, nullptr, 0);
 
 		This.pixelshader = shader;
 		break;
@@ -52,4 +57,36 @@ void IDirectXDeviceSetShader(IDirectXDevice* source, IDirectXShader* shader)
 	default:
 		break;
 	}
+}
+
+void IDirectXDeviceSetBufferInput(IDirectXDevice* source, IDirectXBufferInput* bufferinput) 
+{
+	This.context3d->IASetInputLayout(bufferinput->source);
+}
+
+void IDirectXDeviceSetIndexBuffer(IDirectXDevice* source, IDirectXBuffer* buffer)
+{
+	This.context3d->IASetIndexBuffer(buffer->source, DXGI_FORMAT_R32_UINT, 0);
+}
+
+void IDirectXDeviceSetVertexBuffer(IDirectXDevice* source, IDirectXBuffer* buffer, int eachsize)
+{
+	UINT stride = eachsize;
+	UINT offset = 0;
+	This.context3d->IASetVertexBuffers(0, 1, &buffer->source, &stride, &offset);
+}
+
+void IDirectXDeviceRenderBuffer(IDirectXDevice* source, int vertexcount, int startlocation, int PrimitiveType)
+{
+	This.context3d->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY(PrimitiveType));
+
+	This.context3d->Draw(vertexcount, startlocation);
+}
+
+void IDirectXDeviceRenderBufferIndex(IDirectXDevice* source, int indexcount, int startlocation, int vertexlocation,
+	int PrimitiveType)
+{
+	This.context3d->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY(PrimitiveType));
+
+	This.context3d->DrawIndexed(indexcount, startlocation, vertexlocation);
 }

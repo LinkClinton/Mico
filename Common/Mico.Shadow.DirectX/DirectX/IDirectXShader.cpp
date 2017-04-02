@@ -67,19 +67,27 @@ void IDirectXShaderCompile(IDirectXShader* source)
 #endif // _DEBUG
 
 
-	D3DCompileFromFile(&source->filename[0], nullptr,
+	HRESULT result;
+
+	result = D3DCompileFromFile(&source->filename[0], nullptr,
 		D3D_COMPILE_STANDARD_FILE_INCLUDE, &source->function[0],
 		target, flag, 0, &source->shaderblob,
 		&errorblob);
 
 #ifdef _DEBUG
 	if (errorblob != nullptr) {
+#ifdef _CONSOLE
 		std::cout << "Compile Shader Error" << std::endl;
 		std::cout << (char*)errorblob->GetBufferPointer() << std::endl;
+#else 
+		MessageBoxA(nullptr, (char*)errorblob->GetBufferPointer(), "ErrorBox", 0);
+#endif // _CONSOLE
+
+		
 	}
 #endif // _DEBUG
 
-
+	
 	release(errorblob);
 }
 

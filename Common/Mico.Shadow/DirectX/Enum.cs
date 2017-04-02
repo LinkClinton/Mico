@@ -35,4 +35,14 @@ namespace Mico.Shadow.DirectX
             eFLOAT4
         }
     }
+
+    public enum PrimitiveType
+    {
+        Unknown = 0,
+        Point = 1,
+        Line = 2,
+        LineStrip = 3,
+        Triangle = 4,
+        TriangleStrip = 5,
+    }
 }

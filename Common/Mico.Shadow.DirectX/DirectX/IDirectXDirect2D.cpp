@@ -31,19 +31,27 @@ void IDirectXDeviceCreate(IDirectXDevice** source, HWND hwnd, bool windowed = tr
 	This->width = (float)width;
 	This->height = (float)height;
 
-	//Direct2D Factory
-	CoInitialize(nullptr);
+	HRESULT result;
 
-	D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED,
+	//Direct2D Factory
+	result = CoInitialize(nullptr);
+	
+	result = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED,
 		&This->d2d1_factory);
 
-	CoCreateInstance(
+	DEBUG_LOG(result, DEBUG_DIRECT2D "Create Factory failed");
+
+	result = CoCreateInstance(
 		CLSID_WICImagingFactory, nullptr,
 		CLSCTX_INPROC, IID_IWICImagingFactory,
 		(void**)&This->image_factory);
 
-	DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED,
+	DEBUG_LOG(result, DEBUG_WIC "Create ImageFactory failed");
+
+	result = DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED,
 		__uuidof(IDWriteFactory), (IUnknown**)&This->write_factory);
+
+	DEBUG_LOG(result, DEBUG_DIRECT2D "Create DWriteFactory failed");
 
 	//Direct3D 
 	D3D_FEATURE_LEVEL features[3] = {
@@ -52,17 +60,17 @@ void IDirectXDeviceCreate(IDirectXDevice** source, HWND hwnd, bool windowed = tr
 		D3D_FEATURE_LEVEL_12_0
 	};
 
-	D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE_HARDWARE,
+	result = D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE_HARDWARE,
 		nullptr, D3D11_CREATE_DEVICE_BGRA_SUPPORT,
 		features, 3, D3D11_SDK_VERSION, &This->device3d,
 		&This->feature, &This->context3d);
 
-	This->device3d->CheckMultisampleQualityLevels(
+	DEBUG_LOG(result, DEBUG_DIRECT3D "Create device failed");
+
+	result = This->device3d->CheckMultisampleQualityLevels(
 		DXGI_FORMAT_R8G8B8A8_UNORM, 4, &This->MSAA4xQuality);
 
-
-
-
+	DEBUG_LOG(result, DEBUG_DIRECT3D "Check MSAA failed");
 
 
 	DXGI_SWAP_CHAIN_DESC chain_desc;
@@ -88,23 +96,39 @@ void IDirectXDeviceCreate(IDirectXDevice** source, HWND hwnd, bool windowed = tr
 	IDXGIAdapter* dxgiadapter = nullptr;
 	IDXGIFactory* dxgifactory = nullptr;
 
-	This->device3d->QueryInterface(
+	result = This->device3d->QueryInterface(
 		__uuidof(IDXGIDevice), (void**)&dxgidevice);
-	dxgidevice->GetParent(
+
+	DEBUG_LOG(result, DEBUG_DXGI "Query DXGIDevice Failed");
+
+	result = dxgidevice->GetParent(
 		__uuidof(IDXGIAdapter), (void**)&dxgiadapter);
-	dxgiadapter->GetParent(
+	
+	DEBUG_LOG(result, DEBUG_DXGI "Get DXGIAdapter failed");
+
+	result = dxgiadapter->GetParent(
 		__uuidof(IDXGIFactory), (void**)&dxgifactory);
 
-	dxgifactory->CreateSwapChain(This->device3d,
+	DEBUG_LOG(result, DEBUG_DXGI "Get DXGIFactory failed");
+
+
+	result = dxgifactory->CreateSwapChain(This->device3d,
 		&chain_desc, &This->chain);
+
+	DEBUG_LOG(result, DEBUG_DXGI "Create SwapChain failed");
 
 
 	ID3D11Texture2D* backbuffer = nullptr;
 	
-	This->chain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&backbuffer);
+	result = This->chain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&backbuffer);
 
-	This->device3d->CreateRenderTargetView(backbuffer, nullptr,
+	DEBUG_LOG(result, DEBUG_DXGI "Get BackBuffer failed");
+
+	result = This->device3d->CreateRenderTargetView(backbuffer, nullptr,
 		&This->targetview);
+
+	DEBUG_LOG(result, DEBUG_DIRECT3D "Create RenderTargetView failed");
+
 
 	D3D11_TEXTURE2D_DESC depth_desc = { 0 };
 	depth_desc.Width = width;
@@ -122,11 +146,15 @@ void IDirectXDeviceCreate(IDirectXDevice** source, HWND hwnd, bool windowed = tr
 	ID3D11Texture2D* depth_buffer = nullptr;
 
 
-	This->device3d->CreateTexture2D(&depth_desc,
+	result = This->device3d->CreateTexture2D(&depth_desc,
 		nullptr, &depth_buffer);
 
-	This->device3d->CreateDepthStencilView(depth_buffer,
+	DEBUG_LOG(result, DEBUG_DIRECT3D "Create DepthBuffer failed");
+
+	result = This->device3d->CreateDepthStencilView(depth_buffer,
 		nullptr, &This->depthview);
+
+	DEBUG_LOG(result, "Create DepthStencilView failed");
 
 	This->context3d->OMSetRenderTargets(1, &This->targetview,
 		This->depthview);
@@ -141,17 +169,26 @@ void IDirectXDeviceCreate(IDirectXDevice** source, HWND hwnd, bool windowed = tr
 	This->context3d->RSSetViewports(1, &ViewPort);
 
 	IDXGISurface* Surface = nullptr;
-	This->chain->GetBuffer(0, IID_PPV_ARGS(&Surface));
+	result = This->chain->GetBuffer(0, IID_PPV_ARGS(&Surface));
 
-	This->d2d1_factory->ReloadSystemMetrics();
+	DEBUG_LOG(result, DEBUG_DXGI "Get Buffer to Direct2D failed");
+
+	result = This->d2d1_factory->ReloadSystemMetrics();
+	
+	DEBUG_LOG(result, DEBUG_DIRECT2D "Reload SystemMetrics failed");
+	
 	This->d2d1_factory->GetDesktopDpi(
 		&This->dpiX, &This->dpiY);
 
-	This->d2d1_factory->CreateDevice(dxgidevice,
+	result = This->d2d1_factory->CreateDevice(dxgidevice,
 		&This->device2d);
 
-	This->device2d->CreateDeviceContext(D2D1_DEVICE_CONTEXT_OPTIONS_NONE,
+	DEBUG_LOG(result, DEBUG_DIRECT2D "Create Device failed");
+
+	result = This->device2d->CreateDeviceContext(D2D1_DEVICE_CONTEXT_OPTIONS_NONE,
 		&This->context2d);
+
+	DEBUG_LOG(result, DEBUG_DIRECT2D "Create DeviceContext failed");
 
 	D2D1_BITMAP_PROPERTIES1 bitmapProperties =
 		D2D1::BitmapProperties1(
@@ -164,8 +201,10 @@ void IDirectXDeviceCreate(IDirectXDevice** source, HWND hwnd, bool windowed = tr
 	ID2D1Bitmap1* TargetBitmap = nullptr;
 
 
-	This->context2d->CreateBitmapFromDxgiSurface(Surface,
+	result = This->context2d->CreateBitmapFromDxgiSurface(Surface,
 		&bitmapProperties, &TargetBitmap);
+
+	DEBUG_LOG(result, DEBUG_DIRECT2D "Create Bitmap to render failed");
 
 	This->context2d->SetTarget(TargetBitmap);
 	
@@ -188,8 +227,15 @@ void IDirectXDeviceClear(IDirectXDevice* source, D2D1::ColorF* color)
 
 void IDirectXDevicePresent(IDirectXDevice* source)
 {
-	This.context2d->EndDraw();
-	This.chain->Present(0, 0);
+	HRESULT result;
+
+	result = This.context2d->EndDraw();
+
+	DEBUG_LOG(result, DEBUG_DIRECT2D "Present failed");
+
+	result = This.chain->Present(0, 0);
+
+	DEBUG_LOG(result, DEBUG_DIRECT3D "Present failed");
 }
 
 void IDirectXDeviceRenderLine(IDirectXDevice* source, D2D_POINT_2F* start,
@@ -231,8 +277,12 @@ void IDirectXDeviceRenderText(IDirectXDevice* source, LPCWSTR text,
 
 	IDWriteTextLayout* layout = nullptr;
 
-	This.write_factory->CreateTextLayout(text, (UINT32)wcslen(text), font->source,
+	HRESULT result;
+
+	result = This.write_factory->CreateTextLayout(text, (UINT32)wcslen(text), font->source,
 		INT16_MAX, INT16_MAX, &layout);
+
+	DEBUG_LOG(result, DEBUG_DIRECT2D "Create TextInputLayout failed");
 
 	This.context2d->DrawTextLayout(*pos, layout,
 		brush->source);
