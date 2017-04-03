@@ -4,22 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Mico.Shadow.DirectX;
 using System.Runtime.InteropServices;
 
+using Mico.DirectX;
 
-namespace Mico.Test.Sample.DirectX
+namespace Mico.Test.Sample
 {
     public class IObject
     {
         public Vertex[] vertex;
-        public int[] index;
+        public uint[] index;
 
-        public IBuffer vertexbuffer;
-        public IBuffer indexbuffer;
+        public DirectX.Buffer vertexbuffer;
+        public DirectX.Buffer indexbuffer;
 
-
-        public static IObject CreateBox(IDevice device, int width, int height, int depth)
+        public static IObject CreateBox(int width, int height, int depth)
         {
             IObject result = new IObject();
                
@@ -61,7 +60,7 @@ namespace Mico.Test.Sample.DirectX
             result.vertex[22] = new Vertex(+w2, +h2, +d2);
             result.vertex[23] = new Vertex(+w2, -h2, +d2);
 
-            result.index = new int[36]
+            result.index = new uint[36]
             {
                  0,1,2,0,2,3,
                 4,5,6,4,6,7,
@@ -71,9 +70,9 @@ namespace Mico.Test.Sample.DirectX
                 20,21,22,20,22,23
             };
 
-           
-
-
+            result.vertexbuffer = new VertexBuffer(result.vertex, result.vertex.Length, 28);
+            result.indexbuffer = new IndexBuffer(result.index);
+            
             return result;
         }
     }

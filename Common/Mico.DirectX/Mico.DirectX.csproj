@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{261686A1-1560-43BD-AB39-DE5B700CE417}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>Mico.Test.Sample</RootNamespace>
-    <AssemblyName>Mico.Test.Sample</AssemblyName>
+    <ProjectGuid>{BB74337E-B279-4CD5-93BB-C11659D6238A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Mico.DirectX</RootNamespace>
+    <AssemblyName>Mico.DirectX</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,10 +21,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -36,7 +33,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,28 +41,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DirectX\IObject.cs" />
-    <Compile Include="DirectX\Vertex.cs" />
-    <Compile Include="Message.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Bitmap.cs" />
+    <Compile Include="Brush.cs" />
+    <Compile Include="Buffer.cs" />
+    <Compile Include="ConstBuffer.cs" />
+    <Compile Include="Direct3D.cs" />
+    <Compile Include="Extern.cs" />
+    <Compile Include="Fontface.cs" />
+    <Compile Include="IndexBuffer.cs" />
+    <Compile Include="PixelShader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Window.cs" />
+    <Compile Include="Shader.cs" />
+    <Compile Include="Surface.cs" />
+    <Compile Include="VertexBuffer.cs" />
+    <Compile Include="VertexShader.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Common\Mico.DirectX\Mico.DirectX.csproj">
-      <Project>{bb74337e-b279-4cd5-93bb-c11659d6238a}</Project>
-      <Name>Mico.DirectX</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Common\Mico\Mico.csproj">
+    <ProjectReference Include="..\Mico\Mico.csproj">
       <Project>{5809f77e-dbd1-462c-92c1-358cd212fc71}</Project>
       <Name>Mico</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="VertexShader.hlsl" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

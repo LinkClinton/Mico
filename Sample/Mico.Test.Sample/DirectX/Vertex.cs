@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using System.Runtime.InteropServices;
 
-namespace Mico.Test.Sample.DirectX
+namespace Mico.Test.Sample
 {
     [StructLayout(LayoutKind.Sequential)]
     public struct Vertex

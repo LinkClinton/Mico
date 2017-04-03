@@ -9,84 +9,52 @@ using System.Runtime.InteropServices;
 
 using Mico.Math;
 using Mico.Objects;
-using Mico.Shadow.DirectX;
 
-using Mico.Test.Sample.DirectX;
+
+using Mico.DirectX;
+
 
 namespace Mico.Test.Sample
 {
     public partial class Window
     {
-        IntPtr Hwnd;
+        public delegate IntPtr WndProc(IntPtr Hwnd, uint message,
+            IntPtr wParam, IntPtr lParam);
 
-        IDevice device;
+        IntPtr Hwnd;
 
         event WndProc WindowProc;
 
         int Width = 800;
         int Height = 600;
-      
-        FpsCounter fps;
 
-
-        IShader shader;
-        IBufferInput bufferinput;
-        Camera camera;
-
+        Surface surface;
+        Shader vertexshader;
         IObject cube;
-        
 
-        public void InitializeWorld()
-        {
-            device = new IDevice(Hwnd);
-
-            shader = new IShader(@"C:\Users\linka\Documents\Visual Studio 2017\Projects\Mico\Sample\Mico.Test.Sample\VertexShader.hlsl",
-                "main", IShader.Type.eVertexShader);
-            shader.Compile();
-
-            device.SetShader(shader);
-
-            IBufferInput.Element[] element = new IBufferInput.Element[2];
-
-            element[0].Tag = "POSITION";
-            element[0].Size = IBufferInput.ElementSize.eFLOAT3;
-
-            element[1].Tag = "COLOR";
-            element[1].Size = IBufferInput.ElementSize.eFLOAT4;
-
-            bufferinput = new IBufferInput(device, element);
-
-            camera = new Camera()
-            {
-                LookAt = new Vector3(0, 0, 0),
-                Up = new Vector3(0, 1, 0)
-            };
-            camera.Transform.Position = new Vector3(0, -1, -10);
-
-
-            cube = IObject.CreateBox(device, 1, 1, 1);
-            
-
-        }
 
         public Window()
         {
             WindowProc += Window_proc;
-            Hwnd = IDevice.CreateWindow("Mico", "", Width, Height, WindowProc);
+            Hwnd = CreateWindow("Mico", "", Width, Height, WindowProc);
+            surface = new Surface(Hwnd);
+            vertexshader = new VertexShader(@"C:\Users\linka\Documents\Visual Studio 2017\Projects\Mico\Sample\Mico.Test.Sample\VertexShader.hlsl", "main");
+
+            Direct3D.SetSurface(surface);
+
+            cube = IObject.CreateBox(1, 1, 1);
+
+            Direct3D.SetShader(vertexshader);
+            Direct3D.SetBuffer(cube.vertexbuffer);
+            Direct3D.SetBuffer(cube.indexbuffer);
             
-
-       
-
-            InitializeWorld();
         }
 
         public void OnRender()
-        { 
-
-            device.Clear(new TVector4(1, 1, 1, 1));
-          
-      
-            device.Present();
+        {
+            Direct3D.Clear(new TVector4(1, 1, 1, 1));
+            
+            Direct3D.Present();
         }
 
         public void Run()
@@ -102,6 +70,11 @@ namespace Mico.Test.Sample
                 OnRender();
             }
         }
+
+        [DllImport("Mico.DirectX.Core.dll", CallingConvention = CallingConvention.StdCall,
+             CharSet = CharSet.Auto)]
+        public static extern IntPtr CreateWindow([MarshalAs(UnmanagedType.LPStr)] string Title,
+            [MarshalAs(UnmanagedType.LPStr)]  string Ico, int Width, int Height, WndProc proc);
 
         [DllImport("user32.dll", CallingConvention = CallingConvention.StdCall)]
         internal static extern IntPtr DefWindowProc(IntPtr Hwnd, uint message,

@@ -1,0 +1,43 @@
+LIBRARY
+
+EXPORTS
+
+	CreateWindow
+
+
+	ManagerClear
+	ManagerCreate
+	ManagerDestory
+	ManagerPresent
+	ManagerDrawText
+	ManagerDrawLine
+	ManagerDrawRect
+	ManagerFillRect
+	ManagerSetBuffer
+	ManagerSetShader
+	ManagerDrawBitmap
+	ManagerSetSurface
+	ManagerDrawEllipse
+	ManagerFillEllipse
+	ManagerSetIndexBuffer
+	ManagerSetVertexBuffer
+
+
+	SurfaceCreate
+	SurfaceDestory
+
+	BrushCreate
+	BrushDestory
+
+	FontfaceCreate
+	FontfaceDestory
+
+	BitmapCreate
+	BitmapDestory
+
+	ShaderCreate
+	ShaderDestory
+
+	BufferCreate
+	BufferUpdate
+	BufferDestory
