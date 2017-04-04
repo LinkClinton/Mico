@@ -64,6 +64,27 @@ enum BufferType :int {
 	eConstBuffer
 };
 
+enum BufferLayoutElementSize :int {
+	eFloat1,
+	eFloat2,
+	eFloat3,
+	eFloat4
+};
+
+enum PrimitiveType :int {
+	UNK,
+	Point,
+	Line,
+	LineStrip,
+	Triangle,
+	TriangleStrip,
+};
+
+struct BufferLayoutElement {
+	BufferLayoutElementSize size;
+	LPCSTR tag;
+};
+
 class Shader {
 public:
 	ShaderType shadertype;
@@ -86,6 +107,13 @@ public:
 	ID3D11Buffer* buffer;
 
 	~Buffer();
+};
+
+class BufferLayout {
+public:
+	ID3D11InputLayout* layout;
+
+	~BufferLayout();
 };
 
 class Manager {

@@ -69,15 +69,25 @@ namespace Mico.DirectX
         }
 
         public static void SetShader(Shader shader)
-        {
-            ManagerSetShader(source, shader);
-        }
+            => ManagerSetShader(source, shader);
+        
 
         public static void SetBufferToVertexShader(Buffer Buffer, int BufferID)
             => ManagerSetBuffer(source, Buffer, BufferID, Shader.Type.eVertexShader);
 
         public static void SetBufferToPixelShader(Buffer Buffer, int BufferID)
             => ManagerSetBuffer(source, Buffer, BufferID, Shader.Type.ePixelShader);
+
+        public static void SetBufferLayout(BufferLayout BufferLayout)
+            => ManagerSetBufferLayout(source, BufferLayout);
+
+        public static void Draw(int VertexCount, int StartLocation,
+            PrimitiveType Type = PrimitiveType.Triangle)
+            => ManagerDraw(source, VertexCount, StartLocation, Type);
+
+        public static void DrawIndexed(int IndexCount, int StartLocation,
+            int VertexCount, PrimitiveType Type = PrimitiveType.Triangle)
+            => ManagerDrawIndexed(source, IndexCount, StartLocation, VertexCount, Type);
 
 
 

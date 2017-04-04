@@ -31,6 +31,7 @@ namespace Mico.Test.Sample
         Surface surface;
         Shader vertexshader;
         IObject cube;
+        BufferLayout layout;
 
 
         public Window()
@@ -39,15 +40,29 @@ namespace Mico.Test.Sample
             Hwnd = CreateWindow("Mico", "", Width, Height, WindowProc);
             surface = new Surface(Hwnd);
             vertexshader = new VertexShader(@"C:\Users\linka\Documents\Visual Studio 2017\Projects\Mico\Sample\Mico.Test.Sample\VertexShader.hlsl", "main");
-
             Direct3D.SetSurface(surface);
+            Direct3D.SetShader(vertexshader);
+
+            BufferLayout.Element[] element = new BufferLayout.Element[2];
+
+            element[0] = new BufferLayout.Element()
+            {
+                Size = BufferLayout.ElementSize.eFloat3,
+                Tag = "POSITION"
+            };
+            element[1] = new BufferLayout.Element()
+            {
+                Size = BufferLayout.ElementSize.eFlaot4,
+                Tag = "COLOR"
+            };
+
+            layout = new BufferLayout(element);
 
             cube = IObject.CreateBox(1, 1, 1);
 
-            Direct3D.SetShader(vertexshader);
+            Direct3D.SetBufferLayout(layout);
             Direct3D.SetBuffer(cube.vertexbuffer);
             Direct3D.SetBuffer(cube.indexbuffer);
-            
         }
 
         public void OnRender()

@@ -44,6 +44,7 @@
     <Compile Include="Bitmap.cs" />
     <Compile Include="Brush.cs" />
     <Compile Include="Buffer.cs" />
+    <Compile Include="BufferLayout.cs" />
     <Compile Include="ConstBuffer.cs" />
     <Compile Include="Direct3D.cs" />
     <Compile Include="Extern.cs" />

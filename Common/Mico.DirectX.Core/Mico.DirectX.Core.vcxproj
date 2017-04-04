@@ -150,6 +150,7 @@
     <ClCompile Include="Bitmap.cpp" />
     <ClCompile Include="Brush.cpp" />
     <ClCompile Include="Buffer.cpp" />
+    <ClCompile Include="BufferLayout.cpp" />
     <ClCompile Include="Fontface.cpp" />
     <ClCompile Include="Manager.cpp" />
     <ClCompile Include="Shader.cpp" />

@@ -15,6 +15,16 @@ namespace Mico.DirectX
         public const string DLLName = "Mico.DirectX.Core.dll";
     }
 
+    public enum PrimitiveType
+    {
+        UNK,
+        Point,
+        Line,
+        LineStrip,
+        Triangle,
+        TriangleStrip,
+    };
+
     public static partial class Direct3D
     {
         [DllImport(Extern.DLLName)]
@@ -69,6 +79,16 @@ namespace Mico.DirectX
 
         [DllImport(Extern.DLLName)]
         static extern void ManagerSetIndexBuffer(IntPtr source, IntPtr buffer);
+
+        [DllImport(Extern.DLLName)]
+        static extern void ManagerSetBufferLayout(IntPtr source, IntPtr bufferlayout);
+
+        [DllImport(Extern.DLLName)]
+        static extern void ManagerDraw(IntPtr source, int vertexcount, int startlocation, PrimitiveType type);
+
+        [DllImport(Extern.DLLName)]
+        static extern void ManagerDrawIndexed(IntPtr source, int indexcount, int startlocation, int vertexlocation,
+            PrimitiveType type);
     }
 
     public partial class Surface
@@ -146,6 +166,25 @@ namespace Mico.DirectX
             eConstBuffer
         }
 
+    }
+
+
+    public partial class BufferLayout
+    {
+        [DllImport(Extern.DLLName, CharSet = CharSet.Auto)]
+        static extern void BufferLayoutCreate(out IntPtr source, Element[] element, int elementsize,
+            IntPtr manager);
+
+        [DllImport(Extern.DLLName)]
+        static extern void BufferLayoutDestory(IntPtr source);
+
+        public enum ElementSize
+        {
+            eFloat1,
+            eFloat2,
+            eFloat3,
+            eFlaot4
+        }
     }
 
 

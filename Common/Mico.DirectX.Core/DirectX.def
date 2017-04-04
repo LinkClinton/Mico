@@ -4,7 +4,7 @@ EXPORTS
 
 	CreateWindow
 
-
+	ManagerDraw
 	ManagerClear
 	ManagerCreate
 	ManagerDestory
@@ -17,10 +17,13 @@ EXPORTS
 	ManagerSetShader
 	ManagerDrawBitmap
 	ManagerSetSurface
+	ManagerDrawIndexed
 	ManagerDrawEllipse
 	ManagerFillEllipse
 	ManagerSetIndexBuffer
 	ManagerSetVertexBuffer
+	ManagerSetBufferLayout
+
 
 
 	SurfaceCreate
@@ -41,3 +44,6 @@ EXPORTS
 	BufferCreate
 	BufferUpdate
 	BufferDestory
+
+	BufferLayoutCreate
+	BufferLayoutDestory

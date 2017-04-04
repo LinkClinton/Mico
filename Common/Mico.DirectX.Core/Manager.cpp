@@ -238,10 +238,12 @@ void ManagerSetShader(Manager* source, Shader* shader)
 	{
 	case ShaderType::eVertexShader: {
 		This.context3d->VSSetShader((ID3D11VertexShader*)shader->shader, nullptr, 0);
+		This.currentVS = shader;
 		break;
 	}
 	case ShaderType::ePixelShader: {
 		This.context3d->PSSetShader((ID3D11PixelShader*)shader->shader, nullptr, 0);
+		This.currentPS = shader;
 		break;
 	}
 	default:
@@ -284,4 +286,26 @@ void ManagerSetVertexBuffer(Manager* source, Buffer* buffer, int eachsize)
 void ManagerSetIndexBuffer(Manager* source, Buffer* buffer)
 {
 	This.context3d->IASetIndexBuffer(buffer->buffer, DXGI_FORMAT_R32_UINT, 0);
+}
+
+void ManagerSetBufferLayout(Manager* source, BufferLayout* layout)
+{
+	DEBUG_BOOL(layout == nullptr, DEBUG_MANAGER "Set BufferLayout failed, layout is nullptr");
+
+	This.context3d->IASetInputLayout(layout->layout);
+}
+
+void ManagerDraw(Manager* source, int vertexcount, int startlocation, PrimitiveType type)
+{
+	This.context3d->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY(type));
+
+	This.context3d->Draw(vertexcount, startlocation);
+}
+
+void ManagerDrawIndexed(Manager* source, int indexcount, int startlocation, int vertexlocation,
+	PrimitiveType type)
+{
+	This.context3d->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY(type));
+	
+	This.context3d->DrawIndexed(indexcount, startlocation, vertexlocation);
 }
