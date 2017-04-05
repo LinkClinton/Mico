@@ -20,6 +20,8 @@ EXPORTS
 	ManagerDrawIndexed
 	ManagerDrawEllipse
 	ManagerFillEllipse
+	ManagerSetCullMode
+	ManagerSetFillMode
 	ManagerSetIndexBuffer
 	ManagerSetVertexBuffer
 	ManagerSetBufferLayout

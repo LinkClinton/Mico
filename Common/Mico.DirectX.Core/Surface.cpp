@@ -41,17 +41,17 @@ void SurfaceCreate(Surface** source, HWND hwnd, bool windowed, Manager* manager)
 	
 	
 	result = manager->device3d->QueryInterface(
-		__uuidof(IDXGIDevice), (void**)&dxgidevice);
+		__uuidof(IDXGIDevice), reinterpret_cast<void**>(&dxgidevice));
 
 	DEBUG_RESULT(DEBUG_DIRECT3D "Query DXGIDevice Failed");
 
 	result = dxgidevice->GetParent(
-		__uuidof(IDXGIAdapter), (void**)&dxgiadapter);
+		__uuidof(IDXGIAdapter), reinterpret_cast<void**>(&dxgiadapter));
 
 	DEBUG_RESULT(DEBUG_DXGI "Get DXGIAdapter failed");
 
 	result = dxgiadapter->GetParent(
-		__uuidof(IDXGIFactory), (void**)&dxgifactory);
+		__uuidof(IDXGIFactory), reinterpret_cast<void**>(&dxgifactory));
 
 	DEBUG_RESULT(DEBUG_DXGI "Get DXGIFactory failed");
 
@@ -63,7 +63,7 @@ void SurfaceCreate(Surface** source, HWND hwnd, bool windowed, Manager* manager)
 
 	ID3D11Texture2D* backbuffer = nullptr;
 
-	result = This->swapchain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&backbuffer);
+	result = This->swapchain->GetBuffer(0, __uuidof(ID3D11Texture2D), reinterpret_cast<void**>(&backbuffer));
 
 	DEBUG_RESULT(DEBUG_DXGI "Get BackBuffer failed");
 
@@ -100,6 +100,7 @@ void SurfaceCreate(Surface** source, HWND hwnd, bool windowed, Manager* manager)
 	DEBUG_RESULT(DEBUG_DIRECT3D "Create DepthStencilView failed");
 
 	This->surfaceHWND = hwnd;
+
 }
 
 void SurfaceDestory(Surface* source) 

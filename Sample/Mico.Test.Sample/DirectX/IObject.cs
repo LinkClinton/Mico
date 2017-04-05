@@ -15,8 +15,8 @@ namespace Mico.Test.Sample
         public Vertex[] vertex;
         public uint[] index;
 
-        public DirectX.Buffer vertexbuffer;
-        public DirectX.Buffer indexbuffer;
+        public Mico.DirectX.Buffer vertexbuffer;
+        public Mico.DirectX.Buffer indexbuffer;
 
         public static IObject CreateBox(int width, int height, int depth)
         {
@@ -59,6 +59,14 @@ namespace Mico.Test.Sample
             result.vertex[21] = new Vertex(+w2, +h2, -d2);
             result.vertex[22] = new Vertex(+w2, +h2, +d2);
             result.vertex[23] = new Vertex(+w2, -h2, +d2);
+
+            for (int i = 0; i < result.vertex.Length; i++)
+            {
+                result.vertex[i].r = 1;
+                result.vertex[i].g = 0;
+                result.vertex[i].b = 0;
+                result.vertex[i].a = 1;
+            }
 
             result.index = new uint[36]
             {

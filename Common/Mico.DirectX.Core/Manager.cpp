@@ -34,7 +34,7 @@ void ManagerCreate(Manager** source)
 
 	DEBUG_RESULT(DEBUG_DIRECT3D "Check MSAA4x quality failed");
 
-
+	CoInitialize(nullptr);
 
 	result = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED,
 		&This->d2d1factory);
@@ -110,6 +110,26 @@ void ManagerSetSurface(Manager* source, Surface* surface)
 	ViewPort.TopLeftY = 0.f;
 	This.context3d->RSSetViewports(1, &ViewPort);
 
+	ID3D11RasterizerState* rasterizer_state = nullptr;
+	D3D11_RASTERIZER_DESC desc;
+
+	desc.FillMode = D3D11_FILL_SOLID;
+	desc.CullMode = D3D11_CULL_NONE;
+	desc.FrontCounterClockwise = FALSE;
+	desc.DepthBias = 0;
+	desc.SlopeScaledDepthBias = 0.0f;
+	desc.DepthBiasClamp = 0.0f;
+	desc.DepthClipEnable = TRUE;
+	desc.ScissorEnable = FALSE;
+	desc.MultisampleEnable = FALSE;
+	desc.AntialiasedLineEnable = FALSE;
+	
+	result = This.device3d->CreateRasterizerState(&desc, &rasterizer_state);
+
+	DEBUG_RESULT(DEBUG_DIRECT3D "Create RasterizerState failed");
+
+	This.context3d->RSSetState(rasterizer_state);
+
 
 	D2D1_BITMAP_PROPERTIES1 bitmapProperties =
 		D2D1::BitmapProperties1(
@@ -142,9 +162,9 @@ void ManagerClear(Manager* source, D2D1::ColorF* color)
 	DEBUG_BOOL(This.currentRTV == nullptr, DEBUG_MANAGER "Clear failed, Surface's RTV is not set");
 	DEBUG_BOOL(This.currentDSV == nullptr, DEBUG_MANAGER "Clear failed, Surface's DSV is not set");
 
+	This.context2d->BeginDraw();
 	This.context3d->ClearRenderTargetView(This.currentRTV, rgba);
 	This.context3d->ClearDepthStencilView(This.currentDSV, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
-	This.context2d->BeginDraw();
 }
 
 void ManagerPresent(Manager* source)
@@ -308,4 +328,44 @@ void ManagerDrawIndexed(Manager* source, int indexcount, int startlocation, int 
 	This.context3d->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY(type));
 	
 	This.context3d->DrawIndexed(indexcount, startlocation, vertexlocation);
+}
+
+void ManagerSetCullMode(Manager* source, D3D11_CULL_MODE mode)
+{
+	ID3D11RasterizerState* state = nullptr;
+	D3D11_RASTERIZER_DESC desc = {};
+
+	This.context3d->RSGetState(&state);
+	state->GetDesc(&desc);
+
+	desc.CullMode = mode;
+
+	release(state);
+	state = nullptr;
+
+	result = This.device3d->CreateRasterizerState(&desc, &state);
+
+	DEBUG_RESULT(DEBUG_DIRECT3D "CreateRasterizerState failed");
+
+	This.context3d->RSSetState(state);
+}
+
+void ManagerSetFillMode(Manager* source, D3D11_FILL_MODE mode)
+{
+	ID3D11RasterizerState* state = nullptr;
+	D3D11_RASTERIZER_DESC desc = {};
+
+	This.context3d->RSGetState(&state);
+	state->GetDesc(&desc);
+
+	desc.FillMode = mode;
+
+	release(state);
+	state = nullptr;
+
+	result = This.device3d->CreateRasterizerState(&desc, &state);
+
+	DEBUG_RESULT(DEBUG_DIRECT3D "CreateRasterizerState failed");
+
+	This.context3d->RSSetState(state);
 }

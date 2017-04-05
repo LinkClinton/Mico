@@ -25,6 +25,19 @@ namespace Mico.DirectX
         TriangleStrip,
     };
 
+    public enum CullMode
+    {
+        CullNone = 1,
+        CullFront = 2,
+        CullBack = 3
+    }
+
+    public enum FillMode
+    {
+        Wireframe = 2,
+        Solid = 3
+    }
+
     public static partial class Direct3D
     {
         [DllImport(Extern.DLLName)]
@@ -89,6 +102,13 @@ namespace Mico.DirectX
         [DllImport(Extern.DLLName)]
         static extern void ManagerDrawIndexed(IntPtr source, int indexcount, int startlocation, int vertexlocation,
             PrimitiveType type);
+
+        [DllImport(Extern.DLLName)]
+        static extern void ManagerSetCullMode(IntPtr source, CullMode mode);
+
+        [DllImport(Extern.DLLName)]
+        static extern void ManagerSetFillMode(IntPtr source, FillMode mode);
+
     }
 
     public partial class Surface

@@ -29,20 +29,18 @@ namespace Mico.Test.Sample
         int Height = 600;
 
         Surface surface;
+        Camera camera;
         Shader vertexshader;
+        Shader pixelshader;
         IObject cube;
         BufferLayout layout;
+        ConstBuffer MatrixBuffer;
+
+        DirectX.TransformMatrix matrix;
 
 
-        public Window()
+        public void Initialize()
         {
-            WindowProc += Window_proc;
-            Hwnd = CreateWindow("Mico", "", Width, Height, WindowProc);
-            surface = new Surface(Hwnd);
-            vertexshader = new VertexShader(@"C:\Users\linka\Documents\Visual Studio 2017\Projects\Mico\Sample\Mico.Test.Sample\VertexShader.hlsl", "main");
-            Direct3D.SetSurface(surface);
-            Direct3D.SetShader(vertexshader);
-
             BufferLayout.Element[] element = new BufferLayout.Element[2];
 
             element[0] = new BufferLayout.Element()
@@ -58,17 +56,54 @@ namespace Mico.Test.Sample
 
             layout = new BufferLayout(element);
 
-            cube = IObject.CreateBox(1, 1, 1);
+            cube = IObject.CreateBox(3, 3, 3);
+        }
 
+        public void SetObject()
+        {
+            Direct3D.SetBufferToVertexShader(MatrixBuffer, 0);
             Direct3D.SetBufferLayout(layout);
             Direct3D.SetBuffer(cube.vertexbuffer);
             Direct3D.SetBuffer(cube.indexbuffer);
+            Direct3D.FillMode = FillMode.Wireframe;
+        }
+
+        public Window()
+        {
+            WindowProc += Window_proc;
+            Hwnd = CreateWindow("Mico", "", Width, Height, WindowProc);
+            surface = new Surface(Hwnd);
+            vertexshader = new VertexShader(@"C:\Users\linka\Documents\Visual Studio 2017\Projects\Mico\Sample\Mico.Test.Sample\VertexShader.hlsl", "main");
+            pixelshader = new PixelShader(@"C:\Users\linka\Documents\Visual Studio 2017\Projects\Mico\Sample\Mico.Test.Sample\PixelShader.hlsl", "main");
+            Direct3D.SetSurface(surface);
+            Direct3D.SetShader(vertexshader);
+            Direct3D.SetShader(pixelshader);
+
+            matrix = new DirectX.TransformMatrix();
+
+            camera = new Camera()
+            {
+                LookAt = new Vector3(0, 0, 0),
+                Up = new Vector3(0, 1, 0)
+            };
+
+            camera.Transform.Position = new Vector3(3, 4, -10);
+
+            matrix.view = Matrix4x4.Transpose(camera);
+            matrix.world = Matrix4x4.Identity;
+            matrix.projection = Matrix4x4.Transpose(Matrix4x4.CreatePerspectiveFieldOfView((float)System.Math.PI * 0.55f, 800.0f / 600.0f, 1.0f, 1000.0f));
+
+            MatrixBuffer = new ConstBuffer(matrix);
+
+            Initialize();
+            SetObject();
+          
         }
 
         public void OnRender()
         {
             Direct3D.Clear(new TVector4(1, 1, 1, 1));
-            
+            Direct3D.DrawIndexed(36);
             Direct3D.Present();
         }
 

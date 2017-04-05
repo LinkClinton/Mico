@@ -12,6 +12,9 @@ namespace Mico.DirectX
     {
         static IntPtr source;
 
+        static FillMode fillmode = FillMode.Solid;
+        static CullMode cullmode = CullMode.CullNone;
+
         static Direct3D()
         {
             ManagerCreate(out source);
@@ -70,7 +73,7 @@ namespace Mico.DirectX
 
         public static void SetShader(Shader shader)
             => ManagerSetShader(source, shader);
-        
+
 
         public static void SetBufferToVertexShader(Buffer Buffer, int BufferID)
             => ManagerSetBuffer(source, Buffer, BufferID, Shader.Type.eVertexShader);
@@ -81,15 +84,33 @@ namespace Mico.DirectX
         public static void SetBufferLayout(BufferLayout BufferLayout)
             => ManagerSetBufferLayout(source, BufferLayout);
 
-        public static void Draw(int VertexCount, int StartLocation,
+        public static void Draw(int VertexCount, int StartLocation = 0,
             PrimitiveType Type = PrimitiveType.Triangle)
             => ManagerDraw(source, VertexCount, StartLocation, Type);
 
-        public static void DrawIndexed(int IndexCount, int StartLocation,
-            int VertexCount, PrimitiveType Type = PrimitiveType.Triangle)
+        public static void DrawIndexed(int IndexCount, int StartLocation = 0,
+            int VertexCount = 0, PrimitiveType Type = PrimitiveType.Triangle)
             => ManagerDrawIndexed(source, IndexCount, StartLocation, VertexCount, Type);
 
+        public static FillMode FillMode
+        {
+            get => fillmode;
+            set
+            {
+                fillmode = value;
+                ManagerSetFillMode(source, value);
+            }
+        }
 
+        public static CullMode CullMode
+        {
+            get => cullmode;
+            set
+            {
+                cullmode = value;
+                ManagerSetCullMode(source, value);
+            }
+        }
 
         public static IntPtr Core
         {
