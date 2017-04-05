@@ -6,10 +6,19 @@ using System.Threading.Tasks;
 
 namespace Mico.DirectX
 {
+    /// <summary>
+    /// Fontface
+    /// </summary>
     public partial class Fontface
     {
         IntPtr source;
 
+        /// <summary>
+        /// Create Fontface
+        /// </summary>
+        /// <param name="Fontface">FontFace</param>
+        /// <param name="Size">FontSize</param>
+        /// <param name="Weight">FontWeight</param>
         public Fontface(string Fontface, float Size, int Weight = 400)
             => FontfaceCreate(out source, Fontface, Size, Weight, Direct3D.Core);
 

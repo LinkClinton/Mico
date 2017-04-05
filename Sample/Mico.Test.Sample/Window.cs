@@ -65,7 +65,7 @@ namespace Mico.Test.Sample
             Direct3D.SetBufferLayout(layout);
             Direct3D.SetBuffer(cube.vertexbuffer);
             Direct3D.SetBuffer(cube.indexbuffer);
-            Direct3D.FillMode = FillMode.Wireframe;
+            Direct3D.FillMode = FillMode.Solid;
         }
 
         public Window()

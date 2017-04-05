@@ -8,10 +8,20 @@ using System.Runtime.InteropServices;
 
 namespace Mico.DirectX
 {
+
+    /// <summary>
+    /// VertexBuffer based on Buffer
+    /// </summary>
     public class VertexBuffer : Buffer
     {
         internal int eachsize;
 
+        /// <summary>
+        /// Create VertexBuffer
+        /// </summary>
+        /// <param name="BufferData">Vertex array</param>
+        /// <param name="Length">array's length</param>
+        /// <param name="ByteSize">element's size</param>
         public VertexBuffer(object BufferData, int Length, int ByteSize)
         {
             GCHandle Handle = GCHandle.Alloc(BufferData, GCHandleType.Pinned);

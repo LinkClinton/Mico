@@ -7,14 +7,24 @@ using System.Runtime.InteropServices;
 
 namespace Mico.DirectX
 {
+    /// <summary>
+    /// Buffer
+    /// </summary>
     public abstract partial class Buffer
     {
         protected IntPtr source;
 
         protected Type type;
 
+        /// <summary>
+        /// Buffer Type
+        /// </summary>
         public Type BufferType { get => type; }
 
+        /// <summary>
+        /// Update data to buffer,the data's size must be same.
+        /// </summary>
+        /// <param name="BufferData"></param>
         public void Update(object BufferData)
         {
             GCHandle Handle = GCHandle.Alloc(BufferData, GCHandleType.Pinned);
