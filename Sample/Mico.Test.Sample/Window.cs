@@ -55,7 +55,7 @@ namespace Mico.Test.Sample
             };
 
             layout = new BufferLayout(element);
-
+            
             cube = IObject.CreateBox(3, 3, 3);
         }
 

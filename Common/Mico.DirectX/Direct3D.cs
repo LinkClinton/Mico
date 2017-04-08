@@ -115,10 +115,21 @@ namespace Mico.DirectX
         /// </summary>
         /// <param name="Buffer">Buffer</param>
         /// <param name="BufferID">BufferID in Shader</param>
-        /// <param name="To">Shader</param>
-        public static void SetBuffer(Buffer Buffer, int BufferID, Shader.Type To)
-            => ManagerSetBuffer(source, Buffer, BufferID, To);
-
+        /// <param name="which">Shader(must be set)</param>
+        public static void SetBuffer(Buffer Buffer, int BufferID, Shader which)
+        {
+            switch (which)
+            {
+                case VertexShader shader:
+                    ManagerSetBuffer(source, Buffer, BufferID, Shader.Type.eVertexShader);
+                    break;
+                case PixelShader shader:
+                    ManagerSetBuffer(source, Buffer, BufferID, Shader.Type.ePixelShader);
+                    break;
+                default:
+                    break;
+            }
+        }
         /// <summary>
         /// Set Buffer 
         /// </summary>

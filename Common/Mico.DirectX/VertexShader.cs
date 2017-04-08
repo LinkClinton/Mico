@@ -18,15 +18,11 @@ namespace Mico.DirectX
         /// <param name="EntryPoint">Shader EntryPoint</param>
         /// <param name="IsCompiled">Is Shader Compiled. If not, We will compile it.</param>
         public VertexShader(string Filename, string EntryPoint, bool IsCompiled = false)
-        {
-            ShaderCreate(out source, Filename, EntryPoint,
-               Type.eVertexShader, IsCompiled, Direct3D.Core);
+            => ShaderCreate(out source, Filename, EntryPoint,
+               Type.eVertexShader, IsCompiled, Direct3D.Core); 
+        
 
-            type = Type.eVertexShader;
-        }
-
-        ~VertexShader() => ShaderDestory(source);
-
+        
 
     }
 }

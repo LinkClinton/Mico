@@ -14,12 +14,7 @@ namespace Mico.DirectX
     {
         protected IntPtr source;
 
-        protected Type type;
 
-        /// <summary>
-        /// Shader Type
-        /// </summary>
-        public Type ShaderType { get => type; }
 
         public static implicit operator IntPtr(Shader shader)
             => shader.source;

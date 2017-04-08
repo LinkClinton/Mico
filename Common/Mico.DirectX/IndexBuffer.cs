@@ -26,8 +26,6 @@ namespace Mico.DirectX
             BufferCreate(out source, buffer, Index.Length * sizeof(uint), Type.eIndexBuffer, Direct3D.Core);
 
             Handle.Free();
-
-            type = Type.eIndexBuffer;
         }
 
         ~IndexBuffer() => BufferDestory(source);

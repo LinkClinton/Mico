@@ -32,8 +32,6 @@ namespace Mico.DirectX
 
             Handle.Free();
 
-            type = Type.eVertexBuffer;
-
             eachsize = ByteSize;
         }
 

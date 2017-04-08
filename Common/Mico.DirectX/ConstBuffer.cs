@@ -27,8 +27,6 @@ namespace Mico.DirectX
             BufferCreate(out source, buffer, Marshal.SizeOf(BufferData), Type.eConstBuffer, Direct3D.Core);
 
             Handle.Free();
-
-            type = Type.eConstBuffer;
         }
 
         ~ConstBuffer() => BufferDestory(source);

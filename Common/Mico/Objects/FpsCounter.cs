@@ -11,9 +11,9 @@ namespace Mico.Objects
 {
     public class FpsCounter : Shape
     {
-        int g_export_cnt = 0;
-        float g_pass_time = 0;
-        int g_fps = 0;
+        int export_cnt = 0;
+        float pass_time = 0;
+        int fps = 0;
 
         public FpsCounter()
         {
@@ -22,14 +22,14 @@ namespace Mico.Objects
 
         internal override void OnUpdate(object Unknown = null)
         {
-            g_pass_time += (float)Time.DeltaTime.TotalSeconds;
+            pass_time += (float)Time.DeltaTime.TotalSeconds;
 
 
-            if (g_pass_time >= 1.0f)
+            if (pass_time >= 1.0f)
             {
-                g_fps = g_export_cnt;
-                g_export_cnt = 0;
-                g_pass_time -= 1.0f;
+                fps = export_cnt;
+                export_cnt = 0;
+                pass_time -= 1.0f;
             }
 
             base.OnUpdate(Unknown);
@@ -37,14 +37,14 @@ namespace Mico.Objects
 
         internal override void OnExport(object Unknown = null)
         {
-            g_export_cnt++;
+            export_cnt++;
 
             base.OnExport(Unknown);
         }
 
         public int Fps
         {
-            get => g_fps;
+            get => fps;
         }
     }
 }

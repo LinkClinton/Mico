@@ -14,13 +14,6 @@ namespace Mico.DirectX
     {
         protected IntPtr source;
 
-        protected Type type;
-
-        /// <summary>
-        /// Buffer Type
-        /// </summary>
-        public Type BufferType { get => type; }
-
         /// <summary>
         /// Update data to buffer,the data's size must be same.
         /// </summary>

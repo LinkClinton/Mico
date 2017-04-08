@@ -159,8 +159,7 @@ namespace Mico.DirectX
         [DllImport(Extern.DLLName)]
         protected static extern void ShaderDestory(IntPtr source);
 
-
-        public enum Type
+        internal protected enum Type
         {
             eVertexShader,
             ePixelShader
@@ -179,13 +178,12 @@ namespace Mico.DirectX
         [DllImport(Extern.DLLName)]
         protected static extern void BufferUpdate(IntPtr source, IntPtr buffer, IntPtr manager);
 
-        public enum Type
+        internal protected enum Type
         {
             eVertexBuffer,
             eIndexBuffer,
             eConstBuffer
         }
-
     }
 
 

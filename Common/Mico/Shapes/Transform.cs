@@ -53,11 +53,8 @@ namespace Mico.Shapes
                 Vector3 forward = Vector3.UnitZ;
                 Matrix4x4 matrix = Matrix4x4.CreateFromYawPitchRoll(value.Y * arc, value.X * arc, value.Z * arc);
 
-                g_forward.X = forward.X * matrix.M11 + forward.Y * matrix.M21 + forward.Z * matrix.M31 + 1 * matrix.M41;
-                g_forward.Y = forward.X * matrix.M12 + forward.Y * matrix.M22 + forward.Z * matrix.M32 + 1 * matrix.M42;
-                g_forward.Z = forward.X * matrix.M13 + forward.Y * matrix.M23 + forward.Z * matrix.M33 + 1 * matrix.M43;
+                g_forward = Vector3.Transform(g_forward, matrix);
 
-               
                 g_forward_len = g_forward.Length();
                 g_forward = Vector3.Normalize(g_forward);
 
@@ -70,6 +67,21 @@ namespace Mico.Shapes
         {
             get => g_scale; 
             set => g_scale = value; 
+        }
+
+        public static implicit operator Matrix4x4(Transform transform)
+        {
+            Matrix4x4 result = Matrix4x4.Identity;
+            float arc = (float)NetMath.PI / 180;
+
+            result *= Matrix4x4.CreateScale(transform.Scale);
+
+            result *= Matrix4x4.CreateFromYawPitchRoll(transform.Rotate.Y * arc,
+                transform.Rotate.X * arc, transform.Rotate.Z * arc);
+
+            result *= Matrix4x4.CreateTranslation(transform.Position);
+
+            return result;
         }
     }
 }
