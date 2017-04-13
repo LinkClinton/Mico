@@ -22,11 +22,11 @@
 #include<assert.h>
 
 #ifdef _CONSOLE
-#define DEBUG_RESULT(expression) if (FAILED(result)) std::cout << expression << std::endl; assert(true);
-#define DEBUG_BOOL(judge,expression) if (judge) std::cout << expression << std::endl; assert(true);
+#define DEBUG_RESULT(expression) if (FAILED(result))  {std::cout << expression << std::endl;  throw result; }
+#define DEBUG_BOOL(judge,expression) if (judge) { std::cout << expression << std::endl; throw judge; }
 #else 
-#define DEBUG_RESULT(expression) if (FAILED(result)) MessageBox(nullptr, TEXT(expression), L"ErrorBox", 0); assert(true);
-#define DEBUG_BOOL(judge,expression) if (judge) MessageBox(nullptr, TEXT(expression), L"ErrorBox", 0); assert(true);
+#define DEBUG_RESULT(expression) if (FAILED(result)) { MessageBox(nullptr, TEXT(expression), L"ErrorBox", 0); throw result;}
+#define DEBUG_BOOL(judge,expression) if (judge) { MessageBox(nullptr, TEXT(expression), L"ErrorBox", 0); throw judge;}
 
 #endif // _CONSOLE
 

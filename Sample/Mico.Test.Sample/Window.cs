@@ -35,10 +35,13 @@ namespace Mico.Test.Sample
         IObject cube;
         BufferLayout layout;
         ConstBuffer MatrixBuffer;
+        Fontface font;
+        Brush brush;
 
         DirectX.TransformMatrix matrix;
 
 
+        FpsCounter fps = new FpsCounter();
         public void Initialize()
         {
             BufferLayout.Element[] element = new BufferLayout.Element[2];
@@ -57,6 +60,11 @@ namespace Mico.Test.Sample
             layout = new BufferLayout(element);
             
             cube = IObject.CreateBox(3, 3, 3);
+
+            font = new Fontface("Consolas", 12);
+            brush = new Brush(0, 0, 0, 1);
+
+            World.Micos.Add(fps);
         }
 
         public void SetObject()
@@ -78,7 +86,7 @@ namespace Mico.Test.Sample
             Direct3D.SetSurface(surface);
             Direct3D.SetShader(vertexshader);
             Direct3D.SetShader(pixelshader);
-
+            
             matrix = new DirectX.TransformMatrix();
 
             camera = new Camera()
@@ -102,8 +110,10 @@ namespace Mico.Test.Sample
 
         public void OnRender()
         {
+            World.Micos.Exports();
             Direct3D.Clear(new TVector4(1, 1, 1, 1));
             Direct3D.DrawIndexed(36);
+            Direct3D.DrawText(fps.Fps.ToString(), new TVector2(0, 0), font, brush);
             Direct3D.Present();
         }
 
@@ -118,6 +128,7 @@ namespace Mico.Test.Sample
                     DispatchMessage(ref message);
                 }
                 OnRender();
+                World.Micos.Update();
             }
         }
 
