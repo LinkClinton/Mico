@@ -16,26 +16,26 @@ namespace Mico.Shapes
 
         Transform g_transform = new Transform();
 
-        internal virtual void OnUpdate(object Unknown = null)
+        protected internal virtual void OnUpdate(object Unknown = null)
         {
             //
         }
-        internal virtual void OnExport(object Unknown = null)
-        {
-            //
-        }
-
-        internal virtual void OnCreate(object Unknown = null)
+        protected internal virtual void OnExport(object Unknown = null)
         {
             //
         }
 
-        internal virtual void OnDelete(object Unknown = null)
+        protected internal virtual void OnCreate(object Unknown = null)
         {
             //
         }
 
-        internal virtual void FixUpdate(object Unknown = null)
+        protected internal virtual void OnDelete(object Unknown = null)
+        {
+            //
+        }
+
+        protected internal virtual void FixUpdate(object Unknown = null)
         {
            //
         }

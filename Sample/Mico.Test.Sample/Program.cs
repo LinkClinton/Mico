@@ -9,6 +9,9 @@ namespace Mico.Test.Sample
 {
     class Program
     {
+        public static DirectX.TransformMatrix matrix = new DirectX.TransformMatrix();
+        public static Mico.DirectX.ConstBuffer MatrixBuffer = new Mico.DirectX.ConstBuffer(matrix);
+
         static void Main(string[] args)
         {
             Window window = new Window();

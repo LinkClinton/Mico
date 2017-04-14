@@ -29,91 +29,47 @@ namespace Mico.Test.Sample
         int Height = 600;
 
         Surface surface;
-        Camera camera;
-        Shader vertexshader;
-        Shader pixelshader;
-        IObject cube;
-        BufferLayout layout;
-        ConstBuffer MatrixBuffer;
-        Fontface font;
-        Brush brush;
-
-        DirectX.TransformMatrix matrix;
-
-
-        FpsCounter fps = new FpsCounter();
-        public void Initialize()
-        {
-            BufferLayout.Element[] element = new BufferLayout.Element[2];
-
-            element[0] = new BufferLayout.Element()
-            {
-                Size = BufferLayout.ElementSize.eFloat3,
-                Tag = "POSITION"
-            };
-            element[1] = new BufferLayout.Element()
-            {
-                Size = BufferLayout.ElementSize.eFlaot4,
-                Tag = "COLOR"
-            };
-
-            layout = new BufferLayout(element);
-            
-            cube = IObject.CreateBox(3, 3, 3);
-
-            font = new Fontface("Consolas", 12);
-            brush = new Brush(0, 0, 0, 1);
-
-            World.Micos.Add(fps);
-        }
-
-        public void SetObject()
-        {
-            Direct3D.SetBufferToVertexShader(MatrixBuffer, 0);
-            Direct3D.SetBufferLayout(layout);
-            Direct3D.SetBuffer(cube.vertexbuffer);
-            Direct3D.SetBuffer(cube.indexbuffer);
-            Direct3D.FillMode = FillMode.Solid;
-        }
+        Shader vertex;
+        Shader pixel;
 
         public Window()
         {
             WindowProc += Window_proc;
             Hwnd = CreateWindow("Mico", "", Width, Height, WindowProc);
-            surface = new Surface(Hwnd);
-            vertexshader = new VertexShader(@"C:\Users\linka\Documents\Visual Studio 2017\Projects\Mico\Sample\Mico.Test.Sample\VertexShader.hlsl", "main");
-            pixelshader = new PixelShader(@"C:\Users\linka\Documents\Visual Studio 2017\Projects\Mico\Sample\Mico.Test.Sample\PixelShader.hlsl", "main");
-            Direct3D.SetSurface(surface);
-            Direct3D.SetShader(vertexshader);
-            Direct3D.SetShader(pixelshader);
-            
-            matrix = new DirectX.TransformMatrix();
 
-            camera = new Camera()
+            surface = new Surface(Hwnd);
+            vertex = new VertexShader(@"..\..\Sample\Mico.Test.Sample\VertexShader.hlsl", "main");
+            pixel = new PixelShader(@"..\..\Sample\Mico.Test.Sample\PixelShader.hlsl", "main");
+
+
+            Direct3D.SetSurface(surface);
+            Direct3D.SetShader(vertex);
+            Direct3D.SetShader(pixel);
+
+
+            World.Micos.Camera = new Camera()
             {
                 LookAt = new Vector3(0, 0, 0),
                 Up = new Vector3(0, 1, 0)
             };
 
-            camera.Transform.Position = new Vector3(3, 4, -10);
+            World.Micos.Camera.Transform.Position = new Vector3(3, 4, -10); 
 
-            matrix.view = Matrix4x4.Transpose(camera);
-            matrix.world = Matrix4x4.Identity;
-            matrix.projection = Matrix4x4.Transpose(Matrix4x4.CreatePerspectiveFieldOfView((float)System.Math.PI * 0.55f, 800.0f / 600.0f, 1.0f, 1000.0f));
+            World.Micos.Add(IObject.CreateBox(3, 3, 3));
 
-            MatrixBuffer = new ConstBuffer(matrix);
 
-            Initialize();
-            SetObject();
-          
+            Program.matrix.projection = Matrix4x4.Transpose(
+                Matrix4x4.CreatePerspectiveFieldOfView(
+                    (float)System.Math.PI * 0.55f, 800.0f / 600.0f, 1.0f, 1000.0f));
+
+
         }
 
         public void OnRender()
         {
-            World.Micos.Exports();
             Direct3D.Clear(new TVector4(1, 1, 1, 1));
-            Direct3D.DrawIndexed(36);
-            Direct3D.DrawText(fps.Fps.ToString(), new TVector2(0, 0), font, brush);
+            World.Micos.Exports();
+
             Direct3D.Present();
         }
 
@@ -128,6 +84,7 @@ namespace Mico.Test.Sample
                     DispatchMessage(ref message);
                 }
                 OnRender();
+                System.Threading.Thread.Sleep(1);
                 World.Micos.Update();
             }
         }

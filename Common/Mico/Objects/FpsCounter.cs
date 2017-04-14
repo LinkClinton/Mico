@@ -20,7 +20,7 @@ namespace Mico.Objects
             Micos.Add(this);
         }
 
-        internal override void OnUpdate(object Unknown = null)
+        protected internal override void OnUpdate(object Unknown = null)
         {
             pass_time += (float)Time.DeltaTime.TotalSeconds;
 
@@ -35,12 +35,13 @@ namespace Mico.Objects
             base.OnUpdate(Unknown);
         }
 
-        internal override void OnExport(object Unknown = null)
+        protected internal override void OnExport(object Unknown = null)
         {
             export_cnt++;
 
             base.OnExport(Unknown);
         }
+
 
         public int Fps
         {

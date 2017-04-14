@@ -3,26 +3,64 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Numerics;
 using System.Runtime.InteropServices;
 
+using Mico.Shapes;
 using Mico.DirectX;
 
 namespace Mico.Test.Sample
 {
-    public class IObject
+    public class IObject : Shape
     {
+        protected override void OnUpdate(object Unknown = null)
+        {
+            Transform.Rotate += new System.Numerics.Vector3(0, (float)World.Time.DeltaTime.TotalSeconds * 100.0f, 0);
+            base.OnUpdate(Unknown);
+        }
+
+        protected override void OnExport(object Unknown = null)
+        {
+            Program.matrix.view = Matrix4x4.Transpose(World.Micos.Camera);
+            Program.matrix.world = Matrix4x4.Transpose(Transform);
+            Program.MatrixBuffer.Update(Program.matrix);
+
+            Direct3D.SetBufferToVertexShader(Program.MatrixBuffer, 0);
+            Direct3D.SetBufferLayout(layout);
+            Direct3D.SetBuffer(vertexbuffer);
+            Direct3D.SetBuffer(indexbuffer);
+            Direct3D.DrawIndexed(index.Length);
+            base.OnExport(Unknown);
+        }
+
         public Vertex[] vertex;
         public uint[] index;
 
         public Mico.DirectX.Buffer vertexbuffer;
         public Mico.DirectX.Buffer indexbuffer;
+        public Mico.DirectX.BufferLayout layout;
+
+        public IObject()
+        {
+            BufferLayout.Element[] element = new BufferLayout.Element[2];
+
+            element[0] = new BufferLayout.Element()
+            {
+                Size = BufferLayout.ElementSize.eFloat3,
+                Tag = "POSITION"
+            };
+            element[1] = new BufferLayout.Element()
+            {
+                Size = BufferLayout.ElementSize.eFlaot4,
+                Tag = "COLOR"
+            };
+
+            layout = new BufferLayout(element);
+        }
 
         public static IObject CreateBox(int width, int height, int depth)
         {
             IObject result = new IObject();
-               
-            
 
             float w2 = 0.5f * width;
             float h2 = 0.5f * height;
@@ -59,14 +97,6 @@ namespace Mico.Test.Sample
             result.vertex[21] = new Vertex(+w2, +h2, -d2);
             result.vertex[22] = new Vertex(+w2, +h2, +d2);
             result.vertex[23] = new Vertex(+w2, -h2, +d2);
-
-            for (int i = 0; i < result.vertex.Length; i++)
-            {
-                result.vertex[i].r = 1;
-                result.vertex[i].g = 0;
-                result.vertex[i].b = 0;
-                result.vertex[i].a = 1;
-            }
 
             result.index = new uint[36]
             {
