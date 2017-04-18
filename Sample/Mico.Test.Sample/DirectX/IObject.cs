@@ -15,7 +15,8 @@ namespace Mico.Test.Sample
     {
         protected override void OnUpdate(object Unknown = null)
         {
-            Transform.Rotate += new System.Numerics.Vector3(0, (float)World.Time.DeltaTime.TotalSeconds * 100.0f, 0);
+            Transform.Rotate = Quaternion.Multiply(Transform.Rotate, 
+                Quaternion.CreateFromYawPitchRoll((float)World.Time.DeltaTime.TotalSeconds * 2.0f, 0, 0));
             base.OnUpdate(Unknown);
         }
 

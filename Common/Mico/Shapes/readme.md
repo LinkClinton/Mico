@@ -48,16 +48,14 @@ A transofrm can describe a shape in the `Micos`.
 #### Forward:
 default is `(0,0,1)`.
 
+You can think it is the local coordinate system's forward.
+
 If you change forward,the rotate will be changed.
 #### Rotate: 
 
-default is `(0,0,0)`.
+We use `Quaternion` to rotate local coordinate system.
 
 If you change rotate,the forward will be changed.
-
-We use `heading-pitch-bank`,and the value's range is `(0,360)`.
-
-First,we **rotate** `Y-axis`,then `X-axis`,last `Z-axis`.
 
 ### Collider
 

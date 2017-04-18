@@ -36,16 +36,7 @@ namespace Mico.Objects
 
         public static BoxCollider Transform(BoxCollider collider, Matrix4x4 matrix)
         {
-            BoxCollider result = new BoxCollider();
-
-            Matrix4x4.Decompose(matrix, out Vector3 scale, out Quaternion rotation, out Vector3 translation);
-
-
-            result.Radius = collider.Radius * scale;
-            result.Center = collider.Center + translation;
-            //
-
-            return result;
+            throw new NotImplementedException();
         }
 
         public Vector3 Radius
