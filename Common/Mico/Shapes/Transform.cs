@@ -20,7 +20,6 @@ namespace Mico.Shapes
         Vector3 g_scale = new Vector3(1, 1, 1);
         Quaternion g_rotate = Quaternion.Identity;
 
-        float g_forward_len;
 
         public Vector3 Position
         {
@@ -34,9 +33,13 @@ namespace Mico.Shapes
             set
             {
                 g_forward = Vector3.Normalize(value);
-                g_forward_len = value.Length();
-
                 //update Quaternion
+
+                //x and z default is (0,1)
+                float angle_y = (float)NetMath.Atan2(-value.X, value.Z);
+                float angle_x = (float)NetMath.Atan2(value.Y, value.Z);
+
+                g_rotate = Quaternion.CreateFromYawPitchRoll(angle_y, angle_x, 0);
             }
         }
 
@@ -48,7 +51,6 @@ namespace Mico.Shapes
                 g_rotate = value;
 
                 g_forward = Vector3.Transform(g_forward, g_rotate);
-                g_forward_len = g_forward.Length();
                 g_forward = Vector3.Normalize(g_forward);
             }
         }

@@ -45,6 +45,7 @@ namespace Mico.Test.Sample
             Direct3D.SetSurface(surface);
             Direct3D.SetShader(vertex);
             Direct3D.SetShader(pixel);
+            Direct3D.FillMode = FillMode.Solid;
 
 
             World.Micos.Camera = new Camera()
@@ -53,7 +54,7 @@ namespace Mico.Test.Sample
                 Up = new Vector3(0, 1, 0)
             };
 
-            World.Micos.Camera.Transform.Position = new Vector3(3, 4, -10); 
+            World.Micos.Camera.Transform.Position = new Vector3(0, 0, -10); 
 
             World.Micos.Add(IObject.CreateBox(3, 3, 3));
 

@@ -17,6 +17,10 @@ namespace Mico.Test.Sample
         {
             Transform.Rotate = Quaternion.Multiply(Transform.Rotate, 
                 Quaternion.CreateFromYawPitchRoll((float)World.Time.DeltaTime.TotalSeconds * 2.0f, 0, 0));
+
+          
+
+           
             base.OnUpdate(Unknown);
         }
 
