@@ -10,7 +10,7 @@ namespace Mico.Objects
 {
     public abstract class Collider
     {
-        protected Vector3 center;
+        protected Vector3 center = Vector3.Zero;
 
         protected abstract bool Intersects(BoxCollider collider);
 

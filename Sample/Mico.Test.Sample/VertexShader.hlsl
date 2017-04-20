@@ -28,8 +28,8 @@ Output main(Input input)
 
     result.pos = mul(float4(input.pos, 1.f), transform.world).xyz;
 
-    result.posH = mul(float4(input.pos, 1.f), transform.world);
-    result.posH = mul(result.posH, transform.view);
+    result.posH = mul(float4(input.pos, 1.f), transpose(transform.world));
+    result.posH = mul(result.posH, transpose(transform.view));
     result.posH = mul(result.posH, transform.projection);
 
 

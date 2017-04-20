@@ -7,15 +7,15 @@ using System.Numerics;
 
 namespace Mico.Objects
 {
+    using NetMath = System.Math;
+
     public class BoxCollider : Collider
     {
-        Vector3 radius;
-        Vector3 rotate;
+        Vector3 radius = Vector3.One;
+        Quaternion rotate = Quaternion.Identity;
 
         public BoxCollider()
-        {
-            Center = Vector3.Zero;
-            Radius = Vector3.One;
+        { 
         }
 
         public BoxCollider(Vector3 center, Vector3 radius)
@@ -31,12 +31,36 @@ namespace Mico.Objects
 
         protected override bool Intersects(SphereCollider collider)
         {
-            throw new NotImplementedException();
+            //the sphere's center is a vector.
+            //transform it from world coord-system to box's local coord-system
+
+            Vector3 SphereCenter = Vector3.Transform(collider.Center - Center,
+                Quaternion.Inverse(Rotate));
+
+            //you can think it is a AABB Box.
+
+            //x-axis
+            if (NetMath.Abs(SphereCenter.X) > collider.Radius + Radius.X) return false;
+            //y-axis
+            if (NetMath.Abs(SphereCenter.Y) > collider.Radius + Radius.Y) return false;
+            //z-axis
+            if (NetMath.Abs(SphereCenter.Z) > collider.Radius + Radius.Z) return false;
+
+            return true;
         }
 
         public static BoxCollider Transform(BoxCollider collider, Matrix4x4 matrix)
         {
-            throw new NotImplementedException();
+            BoxCollider result = new BoxCollider();
+
+            Matrix4x4.Decompose(matrix, out Vector3 scale, 
+                out Quaternion rotation, out Vector3 translation);
+
+            result.Rotate = collider.Rotate * rotation;
+            result.Radius = collider.Radius * scale;
+            result.Center = Vector3.Transform(collider.Center, matrix);
+            
+            return result;
         }
 
         public Vector3 Radius
@@ -45,7 +69,7 @@ namespace Mico.Objects
             set => radius = value;
         }
 
-        public Vector3 Rotate
+        public Quaternion Rotate
         {
             get => rotate;
             set => rotate = value;

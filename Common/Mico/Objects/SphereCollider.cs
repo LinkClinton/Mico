@@ -12,12 +12,10 @@ namespace Mico.Objects
 
     public class SphereCollider : Collider
     {
-        float radius;
+        float radius = 1;
 
         public SphereCollider()
         {
-            Center = Vector3.Zero;
-            Radius = 1;
         }
 
         public SphereCollider(Vector3 center, float radius)
@@ -27,12 +25,16 @@ namespace Mico.Objects
         }
         protected override bool Intersects(BoxCollider collider)
         {
-            throw new NotImplementedException();
+            return collider.Intersects(this);
         }
 
         protected override bool Intersects(SphereCollider collider)
         {
-            throw new NotImplementedException();
+            float radius_limit = Radius + collider.Radius;
+            if (Vector3.DistanceSquared(Center, collider.Center) >
+                radius_limit * radius_limit)
+                return true;
+            return false;
         }
 
         public static SphereCollider Transform(SphereCollider collider, Matrix4x4 matrix)

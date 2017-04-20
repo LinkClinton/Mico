@@ -15,19 +15,17 @@ namespace Mico.Test.Sample
     {
         protected override void OnUpdate(object Unknown = null)
         {
-            Transform.Rotate = Quaternion.Multiply(Transform.Rotate, 
-                Quaternion.CreateFromYawPitchRoll((float)World.Time.DeltaTime.TotalSeconds * 2.0f, 0, 0));
+            Transform.Rotate = Quaternion.Multiply(Transform.Rotate,
+              Quaternion.Inverse(Quaternion.CreateFromYawPitchRoll((float)World.Time.DeltaTime.TotalSeconds * 2.0f, 0, 0)));
 
-          
-
-           
+            
             base.OnUpdate(Unknown);
         }
 
         protected override void OnExport(object Unknown = null)
         {
-            Program.matrix.view = Matrix4x4.Transpose(World.Micos.Camera);
-            Program.matrix.world = Matrix4x4.Transpose(Transform);
+            Program.matrix.view =World.Micos.Camera;
+            Program.matrix.world = Transform;
             Program.MatrixBuffer.Update(Program.matrix);
 
             Direct3D.SetBufferToVertexShader(Program.MatrixBuffer, 0);
