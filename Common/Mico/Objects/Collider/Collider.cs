@@ -28,8 +28,6 @@ namespace Mico.Objects
                     return false;
             }
         }
-        
-
 
         public Vector3 Center
         {

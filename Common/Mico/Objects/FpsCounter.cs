@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Mico.World;
 using Mico.Shapes;
 
 namespace Mico.Objects

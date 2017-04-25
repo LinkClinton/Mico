@@ -2,11 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 
-using Mico.Objects;
 using Mico.Shapes;
+using Mico.Objects;
 
 
-namespace Mico.World
+namespace Mico
 {
     public static class Micos
     {

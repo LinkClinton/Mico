@@ -1,4 +1,4 @@
-﻿# Mico.World
+﻿# Mico.Micos
 
 The world called "Micos".
 

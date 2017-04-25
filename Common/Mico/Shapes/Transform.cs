@@ -7,8 +7,6 @@ using System.Numerics;
 
 using Mico.Math;
 
-
-
 namespace Mico.Shapes
 {
     using NetMath = System.Math;

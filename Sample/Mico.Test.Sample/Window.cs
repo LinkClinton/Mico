@@ -8,9 +8,8 @@ using System.Numerics;
 using System.Runtime.InteropServices;
 
 using Mico.Math;
+using Mico.Shapes;
 using Mico.Objects;
-
-
 using Mico.DirectX;
 
 
@@ -46,17 +45,15 @@ namespace Mico.Test.Sample
             Direct3D.SetShader(vertex);
             Direct3D.SetShader(pixel);
             Direct3D.FillMode = FillMode.Solid;
-
-
-            World.Micos.Camera = new Camera()
+            Micos.Camera = new Camera()
             {
                 LookAt = new Vector3(0, 0, 0),
                 Up = new Vector3(0, 1, 0)
             };
 
-            World.Micos.Camera.Transform.Position = new Vector3(0, 0, -10); 
+            Micos.Camera.Transform.Position = new Vector3(0, 0, -10); 
 
-            World.Micos.Add(IObject.CreateBox(3, 3, 3));
+            Micos.Add(IObject.CreateBox(3, 3, 3));
 
 
             Program.matrix.projection = Matrix4x4.Transpose(
@@ -69,7 +66,7 @@ namespace Mico.Test.Sample
         public void OnRender()
         {
             Direct3D.Clear(new TVector4(1, 1, 1, 1));
-            World.Micos.Exports();
+            Micos.Exports();
 
             Direct3D.Present();
         }
@@ -86,7 +83,7 @@ namespace Mico.Test.Sample
                 }
                 OnRender();
                 System.Threading.Thread.Sleep(1);
-                World.Micos.Update();
+                Micos.Update();
             }
         }
 

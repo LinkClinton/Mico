@@ -1,14 +1,16 @@
 ﻿# Mico.Shapes
 
-A base object in `Micos`.
+Some object in `Micos`.
 
-## A Base Object
+## Shape
+
+### A Base Object
 
 The `Micos` can have many kinds object.
 
 Shape is the very basic object.
 
-## Introduction
+### Introduction
 
 Shape should be a interface,you should use it by inheriting.
 
@@ -19,7 +21,7 @@ public class Life : Shape
 }
 ```
 
-### Event
+#### Event
 
 On some events be occurred,some funciton will be run.
 
@@ -37,26 +39,23 @@ public class Life : Shape
 }
 ``` 
 
-### Export
+#### Export
 
 You can render or write your shape.
 
-### Transform
+#### Transform
 
 A transofrm can describe a shape in the `Micos`.
 
-#### Forward:
+##### Forward:
 default is `(0,0,1)`.
 
 You can think it is the local coordinate system's forward.
 
 If you change forward,the rotate will be changed.
-#### Rotate: 
+##### Rotate: 
 
 We use `Quaternion` to rotate local coordinate system.
 
 If you change rotate,the forward will be changed.
 
-### Collider
-
-Now Unavailable.

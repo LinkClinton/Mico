@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mico.World
+namespace Mico.Objects
 {
     public static class Time
     {

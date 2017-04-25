@@ -7,6 +7,7 @@ using System.Numerics;
 using System.Runtime.InteropServices;
 
 using Mico.Shapes;
+using Mico.Objects;
 using Mico.DirectX;
 
 namespace Mico.Test.Sample
@@ -16,7 +17,7 @@ namespace Mico.Test.Sample
         protected override void OnUpdate(object Unknown = null)
         {
             Transform.Rotate = Quaternion.Multiply(Transform.Rotate,
-              Quaternion.Inverse(Quaternion.CreateFromYawPitchRoll((float)World.Time.DeltaTime.TotalSeconds * 2.0f, 0, 0)));
+              Quaternion.Inverse(Quaternion.CreateFromYawPitchRoll((float)Time.DeltaTime.TotalSeconds * 2.0f, 0, 0)));
 
             
             base.OnUpdate(Unknown);
@@ -24,7 +25,7 @@ namespace Mico.Test.Sample
 
         protected override void OnExport(object Unknown = null)
         {
-            Program.matrix.view =World.Micos.Camera;
+            Program.matrix.view = Micos.Camera;
             Program.matrix.world = Transform;
             Program.MatrixBuffer.Update(Program.matrix);
 
