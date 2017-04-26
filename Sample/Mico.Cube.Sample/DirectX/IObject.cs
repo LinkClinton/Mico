@@ -10,7 +10,7 @@ using Mico.Shapes;
 using Mico.Objects;
 using Mico.DirectX;
 
-namespace Mico.Test.Sample
+namespace Mico.Cube.Sample
 {
     public class IObject : Shape
     {

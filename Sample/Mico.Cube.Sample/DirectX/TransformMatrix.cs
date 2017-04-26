@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using System.Numerics;
 
 
-namespace Mico.Test.Sample.DirectX
+namespace Mico.Cube.Sample
 {
 
     [StructLayout(LayoutKind.Sequential)]

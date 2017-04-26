@@ -13,7 +13,7 @@ using Mico.Objects;
 using Mico.DirectX;
 
 
-namespace Mico.Test.Sample
+namespace Mico.Cube.Sample
 {
     public partial class Window
     {
@@ -37,8 +37,8 @@ namespace Mico.Test.Sample
             Hwnd = CreateWindow("Mico", "", Width, Height, WindowProc);
 
             surface = new Surface(Hwnd);
-            vertex = new VertexShader(@"..\..\Sample\Mico.Test.Sample\VertexShader.hlsl", "main");
-            pixel = new PixelShader(@"..\..\Sample\Mico.Test.Sample\PixelShader.hlsl", "main");
+            vertex = new VertexShader(@"..\..\Sample\Mico.Cube.Sample\VertexShader.hlsl", "main");
+            pixel = new PixelShader(@"..\..\Sample\Mico.Cube.Sample\PixelShader.hlsl", "main");
 
 
             Direct3D.SetSurface(surface);
@@ -67,7 +67,6 @@ namespace Mico.Test.Sample
         {
             Direct3D.Clear(new TVector4(1, 1, 1, 1));
             Micos.Exports();
-
             Direct3D.Present();
         }
 

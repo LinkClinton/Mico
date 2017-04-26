@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Mico.Test.Sample")]
+[assembly: AssemblyTitle("Mico.Cube.Sample")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Mico.Test.Sample")]
+[assembly: AssemblyProduct("Mico.Cube.Sample")]
 [assembly: AssemblyCopyright(Mico.AssemblyInfo.Copyright)]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

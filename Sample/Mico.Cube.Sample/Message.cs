@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using System.Runtime.InteropServices;
 
-namespace Mico.Test.Sample
+namespace Mico.Cube.Sample
 {
     enum MessageType
     {

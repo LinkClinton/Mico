@@ -31,7 +31,7 @@ namespace Mico.Objects
         protected override bool Intersects(SphereCollider collider)
         {
             float radius_limit = Radius + collider.Radius;
-            if (Vector3.DistanceSquared(Center, collider.Center) >
+            if (Vector3.DistanceSquared(Center, collider.Center) <
                 radius_limit * radius_limit)
                 return true;
             return false;

@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Numerics;
 
-namespace Mico.Test.Sample
+namespace Mico.Cube.Sample
 {
     class Program
     {
-        public static DirectX.TransformMatrix matrix = new DirectX.TransformMatrix();
+        public static TransformMatrix matrix = new TransformMatrix();
         public static Mico.DirectX.ConstBuffer MatrixBuffer = new Mico.DirectX.ConstBuffer(matrix);
 
         static void Main(string[] args)
