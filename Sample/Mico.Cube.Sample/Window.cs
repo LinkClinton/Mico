@@ -31,6 +31,9 @@ namespace Mico.Cube.Sample
         Shader vertex;
         Shader pixel;
 
+        IObject box_first;
+        IObject box_second;
+
         public Window()
         {
             WindowProc += Window_proc;
@@ -45,20 +48,29 @@ namespace Mico.Cube.Sample
             Direct3D.SetShader(vertex);
             Direct3D.SetShader(pixel);
             Direct3D.FillMode = FillMode.Solid;
+            Direct3D.CullMode = CullMode.CullNone;
             Micos.Camera = new Camera()
-            {
-                LookAt = new Vector3(0, 0, 0),
+            { 
                 Up = new Vector3(0, 1, 0)
             };
 
-            Micos.Camera.Transform.Position = new Vector3(0, 0, -10); 
+            Micos.Camera.Transform.Position = new Vector3(404.692f, 516.3058f, 1600);
+            Micos.Camera.Transform.Forward = new Vector3(0, 0, -1);
+            
+            box_first = IObject.CreateBox(530.8592f, 894.6055f, 330.1313f);
+            box_first.Transform.Position = new Vector3(404.692f, 516.3058f, 864.3817f);
+            //box_first.Transform.Rotate = new Quaternion(-0.4809322f, -0.6531126f, 0.5156112f, 0.2762125f);
 
-            Micos.Add(IObject.CreateBox(3, 3, 3));
+            box_second = IObject.CreateBox(197.7972f, 397.1639f, 165.0967f);
+            box_second.Transform.Position = new Vector3(969.0997f, 46.48582f, 462.7439f);
+            //box_second.Transform.Rotate = new Quaternion(-0.6694204f, -0.11568f, -0.1261981f, 0.7228891f);
 
-
-            Program.matrix.projection = Matrix4x4.Transpose(
-                Matrix4x4.CreatePerspectiveFieldOfView(
-                    (float)System.Math.PI * 0.55f, 800.0f / 600.0f, 1.0f, 1000.0f));
+            Micos.Add(box_first);
+            Micos.Add(box_second);
+            
+            Program.matrix.projection = (
+                TMatrix.CreatePerspectiveFieldOfViewLH(
+                    (float)System.Math.PI * 0.55f, 800.0f / 600.0f, 1.0f, 2000.0f));
 
 
         }

@@ -16,10 +16,10 @@ namespace Mico.Cube.Sample
     {
         protected override void OnUpdate(object Unknown = null)
         {
-            Transform.Rotate = Quaternion.Multiply(Transform.Rotate,
+            /*
+             Transform.Rotate = Quaternion.Multiply(Transform.Rotate,
               Quaternion.Inverse(Quaternion.CreateFromYawPitchRoll((float)Time.DeltaTime.TotalSeconds * 2.0f, 0, 0)));
-
-            
+            */
             base.OnUpdate(Unknown);
         }
 
@@ -62,7 +62,7 @@ namespace Mico.Cube.Sample
             layout = new BufferLayout(element);
         }
 
-        public static IObject CreateBox(int width, int height, int depth)
+        public static IObject CreateBox(float width, float height, float depth)
         {
             IObject result = new IObject();
 
