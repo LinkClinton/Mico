@@ -16,7 +16,6 @@ namespace Mico.Objects
 
         public FpsCounter()
         {
-            Micos.Add(this);
         }
 
         protected internal override void OnUpdate(object Unknown = null)

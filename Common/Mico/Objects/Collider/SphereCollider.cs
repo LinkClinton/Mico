@@ -12,7 +12,7 @@ namespace Mico.Objects
 
     public class SphereCollider : Collider
     {
-        float radius = 1;
+        float m_radius = 1;
 
         public SphereCollider()
         {
@@ -30,8 +30,8 @@ namespace Mico.Objects
 
         protected override bool Intersects(SphereCollider collider)
         {
-            float radius_limit = Radius + collider.Radius;
-            if (Vector3.DistanceSquared(Center, collider.Center) <
+            float radius_limit = m_radius + collider.m_radius;
+            if (Vector3.DistanceSquared(m_center, collider.m_center) <
                 radius_limit * radius_limit)
                 return true;
             return false;
@@ -43,16 +43,16 @@ namespace Mico.Objects
 
             Matrix4x4.Decompose(matrix, out Vector3 scale, out Quaternion rotation, out Vector3 translation);
 
-            result.Radius = collider.Radius * NetMath.Max(scale.X, NetMath.Max(scale.Y, scale.Z));
-            result.Center = collider.Center + translation;
+            result.Radius = collider.m_radius * NetMath.Max(scale.X, NetMath.Max(scale.Y, scale.Z));
+            result.Center = collider.m_center + translation;
 
             return result;
         }
 
         public float Radius
         {
-            get => radius;
-            set => radius = value;
+            get => m_radius;
+            set => m_radius = value;
         }
     }
 }

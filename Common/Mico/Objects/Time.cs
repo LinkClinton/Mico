@@ -8,25 +8,25 @@ namespace Mico.Objects
 {
     public static class Time
     {
-        static DateTime g_LastTime = DateTime.Now;
-        static DateTime g_NowTime = DateTime.Now;
-        static TimeSpan g_DeltaTime = g_NowTime - g_LastTime;
+        static DateTime m_last_time = DateTime.Now;
+        static DateTime m_now_time = DateTime.Now;
+        static TimeSpan m_delta_time = m_now_time - m_last_time;
 
         internal static void Update()
         {
-            g_LastTime = g_NowTime;
-            g_NowTime = DateTime.Now;
-            g_DeltaTime = g_NowTime - g_LastTime;
+            m_last_time = m_now_time;
+            m_now_time = DateTime.Now;
+            m_delta_time = m_now_time - m_last_time;
         }
 
         public static DateTime NowTime
         {
-            get => g_NowTime;
+            get => m_now_time;
         }
 
         public static TimeSpan DeltaTime
         {
-            get => g_DeltaTime;
+            get => m_delta_time;
         }
     }
 }

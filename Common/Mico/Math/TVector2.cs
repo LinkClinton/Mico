@@ -12,29 +12,25 @@ namespace Mico.Math
     [StructLayout(LayoutKind.Sequential)]
     public class TVector2
     {
-        float g_x;
-        float g_y;
-
-        public override string ToString()
-            => "x=" + g_x + ",y=" + g_y;
-
+        float m_x;
+        float m_y;
 
         public TVector2(float x = 0, float y = 0)
         {
-            g_x = x;
-            g_y = y;
+            m_x = x;
+            m_y = y;
         }
 
 
-        public float x { get => g_x; }
-        public float y { get => g_y; }
+        public float X { get => m_x; }
+        public float Y { get => m_y; }
 
 
         public static implicit operator TVector2(System.Numerics.Vector2 vec)
-            => new TVector2(vec.X, vec.Y);
+            => new TVector2(vec.X, vec.Y); 
 
         public static implicit operator System.Numerics.Vector2(TVector2 vec)
-            => new System.Numerics.Vector2(vec.x, vec.y); 
+            => new System.Numerics.Vector2(vec.m_x, vec.m_y); 
 
     }
 }

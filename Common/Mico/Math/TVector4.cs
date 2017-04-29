@@ -11,34 +11,33 @@ namespace Mico.Math
     [StructLayout(LayoutKind.Sequential)]
     public class TVector4
     {
-        float g_x;
-        float g_y;
-        float g_z;
-        float g_w;
-
-        public override string ToString()
-            => "x=" + g_x + " y=" + g_y + " z=" + g_z + " w=" + g_w;
-
+        float m_x;
+        float m_y;
+        float m_z;
+        float m_w;
 
         public TVector4(float x, float y, float z, float w)
         {
-            g_x = x;
-            g_y = y;
-            g_z = z;
-            g_w = w;
+            m_x = x;
+            m_y = y;
+            m_z = z;
+            m_w = w;
         }
 
-        public float Red { get => g_x; }
-        public float Green { get => g_y; }
-        public float Blue { get => g_z; }
-        public float Alpha { get => g_w; }
+        public float Red { get => m_x; }
+        public float Green { get => m_y; }
+        public float Blue { get => m_z; }
+        public float Alpha { get => m_w; }
 
-        public float x { get => g_x; }
-        public float y { get => g_y; }
-        public float z { get => g_z; }
-        public float w { get => g_w; }
+        public float X { get => m_x; }
+        public float Y { get => m_y; }
+        public float Z { get => m_z; }
+        public float W { get => m_w; }
 
         public static implicit operator TVector4(System.Numerics.Vector4 vec)
             => new TVector4(vec.X, vec.Y, vec.Z, vec.W); 
+
+        public static implicit operator System.Numerics.Vector4(TVector4 vec)
+            => new System.Numerics.Vector4(vec.m_x, vec.m_y, vec.m_z, vec.m_w); 
     }
 }

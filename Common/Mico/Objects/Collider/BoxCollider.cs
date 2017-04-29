@@ -11,48 +11,48 @@ namespace Mico.Objects
 
     public class BoxCollider : Collider
     {
-        Vector3 radius;
-        Quaternion rotate;
+        Vector3 m_radius;
+        Quaternion m_rotate;
 
         private static void GetWireFrame(BoxCollider collider, out Vector3[] box)
         {
             box = new Vector3[8];
-            Vector3 temp = collider.radius;
+            Vector3 temp = collider.m_radius;
 
             //left-bottom-front
-            box[0] = collider.center - temp;
+            box[0] = collider.m_center - temp;
 
             //right-bottom-front
             temp.X = -temp.X;
-            box[1] = collider.center - temp;
+            box[1] = collider.m_center - temp;
 
             //right-top-front
             temp.Y = -temp.Y;
-            box[2] = collider.center - temp;
+            box[2] = collider.m_center - temp;
 
             //left-top-front
             temp.X = -temp.X;
-            box[3] = collider.center - temp;
+            box[3] = collider.m_center - temp;
 
             //left-bottom-back
             temp.Z = -temp.Z;
             temp.Y = -temp.Y;
-            box[4] = collider.center - temp;
+            box[4] = collider.m_center - temp;
 
             //right-bottom-back
             temp.X = -temp.X;
-            box[5] = collider.center - temp;
+            box[5] = collider.m_center - temp;
 
             //right-top-back
             temp.Y = -temp.Y;
-            box[6] = collider.center - temp;
+            box[6] = collider.m_center - temp;
 
             //left-top-back
             temp.X = -temp.X;
-            box[7] = collider.center - temp;
+            box[7] = collider.m_center - temp;
 
             for (int i = 0; i < 8; i++)
-                box[i] = Vector3.Transform(box[i], collider.rotate);
+                box[i] = Vector3.Transform(box[i], collider.m_rotate);
         }
 
         private static void GetMaxMinInAxis(Vector3 axis, Vector3[] box, out float min, out float max)
@@ -132,8 +132,8 @@ namespace Mico.Objects
             //the sphere's center is a vector.
             //transform it from world coord-system to box's local coord-system
 
-            Vector3 SphereCenter = Vector3.Transform(collider.Center - Center,
-                Quaternion.Inverse(Rotate));
+            Vector3 SphereCenter = Vector3.Transform(collider.Center - m_center,
+                Quaternion.Inverse(m_rotate));
 
             //you can think it is a AABB Box.
 
@@ -149,8 +149,8 @@ namespace Mico.Objects
 
         public BoxCollider()
         {
-            radius = Vector3.One;
-            rotate = Quaternion.Identity;
+            m_radius = Vector3.One;
+            m_rotate = Quaternion.Identity;
         }
 
         public BoxCollider(Vector3 center, Vector3 radius)
@@ -166,23 +166,23 @@ namespace Mico.Objects
             Matrix4x4.Decompose(matrix, out Vector3 scale, 
                 out Quaternion rotation, out Vector3 translation);
 
-            result.Rotate = collider.Rotate * rotation;
-            result.Radius = collider.Radius * scale;
-            result.Center = Vector3.Transform(collider.Center, matrix);
+            result.Rotate = collider.m_rotate * rotation;
+            result.Radius = collider.m_radius * scale;
+            result.Center = Vector3.Transform(collider.m_center, matrix);
             
             return result;
         }
 
         public Vector3 Radius
         {
-            get => radius;
-            set => radius = value;
+            get => m_radius;
+            set => m_radius = value;
         }
 
         public Quaternion Rotate
         {
-            get => rotate;
-            set => rotate = value;
+            get => m_rotate;
+            set => m_rotate = value;
         }
     }
 }

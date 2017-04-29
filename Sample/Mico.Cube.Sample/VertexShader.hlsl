@@ -12,6 +12,7 @@ struct Output
     float3 pos : POSITION;
     float4 posH : SV_POSITION;
     float4 color : COLOR;
+    float3 ori_pos : POSITIONT;
 };
 
 struct Transform
@@ -27,6 +28,7 @@ Output main(Input input)
 {
     Output result;
     
+    result.ori_pos = input.pos;
     result.pos = mul(float4(input.pos, 1.f), transform.world).xyz;
     
     result.posH = mul(float4(input.pos, 1.f), (transform.world));

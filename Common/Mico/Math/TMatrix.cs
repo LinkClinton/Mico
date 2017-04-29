@@ -41,15 +41,14 @@ namespace Mico.Math
         {
             float tanHallView = (float)System.Math.Tan(fieldOfView / 2.0);
 
-            Matrix4x4 result = new Matrix4x4();
-
-            result.M11 = 1 / (aspectRatio * tanHallView);
-            result.M22 = 1 / tanHallView;
-            result.M34 = 1;
-
-            result.M33 = nearPlaneDistance / (farPlaneDistance - nearPlaneDistance);
-            result.M43 = -(farPlaneDistance * nearPlaneDistance) / (farPlaneDistance - nearPlaneDistance);
-
+            Matrix4x4 result = new Matrix4x4()
+            {
+                M11 = 1 / (aspectRatio * tanHallView),
+                M22 = 1 / tanHallView,
+                M34 = 1,
+                M33 = nearPlaneDistance / (farPlaneDistance - nearPlaneDistance),
+                M43 = -(farPlaneDistance * nearPlaneDistance) / (farPlaneDistance - nearPlaneDistance)
+            };
             return result;
         }
 

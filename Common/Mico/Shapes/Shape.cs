@@ -12,9 +12,9 @@ namespace Mico.Shapes
 
     public class Shape
     { 
-        Shape g_parent = null;
+        Shape m_parent = null;
 
-        Transform g_transform = new Transform();
+        Transform m_transform = new Transform();
 
         protected internal virtual void OnUpdate(object Unknown = null)
         {
@@ -42,14 +42,14 @@ namespace Mico.Shapes
 
         public Transform Transform
         {
-            get => g_transform;
-            set => g_transform = value;
+            get => m_transform;
+            set => m_transform = value;
         }
 
         public Shape Parent
         {
-            get => g_parent;
-            set => g_parent = value;
+            get => m_parent;
+            set => m_parent = value;
         }
         
     }

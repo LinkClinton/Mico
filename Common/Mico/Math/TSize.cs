@@ -11,26 +11,26 @@ namespace Mico.Math
     [StructLayout(LayoutKind.Sequential)]
     public class TSize
     {
-        float g_width;
-        float g_height;
+        float m_with;
+        float m_height;
 
 
         public TSize(float width = 0, float height = 0)
         {
-            g_width = width;
-            g_height = height;
+            m_with = width;
+            m_height = height;
         }
         
         public float Width
         {
-            set => g_width = value;
-            get => g_width;
+            set => m_with = value;
+            get => m_with;
         }
 
         public float Height
         {
-            set => g_height = value;
-            get => g_height;
+            set => m_height = value;
+            get => m_height;
         }
 
     }

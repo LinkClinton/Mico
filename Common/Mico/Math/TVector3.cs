@@ -11,31 +11,26 @@ namespace Mico.Math
     [StructLayout(LayoutKind.Sequential)]
     public class TVector3
     {
-        float g_x;
-        float g_y;
-        float g_z;
-
-
-        public override string ToString()
-            => "x = " + g_x + ", y = " + g_y + ", z = " + g_z;
-
+        float m_x;
+        float m_y;
+        float m_z;
 
         public TVector3(float x = 0, float y = 0, float z = 0)
         {
-            g_x = x;
-            g_y = y;
-            g_z = z;
+            m_x = x;
+            m_y = y;
+            m_z = z;
         }
 
-        public float x { get => g_x; }
-        public float y { get => g_y; }
-        public float z { get => g_z; }
+        public float X { get => m_x; }
+        public float Y { get => m_y; }
+        public float Z { get => m_z; }
 
         public static implicit operator TVector3(System.Numerics.Vector3 vec)
             => new TVector3(vec.X, vec.Y, vec.Z);
 
         public static implicit operator System.Numerics.Vector3(TVector3 vec)
-            => new System.Numerics.Vector3(vec.x, vec.y, vec.z);
+            => new System.Numerics.Vector3(vec.m_x, vec.m_y, vec.m_z);
 
         public static TVector3 Forward
         {

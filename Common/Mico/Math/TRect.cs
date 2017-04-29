@@ -11,41 +11,41 @@ namespace Mico.Math
     [StructLayout(LayoutKind.Sequential)]
     public class TRect
     {
-        float g_left;
-        float g_top;
-        float g_right;
-        float g_bottom;
+        float m_left;
+        float m_top;
+        float m_right;
+        float m_bottom;
 
         public TRect(float left = 0, float top = 0, float right = 0, float bottom = 0)
         {
-            g_left = left;
-            g_top = top;
-            g_right = right;
-            g_bottom = bottom;
+            m_left = left;
+            m_top = top;
+            m_right = right;
+            m_bottom = bottom;
         }
 
         public float Left
         {
-            get => g_left;
-            set => g_left = value; 
+            get => m_left;
+            set => m_left = value; 
         }
 
         public float Right
         {
-            get => g_right;
-            set => g_right = value; 
+            get => m_right;
+            set => m_right = value; 
         }
 
         public float Top
         {
-            get => g_top;
-            set => g_top = value;
+            get => m_top;
+            set => m_top = value;
         }
         
         public float Bottom
         {
-            get => g_bottom;
-            set => g_bottom = value; 
+            get => m_bottom;
+            set => m_bottom = value; 
         }
 
 

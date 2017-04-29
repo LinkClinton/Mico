@@ -16,10 +16,10 @@ namespace Mico.Cube.Sample
     {
         protected override void OnUpdate(object Unknown = null)
         {
-            /*
-             Transform.Rotate = Quaternion.Multiply(Transform.Rotate,
-              Quaternion.Inverse(Quaternion.CreateFromYawPitchRoll((float)Time.DeltaTime.TotalSeconds * 2.0f, 0, 0)));
-            */
+
+            Transform.Rotate = Quaternion.Multiply(Transform.Rotate,
+             Quaternion.Inverse(Quaternion.CreateFromYawPitchRoll((float)Time.DeltaTime.TotalSeconds * 2.0f, 0, 0)));
+
             base.OnUpdate(Unknown);
         }
 
