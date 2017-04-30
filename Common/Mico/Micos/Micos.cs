@@ -103,6 +103,10 @@ namespace Mico
             set => m_camera = value;
         }
 
+        public static List<Shape> Element
+        {
+            get => m_shapes_list;
+        }
 
        
 

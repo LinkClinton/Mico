@@ -20,6 +20,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Mico.DirectX.Core", "Common
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mico.Cube.Sample", "Sample\Mico.Cube.Sample\Mico.Cube.Sample.csproj", "{261686A1-1560-43BD-AB39-DE5B700CE417}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mico.Collider.Sample", "Sample\Mico.Collider.Sample\Mico.Collider.Sample.csproj", "{58A99BF7-BE04-47FB-A6DA-0A674590544F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,6 +78,18 @@ Global
 		{261686A1-1560-43BD-AB39-DE5B700CE417}.Release|x64.Build.0 = Release|Any CPU
 		{261686A1-1560-43BD-AB39-DE5B700CE417}.Release|x86.ActiveCfg = Release|Any CPU
 		{261686A1-1560-43BD-AB39-DE5B700CE417}.Release|x86.Build.0 = Release|Any CPU
+		{58A99BF7-BE04-47FB-A6DA-0A674590544F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58A99BF7-BE04-47FB-A6DA-0A674590544F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58A99BF7-BE04-47FB-A6DA-0A674590544F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{58A99BF7-BE04-47FB-A6DA-0A674590544F}.Debug|x64.Build.0 = Debug|Any CPU
+		{58A99BF7-BE04-47FB-A6DA-0A674590544F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{58A99BF7-BE04-47FB-A6DA-0A674590544F}.Debug|x86.Build.0 = Debug|Any CPU
+		{58A99BF7-BE04-47FB-A6DA-0A674590544F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58A99BF7-BE04-47FB-A6DA-0A674590544F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58A99BF7-BE04-47FB-A6DA-0A674590544F}.Release|x64.ActiveCfg = Release|Any CPU
+		{58A99BF7-BE04-47FB-A6DA-0A674590544F}.Release|x64.Build.0 = Release|Any CPU
+		{58A99BF7-BE04-47FB-A6DA-0A674590544F}.Release|x86.ActiveCfg = Release|Any CPU
+		{58A99BF7-BE04-47FB-A6DA-0A674590544F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -85,5 +99,6 @@ Global
 		{BB74337E-B279-4CD5-93BB-C11659D6238A} = {C5260870-8364-4986-9E77-BACBBC6ED73E}
 		{560CC9E7-ADA2-46DD-A44A-7E4A40093F7A} = {C5260870-8364-4986-9E77-BACBBC6ED73E}
 		{261686A1-1560-43BD-AB39-DE5B700CE417} = {658D72A6-725E-44E1-A76D-AF4D35643465}
+		{58A99BF7-BE04-47FB-A6DA-0A674590544F} = {658D72A6-725E-44E1-A76D-AF4D35643465}
 	EndGlobalSection
 EndGlobal
