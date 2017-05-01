@@ -153,6 +153,16 @@ namespace Mico.Objects
             return true;
         }
 
+        public override void Transform(Matrix4x4 matrix)
+        {
+            Matrix4x4.Decompose(matrix, out Vector3 scale,
+                out Quaternion rotation, out Vector3 translation);
+
+            m_rotate *= rotation;
+            m_radius *= scale;
+            m_center += translation;
+        }
+
         public BoxCollider()
         {
             m_radius = Vector3.One;

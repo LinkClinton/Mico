@@ -21,11 +21,9 @@ namespace Mico.Collider.Sample
 
         Vector3 rotate_speed = new Vector3(1, 1, 0);
         Vector3 translation_direct = TVector3.Forward;
-        float speed = 10;
+        float speed = 20;
 
         TVector4 color = new TVector4(Window.FLOAT, Window.FLOAT, Window.FLOAT, 1);
-
-        BoxCollider collider;
 
         protected override void OnUpdate(object Unknown = null)
         {
@@ -41,30 +39,21 @@ namespace Mico.Collider.Sample
 
             Transform.Position += Vector3.Normalize(translation_direct) * speed * Time.DeltaSeconds;
 
-            collider.Center = Transform.Position;
-            collider.Rotate = Transform.Rotate;
+            Collider.Center = Transform.Position;
+            (Collider as BoxCollider).Rotate = Transform.Rotate;
 
             base.OnUpdate(Unknown);
         }
 
+        protected override void OnCollide(Shape target)
+        {
+            translation_direct = Vector3.Normalize(Transform.Position - target.Transform.Position);
+            color = new TVector4(Window.FLOAT, Window.FLOAT, Window.FLOAT, 1);
+            base.OnCollide(target);
+        }
+
         protected override void FixUpdate(object Unknown = null)
         {
-            //Test
-            foreach (Shape item in Micos.Element)
-            {
-                if (item is Cube)
-                {
-                    if (item == this) continue;
-
-                    if (collider.Intersects((item as Cube).collider) is true)
-                    {
-                        translation_direct = Vector3.Normalize(Transform.Position - item.Transform.Position);
-                        color = new TVector4(Window.FLOAT, Window.FLOAT, Window.FLOAT, 1);
-                        break;
-                    }
-                }
-            }
-
             base.FixUpdate(Unknown);
         }
 
@@ -138,7 +127,7 @@ namespace Mico.Collider.Sample
 
             Transform.Scale = new Vector3(width, height, depth);
 
-            collider = new BoxCollider(new System.Numerics.Vector3(0, 0, 0),
+            Collider = new BoxCollider(new System.Numerics.Vector3(0, 0, 0),
                 new System.Numerics.Vector3(width / 2.0f, height / 2.0f, depth / 2.0f));
         }
 

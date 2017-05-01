@@ -10,35 +10,20 @@ namespace Mico.Shapes
 {
     
 
-    public class Shape
+    public abstract class Shape
     { 
         Shape m_parent = null;
 
         Transform m_transform = new Transform();
 
-        protected internal virtual void OnUpdate(object Unknown = null)
-        {
-            //
-        }
-        protected internal virtual void OnExport(object Unknown = null)
-        {
-            //
-        }
+        Collider m_collider;
 
-        protected internal virtual void OnCreate(object Unknown = null)
-        {
-            //
-        }
-
-        protected internal virtual void OnDelete(object Unknown = null)
-        {
-            //
-        }
-
-        protected internal virtual void FixUpdate(object Unknown = null)
-        {
-           //
-        }
+        protected internal virtual void OnUpdate(object Unknown = null) { }
+        protected internal virtual void OnExport(object Unknown = null) { }
+        protected internal virtual void OnCreate(object Unknown = null) { }
+        protected internal virtual void OnDelete(object Unknown = null) { }
+        protected internal virtual void FixUpdate(object Unknown = null) { }
+        protected internal virtual void OnCollide(Shape target) { }
 
         public Transform Transform
         {
@@ -52,5 +37,11 @@ namespace Mico.Shapes
             set => m_parent = value;
         }
         
+        public Collider Collider
+        {
+            get => m_collider;
+            set => m_collider = value;
+        }
+
     }
 }

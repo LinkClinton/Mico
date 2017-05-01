@@ -55,9 +55,29 @@ namespace Mico
 
         static void FixUpdate()
         {
+            int ItemCount = 0;
             foreach (Shape item in m_shapes_list)
             {
                 item.FixUpdate();
+
+                ItemCount++;
+                //Intersects Test,The algorithm is O(N^2).
+                //need update it.
+                if (item.Collider != null)
+                {
+                    for (int i = ItemCount; i < m_shapes_list.Count; i++)
+                    {
+                        Shape target = m_shapes_list[i];
+                        if (target.Collider is null) continue;
+
+                        if (item.Collider.Intersects(target.Collider) is true)
+                        {
+                            item.OnCollide(target);
+                            target.OnCollide(item);
+                        }
+                    } 
+                }
+
             }
             m_camera.FixUpdate();
         }

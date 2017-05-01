@@ -37,6 +37,14 @@ namespace Mico.Objects
             return false;
         }
 
+        public override void Transform(Matrix4x4 matrix)
+        {
+            Matrix4x4.Decompose(matrix, out Vector3 scale, out Quaternion rotation, out Vector3 translation);
+
+            m_radius = m_radius * NetMath.Max(scale.X, NetMath.Max(scale.Y, scale.Z));
+            m_center = m_center + translation;
+        }
+
         public static SphereCollider Transform(SphereCollider collider, Matrix4x4 matrix)
         {
             SphereCollider result = new SphereCollider();

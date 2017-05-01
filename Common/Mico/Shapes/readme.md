@@ -59,3 +59,22 @@ We use `Quaternion` to rotate local coordinate system.
 
 If you change rotate,the forward will be changed.
 
+#### Collider
+
+Collider is a object in `Mico.Objects`,you can use it to test collision.
+
+If you want use it in a shape,you can follow this:
+
+```C#
+public Shape(){
+    Collider = new XXXCollider(...);
+}
+```
+
+If a shape intersects other shape,the function `OnCollide` will be called.
+
+```C#
+protected override void OnCollide(Shape target){
+    ...
+}
+```

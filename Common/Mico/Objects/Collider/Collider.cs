@@ -16,6 +16,8 @@ namespace Mico.Objects
 
         protected abstract bool Intersects(SphereCollider collider);
 
+        public abstract void Transform(Matrix4x4 matrix);
+        
         public bool Intersects(Collider collider)
         {
             switch (collider)
