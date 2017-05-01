@@ -226,6 +226,26 @@ namespace Mico.DirectX
             }
         }
 
+        /// <summary>
+        /// Current Dpi
+        /// </summary>
+        public static TVector2 CurrentDpi
+        {
+            get
+            {
+                ManagerGetDpi(source, out float dpiX, out float dpiY);
+                return new TVector2(dpiX, dpiY);
+            }
+        }
+
+        /// <summary>
+        /// Default Dpi is (96,96)
+        /// </summary>
+        public static TVector2 DefaultDpi
+        {
+            get => new TVector2(96, 96);
+        }
+
         public static IntPtr Core
         {
             get => source;

@@ -33,14 +33,39 @@ namespace Mico.Collider.Sample
                 translation_direct.X = -translation_direct.X;
             if (Transform.Position.Y >= Window.YLimit || Transform.Position.Y <= -Window.YLimit)
                 translation_direct.Y = -translation_direct.Y;
-            
+
 
             //Update
-            Transform.Rotate *= Quaternion.CreateFromYawPitchRoll(rotate_speed.Y * (float)Time.DeltaTime.TotalSeconds,
-                rotate_speed.X * (float)Time.DeltaTime.TotalSeconds, rotate_speed.Z * (float)Time.DeltaTime.TotalSeconds);
+            Transform.Rotate *= Quaternion.CreateFromYawPitchRoll(rotate_speed.Y * Time.DeltaSeconds,
+                rotate_speed.X * Time.DeltaSeconds, rotate_speed.Z * Time.DeltaSeconds);
 
-            Transform.Position += translation_direct * speed * (float)Time.DeltaTime.TotalSeconds;
+            Transform.Position += Vector3.Normalize(translation_direct) * speed * Time.DeltaSeconds;
+
+            collider.Center = Transform.Position;
+            collider.Rotate = Transform.Rotate;
+
             base.OnUpdate(Unknown);
+        }
+
+        protected override void FixUpdate(object Unknown = null)
+        {
+            //Test
+            foreach (Shape item in Micos.Element)
+            {
+                if (item is Cube)
+                {
+                    if (item == this) continue;
+
+                    if (collider.Intersects((item as Cube).collider) is true)
+                    {
+                        translation_direct = Vector3.Normalize(Transform.Position - item.Transform.Position);
+                        color = new TVector4(Window.FLOAT, Window.FLOAT, Window.FLOAT, 1);
+                        break;
+                    }
+                }
+            }
+
+            base.FixUpdate(Unknown);
         }
 
         protected override void OnExport(object Unknown = null)
@@ -50,8 +75,7 @@ namespace Mico.Collider.Sample
             Program.MatrixBuffer.Update(Program.matrix);
             Program.ColorBuffer.Update(color);
 
-            collider.Center = Transform.Position;
-            collider.Rotate = Transform.Rotate;
+          
 
             Direct3D.SetBufferToVertexShader(Program.MatrixBuffer, 0);
             Direct3D.SetBufferToPixelShader(Program.ColorBuffer, 0);
@@ -60,19 +84,7 @@ namespace Mico.Collider.Sample
             Direct3D.SetBuffer(indexbuffer);
             Direct3D.DrawIndexed(36, 0);
 
-            //Test
-            foreach (Cube item in Micos.Element)
-            {
-                if (item == this) continue;
-
-                if (collider.Intersects(item.collider) is true)
-                {
-                    translation_direct = Vector3.Normalize(Transform.Position - item.Transform.Position);
-                    color = new TVector4(Window.FLOAT, Window.FLOAT, Window.FLOAT, 1);
-                    break;
-                }
-            }
-
+          
             base.OnExport(Unknown);
         }
 
@@ -127,7 +139,7 @@ namespace Mico.Collider.Sample
             Transform.Scale = new Vector3(width, height, depth);
 
             collider = new BoxCollider(new System.Numerics.Vector3(0, 0, 0),
-                new System.Numerics.Vector3(width / 2, height / 2, depth / 2));
+                new System.Numerics.Vector3(width / 2.0f, height / 2.0f, depth / 2.0f));
         }
 
 

@@ -6,6 +6,7 @@ EXPORTS
 
 	ManagerDraw
 	ManagerClear
+	ManagerGetDpi
 	ManagerCreate
 	ManagerDestory
 	ManagerPresent

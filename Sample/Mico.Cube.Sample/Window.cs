@@ -34,7 +34,8 @@ namespace Mico.Cube.Sample
         public Window()
         {
             WindowProc += Window_proc;
-            Hwnd = CreateWindow("Mico", "", Width, Height, WindowProc);
+            Hwnd = CreateWindow("Mico", "", Width * (int)(Direct3D.CurrentDpi.X / Direct3D.DefaultDpi.X),
+                Height * (int)(Direct3D.CurrentDpi.Y / Direct3D.DefaultDpi.Y), WindowProc); 
 
             surface = new Surface(Hwnd);
             vertex = new VertexShader(@"..\..\Sample\Mico.Cube.Sample\VertexShader.hlsl", "main");

@@ -28,5 +28,11 @@ namespace Mico.Objects
         {
             get => m_delta_time;
         }
+
+        public static float DeltaSeconds
+        {
+            get => (float)m_delta_time.TotalSeconds;
+        }
+
     }
 }

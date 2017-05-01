@@ -20,49 +20,55 @@ namespace Mico.Objects
             Vector3 temp = collider.m_radius;
 
             //left-bottom-front
-            box[0] = collider.m_center - temp;
+            box[0] = -temp;
 
             //right-bottom-front
             temp.X = -temp.X;
-            box[1] = collider.m_center - temp;
+            box[1] = -temp;
 
             //right-top-front
             temp.Y = -temp.Y;
-            box[2] = collider.m_center - temp;
+            box[2] = -temp;
 
             //left-top-front
             temp.X = -temp.X;
-            box[3] = collider.m_center - temp;
+            box[3] = -temp;
 
             //left-bottom-back
             temp.Z = -temp.Z;
             temp.Y = -temp.Y;
-            box[4] = collider.m_center - temp;
+            box[4] = -temp;
 
             //right-bottom-back
             temp.X = -temp.X;
-            box[5] = collider.m_center - temp;
+            box[5] = -temp;
 
             //right-top-back
             temp.Y = -temp.Y;
-            box[6] = collider.m_center - temp;
+            box[6] = -temp;
 
             //left-top-back
             temp.X = -temp.X;
-            box[7] = collider.m_center - temp;
+            box[7] = -temp;
 
             for (int i = 0; i < 8; i++)
+            {
                 box[i] = Vector3.Transform(box[i], collider.m_rotate);
+                box[i] += collider.m_center;
+            }
+
+
         }
 
         private static void GetMaxMinInAxis(Vector3 axis, Vector3[] box, out float min, out float max)
         {
-            min = Vector3.Dot(box[0], axis) * box[0].Length();
-            max = Vector3.Dot(box[0], axis) * box[0].Length();
+            Vector3 normal = Vector3.Normalize(box[0]);
+            min = Vector3.Dot(normal, axis) * box[0].Length();
+            max = Vector3.Dot(normal, axis) * box[0].Length();
 
             for (int i = 1; i < 7; i++)
             {
-                float value = Vector3.Dot(box[i], axis) * box[i].Length();
+                float value = Vector3.Dot(Vector3.Normalize(box[i]), axis) * box[i].Length();
                 min = NetMath.Min(min, value);
                 max = NetMath.Max(max, value);
             }

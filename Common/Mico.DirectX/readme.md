@@ -8,6 +8,8 @@ Render library.
 
 **static** library.
 
+It is same as Direct3D11.
+
   - Set Render State.
     ```C#
     Direct3D.FillMode = FillMode.Solid;

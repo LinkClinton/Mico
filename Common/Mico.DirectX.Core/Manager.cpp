@@ -369,3 +369,9 @@ void ManagerSetFillMode(Manager* source, D3D11_FILL_MODE mode)
 
 	This.context3d->RSSetState(state);
 }
+
+void ManagerGetDpi(Manager* source, float* dpiX, float* dpiY)
+{
+	This.d2d1factory->GetDesktopDpi(dpiX, dpiY);
+}
+

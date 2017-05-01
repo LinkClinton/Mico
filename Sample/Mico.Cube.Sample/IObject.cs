@@ -18,7 +18,7 @@ namespace Mico.Cube.Sample
         {
 
             Transform.Rotate = Quaternion.Multiply(Transform.Rotate,
-             Quaternion.Inverse(Quaternion.CreateFromYawPitchRoll((float)Time.DeltaTime.TotalSeconds * 2.0f, 0, 0)));
+             Quaternion.Inverse(Quaternion.CreateFromYawPitchRoll(Time.DeltaSeconds * 2.0f, 0, 0)));
 
             base.OnUpdate(Unknown);
         }

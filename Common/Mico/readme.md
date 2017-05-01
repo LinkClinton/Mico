@@ -3,9 +3,10 @@
 Core library.
 
 ## Include
-- **Mico.World**  
 - **Mico.Math**
+- **Mico.Micos**  
 - **Mico.Shape**
+- **Mico.Objects**
 
 ## Introduction
 

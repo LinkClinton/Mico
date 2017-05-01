@@ -50,7 +50,7 @@ A transofrm can describe a shape in the `Micos`.
 ##### Forward:
 default is `(0,0,1)`.
 
-You can think it is the local coordinate system's forward.
+You can think it is the local coordinate system's z-axis.
 
 If you change forward,the rotate will be changed.
 ##### Rotate: 

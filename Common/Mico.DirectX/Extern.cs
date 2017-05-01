@@ -109,6 +109,9 @@ namespace Mico.DirectX
         [DllImport(Extern.DLLName)]
         static extern void ManagerSetFillMode(IntPtr source, FillMode mode);
 
+        [DllImport(Extern.DLLName)]
+        static extern void ManagerGetDpi(IntPtr source, out float dpiX, out float dpiY);
+
     }
 
     public partial class Surface

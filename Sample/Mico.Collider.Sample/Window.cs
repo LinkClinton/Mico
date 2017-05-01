@@ -27,10 +27,9 @@ namespace Mico.Collider.Sample
         int Width = 800;
         int Height = 600;
 
-        public static int CubeCount = 50;
-        public static int XLimit = 100;
-        public static int YLimit = 100;
-
+        public static int CubeCount { get => 50; }
+        public static int XLimit { get => 100; }
+        public static int YLimit { get => 100; }
 
         static Random random = new Random();
 
@@ -48,23 +47,32 @@ namespace Mico.Collider.Sample
         Shader vertex;
         Shader pixel;
 
+        FpsCounter fps;
+        Fontface font;
+        Brush brush;
+
         public Window()
         {
             WindowProc += Window_proc;
-            Hwnd = CreateWindow("Mico", "", Width, Height, WindowProc);
+            Hwnd = CreateWindow("Mico", "", Width * (int)(Direct3D.CurrentDpi.X / Direct3D.DefaultDpi.X), 
+                Height * (int)(Direct3D.CurrentDpi.Y / Direct3D.DefaultDpi.Y), WindowProc);
 
             surface = new Surface(Hwnd);
-            vertex = new VertexShader(@"..\..\Sample\Mico.Collider.Sample\VertexShader.hlsl", "main");
-            pixel = new PixelShader(@"..\..\Sample\Mico.Collider.Sample\PixelShader.hlsl", "main");
+            vertex = new VertexShader(@"ColliderVertexShader.hlsl", "main");
+            pixel = new PixelShader(@"ColliderPixelShader.hlsl", "main");
 
+            font = new Fontface("Consolas", 12 * Direct3D.CurrentDpi.X / Direct3D.DefaultDpi.X);
+            brush = new Brush(0, 0, 0, 1);
+
+            Micos.Add(fps = new FpsCounter());
 
             Direct3D.SetSurface(surface);
             Direct3D.SetShader(vertex);
             Direct3D.SetShader(pixel);
             Direct3D.FillMode = FillMode.Solid;
             Direct3D.CullMode = CullMode.CullNone;
-            Micos.Camera = new Camera();
 
+            Micos.Camera = new Camera();
             Micos.Camera.Transform.Position = new Vector3(0, 0, -100);
 
             for (int i = 0; i < CubeCount; i++)
@@ -72,6 +80,7 @@ namespace Mico.Collider.Sample
                 Cube cube = new Cube(10, 10, 10);
                 cube.Transform.Position = new Vector3(INT, INT, 0);
                 cube.Forward = Vector3.Normalize(new Vector3(INT, INT, 0));
+                cube.RotateSpeed = new Vector3(FLOAT, FLOAT, 0);
                 Micos.Add(cube);
             }
             
@@ -86,6 +95,7 @@ namespace Mico.Collider.Sample
         {
             Direct3D.Clear(new TVector4(1, 1, 1, 1));
             Micos.Exports();
+            Direct3D.DrawText(fps.Fps.ToString(), new TVector2(0, 0), font, brush);
             Direct3D.Present();
         }
 
@@ -99,9 +109,9 @@ namespace Mico.Collider.Sample
                     TranslateMessage(ref message);
                     DispatchMessage(ref message);
                 }
-                OnRender();
-                System.Threading.Thread.Sleep(1);
                 Micos.Update();
+                System.Threading.Thread.Sleep(1);
+                OnRender();
             }
         }
 
