@@ -54,14 +54,14 @@ namespace Mico.Collider.Sample
         public Window()
         {
             WindowProc += Window_proc;
-            Hwnd = CreateWindow("Mico", "", Width * (int)(Direct3D.CurrentDpi.X / Direct3D.DefaultDpi.X), 
-                Height * (int)(Direct3D.CurrentDpi.Y / Direct3D.DefaultDpi.Y), WindowProc);
+            Hwnd = CreateWindow("Mico", "", Width * (int)Direct3D.DpiScale,
+                Height * (int)Direct3D.DpiScale, WindowProc);
 
             surface = new Surface(Hwnd);
             vertex = new VertexShader(@"ColliderVertexShader.hlsl", "main");
             pixel = new PixelShader(@"ColliderPixelShader.hlsl", "main");
 
-            font = new Fontface("Consolas", 12 * Direct3D.CurrentDpi.X / Direct3D.DefaultDpi.X);
+            font = new Fontface("Consolas", 12 * Direct3D.DpiScale);
             brush = new Brush(0, 0, 0, 1);
 
             Micos.Add(fps = new FpsCounter());

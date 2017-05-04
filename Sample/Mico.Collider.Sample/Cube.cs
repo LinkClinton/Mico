@@ -72,8 +72,6 @@ namespace Mico.Collider.Sample
             Direct3D.SetBuffer(vertexbuffer);
             Direct3D.SetBuffer(indexbuffer);
             Direct3D.DrawIndexed(36, 0);
-
-          
             base.OnExport(Unknown);
         }
 

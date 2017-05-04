@@ -17,6 +17,8 @@ namespace Mico.Objects
         protected abstract bool Intersects(SphereCollider collider);
 
         public abstract void Transform(Matrix4x4 matrix);
+
+        public abstract void Transform(Vector3 translation, Quaternion rotation, Vector3 scale);
         
         public bool Intersects(Collider collider)
         {

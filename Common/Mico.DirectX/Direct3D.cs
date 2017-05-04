@@ -239,11 +239,11 @@ namespace Mico.DirectX
         }
 
         /// <summary>
-        /// Default Dpi is (96,96)
+        /// (DpiX+DpiY)/192
         /// </summary>
-        public static TVector2 DefaultDpi
+        public static float DpiScale
         {
-            get => new TVector2(96, 96);
+            get => (CurrentDpi.X + CurrentDpi.Y) / 192.0f;
         }
 
         public static IntPtr Core

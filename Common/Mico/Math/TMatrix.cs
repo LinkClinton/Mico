@@ -7,6 +7,8 @@ using System.Numerics;
 
 namespace Mico.Math
 {
+    using NetMath = System.Math;
+
     public static class TMatrix
     {
         public static Matrix4x4 CreateLookAtLH(Vector3 position, Vector3 lookat, Vector3 up)
@@ -52,7 +54,20 @@ namespace Mico.Math
             return result;
         }
 
-
+        public static Matrix4x4 Abs(Matrix4x4 matrix)
+        {
+            return new Matrix4x4()
+            {
+                M11 = NetMath.Abs(matrix.M11), M12 = NetMath.Abs(matrix.M12),
+                M13 = NetMath.Abs(matrix.M13), M14 = NetMath.Abs(matrix.M14),
+                M21 = NetMath.Abs(matrix.M21), M22 = NetMath.Abs(matrix.M22),
+                M23 = NetMath.Abs(matrix.M23), M24 = NetMath.Abs(matrix.M24),
+                M31 = NetMath.Abs(matrix.M31), M32 = NetMath.Abs(matrix.M32),
+                M33 = NetMath.Abs(matrix.M33), M34 = NetMath.Abs(matrix.M34),
+                M41 = NetMath.Abs(matrix.M41), M42 = NetMath.Abs(matrix.M42),
+                M43 = NetMath.Abs(matrix.M43), M44 = NetMath.Abs(matrix.M44)
+            };
+        }
 
     }
 

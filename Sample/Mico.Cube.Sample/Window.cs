@@ -34,8 +34,8 @@ namespace Mico.Cube.Sample
         public Window()
         {
             WindowProc += Window_proc;
-            Hwnd = CreateWindow("Mico", "", Width * (int)(Direct3D.CurrentDpi.X / Direct3D.DefaultDpi.X),
-                Height * (int)(Direct3D.CurrentDpi.Y / Direct3D.DefaultDpi.Y), WindowProc); 
+            Hwnd = CreateWindow("Mico", "", Width * (int)Direct3D.DpiScale,
+                Height * (int)Direct3D.DpiScale, WindowProc);
 
             surface = new Surface(Hwnd);
             vertex = new VertexShader(@"..\..\Sample\Mico.Cube.Sample\VertexShader.hlsl", "main");
@@ -53,7 +53,6 @@ namespace Mico.Cube.Sample
 
             Micos.Camera.Transform.Position = new Vector3(0, 0, -10);
 
-            
             Program.matrix.projection = (
                 TMatrix.CreatePerspectiveFieldOfViewLH(
                     (float)System.Math.PI * 0.55f, 800.0f / 600.0f, 1.0f, 2000.0f));

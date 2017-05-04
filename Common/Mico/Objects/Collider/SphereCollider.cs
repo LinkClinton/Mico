@@ -45,6 +45,12 @@ namespace Mico.Objects
             m_center = m_center + translation;
         }
 
+        public override void Transform(Vector3 translation, Quaternion rotation, Vector3 scale)
+        {
+            m_radius = m_radius * NetMath.Max(scale.X, NetMath.Max(scale.Y, scale.Z));
+            m_center = m_center + translation;
+        }
+
         public static SphereCollider Transform(SphereCollider collider, Matrix4x4 matrix)
         {
             SphereCollider result = new SphereCollider();
