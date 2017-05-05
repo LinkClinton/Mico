@@ -69,7 +69,7 @@ namespace Mico.Collider.Sample
             Direct3D.SetSurface(surface);
             Direct3D.SetShader(vertex);
             Direct3D.SetShader(pixel);
-            Direct3D.FillMode = FillMode.Solid;
+            Direct3D.FillMode = FillMode.Wireframe;
             Direct3D.CullMode = CullMode.CullNone;
 
             Micos.Camera = new Camera();
