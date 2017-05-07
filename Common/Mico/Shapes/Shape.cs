@@ -42,6 +42,5 @@ namespace Mico.Shapes
             get => m_collider;
             set => m_collider = value;
         }
-
     }
 }

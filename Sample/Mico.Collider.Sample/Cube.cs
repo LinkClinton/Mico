@@ -31,6 +31,8 @@ namespace Mico.Collider.Sample
                 translation_direct.X = -translation_direct.X;
             if (Transform.Position.Y >= Window.YLimit || Transform.Position.Y <= -Window.YLimit)
                 translation_direct.Y = -translation_direct.Y;
+            if (Transform.Position.Z >= Window.ZLimit || Transform.Position.Z <= -Window.ZLimit)
+                translation_direct.Z = -translation_direct.Z;
 
 
             //Update
@@ -61,6 +63,7 @@ namespace Mico.Collider.Sample
         {
             Program.matrix.view = Micos.Camera;
             Program.matrix.world = Transform;
+            Program.matrix.projection = Micos.Camera.Project;
             Program.MatrixBuffer.Update(Program.matrix);
             Program.ColorBuffer.Update(color);
 
@@ -127,6 +130,7 @@ namespace Mico.Collider.Sample
 
             Collider = new BoxCollider(new System.Numerics.Vector3(0, 0, 0),
                 new System.Numerics.Vector3(width / 2.0f, height / 2.0f, depth / 2.0f));
+            Collider.IsPicked = true;
         }
 
 
@@ -146,6 +150,12 @@ namespace Mico.Collider.Sample
         {
             get => translation_direct;
             set => translation_direct = value;
+        }
+
+        public TVector4 Color
+        {
+            get => color;
+            set => color = value;
         }
 
 

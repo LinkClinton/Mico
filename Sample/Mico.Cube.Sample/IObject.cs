@@ -27,6 +27,7 @@ namespace Mico.Cube.Sample
         {
             Program.matrix.view = Micos.Camera;
             Program.matrix.world = Transform;
+            Program.matrix.projection = Micos.Camera.Project;
             Program.MatrixBuffer.Update(Program.matrix);
 
             Direct3D.SetBufferToVertexShader(Program.MatrixBuffer, 0);

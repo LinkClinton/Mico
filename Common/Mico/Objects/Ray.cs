@@ -99,8 +99,9 @@ namespace Mico.Objects
 
         private bool Intersects(SphereCollider sphere, out float distance)
         {
-            distance = 0;
+            //from Real-Time Rendering
             //The ray is in world spcae
+            distance = 0;
 
             Vector3 l = sphere.Center - m_position;
             Vector3 d = Vector3.Normalize(m_direction);

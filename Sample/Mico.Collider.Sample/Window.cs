@@ -20,6 +20,8 @@ namespace Mico.Collider.Sample
         public delegate IntPtr WndProc(IntPtr Hwnd, uint message,
             IntPtr wParam, IntPtr lParam);
 
+        public static TVector2 MousePos = new TVector2(0, 0);
+
         IntPtr Hwnd;
 
         event WndProc WindowProc;
@@ -30,6 +32,7 @@ namespace Mico.Collider.Sample
         public static int CubeCount { get => 50; }
         public static int XLimit { get => 100; }
         public static int YLimit { get => 100; }
+        public static int ZLimit { get => 100; }
 
         static Random random = new Random();
 
@@ -78,17 +81,31 @@ namespace Mico.Collider.Sample
             for (int i = 0; i < CubeCount; i++)
             {
                 Cube cube = new Cube(10, 10, 10);
-                cube.Transform.Position = new Vector3(INT, INT, 0);
+                cube.Transform.Position = new Vector3(INT, INT, INT);
                 cube.Forward = Vector3.Normalize(new Vector3(INT, INT, 0));
                 cube.RotateSpeed = new Vector3(FLOAT, FLOAT, 0);
                 Micos.Add(cube);
             }
-            
-            Program.matrix.projection = (
-                TMatrix.CreatePerspectiveFieldOfViewLH(
-                    (float)System.Math.PI * 0.55f, 800.0f / 600.0f, 1.0f, 2000.0f));
 
 
+            Micos.Camera.Project = TMatrix.CreatePerspectiveFieldOfViewLH(
+                    (float)System.Math.PI * 0.55f, 800.0f / 600.0f, 1.0f, 2000.0f);
+
+
+        }
+
+        public void OnMouseDown()
+        {
+            Cube cube = Micos.Pick(2.0f * MousePos.X / (Width * Direct3D.DpiScale) - 1.0f,
+               -2.0f * MousePos.Y / (Height * Direct3D.DpiScale) + 1.0f) as Cube;
+
+            if (cube is null) return;
+            Micos.Remove(cube);
+        }
+
+        public void OnUpdate()
+        {
+           
         }
 
         public void OnRender()
@@ -96,6 +113,8 @@ namespace Mico.Collider.Sample
             Direct3D.Clear(new TVector4(1, 1, 1, 1));
             Micos.Exports();
             Direct3D.DrawText(fps.Fps.ToString(), new TVector2(0, 0), font, brush);
+            Direct3D.DrawText("Click cube to destory it!", new TVector2(0, font.Size),
+                font, brush);
             Direct3D.Present();
         }
 
@@ -110,6 +129,8 @@ namespace Mico.Collider.Sample
                     DispatchMessage(ref message);
                 }
                 Micos.Update();
+                OnUpdate();
+
                 System.Threading.Thread.Sleep(1);
                 OnRender();
             }
@@ -160,7 +181,13 @@ namespace Mico.Collider.Sample
                     break;
                 case MessageType.MiddleButtonUp:
                     break;
+                case MessageType.LeftButtonDown:
+                    OnMouseDown();
+                    break;
                 case MessageType.MouseWheelMove:
+                    break;
+                case MessageType.MouseMove:
+                    MousePos = new TVector2(Message.LowWord(lParam), Message.HighWord(lParam));
                     break;
                 default:
                     return DefWindowProc(Hwnd, message, wParam, lParam);

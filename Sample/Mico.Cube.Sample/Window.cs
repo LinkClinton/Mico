@@ -53,9 +53,9 @@ namespace Mico.Cube.Sample
 
             Micos.Camera.Transform.Position = new Vector3(0, 0, -10);
 
-            Program.matrix.projection = (
-                TMatrix.CreatePerspectiveFieldOfViewLH(
-                    (float)System.Math.PI * 0.55f, 800.0f / 600.0f, 1.0f, 2000.0f));
+            Micos.Camera.Project =
+                 TMatrix.CreatePerspectiveFieldOfViewLH(
+                     (float)System.Math.PI * 0.55f, 800.0f / 600.0f, 1.0f, 2000.0f);
 
 
         }

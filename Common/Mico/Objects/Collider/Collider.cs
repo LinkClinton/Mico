@@ -19,7 +19,9 @@ namespace Mico.Objects
         public abstract void Transform(Matrix4x4 matrix);
 
         public abstract void Transform(Vector3 translation, Quaternion rotation, Vector3 scale);
-        
+
+        bool m_ispicked = true;
+
         public bool Intersects(Collider collider)
         {
             switch (collider)
@@ -47,6 +49,12 @@ namespace Mico.Objects
         {
             get => m_center;
             set => m_center = value;
+        }
+
+        public bool IsPicked
+        {
+            get => m_ispicked;
+            set => m_ispicked = value;
         }
     }
 }

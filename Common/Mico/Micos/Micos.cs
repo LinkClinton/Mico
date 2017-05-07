@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Numerics;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -113,8 +114,33 @@ namespace Mico
             {
                 item.MoveNext();
             }
+        }
 
-         
+        public static Shape Pick(float ndcX, float ndcY)
+        {
+            Ray ray = new Ray(m_camera.Transform.Position, new Vector3(ndcX / m_camera.Project.M11,
+                ndcY / m_camera.Project.M22, 1.0f));
+
+
+            Shape result = null;
+            float result_distance = float.MaxValue;
+
+            foreach (Shape item in m_shapes_list)
+            {
+                if (item.Collider is null) continue;
+                if (item.Collider.IsPicked is false) continue;
+
+                if (ray.Intersects(item.Collider, out float distance) is true)
+                {
+                    if (distance < result_distance)
+                    {
+                        result_distance = distance;
+                        result = item;
+                    }
+                }
+            }
+
+            return result;
         }
 
         public static Camera Camera
