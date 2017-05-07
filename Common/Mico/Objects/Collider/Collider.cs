@@ -33,6 +33,16 @@ namespace Mico.Objects
             }
         }
 
+        public bool Intersects(Ray ray)
+        {
+            return ray.Intersects(this);
+        }
+
+        public bool Intersects(Ray ray,out float distance)
+        {
+            return ray.Intersects(this, out distance);
+        }
+
         public Vector3 Center
         {
             get => m_center;

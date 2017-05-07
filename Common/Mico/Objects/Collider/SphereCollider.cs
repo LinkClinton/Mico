@@ -51,6 +51,12 @@ namespace Mico.Objects
             m_center = m_center + translation;
         }
 
+        public override string ToString()
+        {
+            return m_center.X + " " + m_center.Y + " " + m_center.Z + Environment.NewLine
+                + m_radius + Environment.NewLine;
+        }
+
         public static SphereCollider Transform(SphereCollider collider, Matrix4x4 matrix)
         {
             SphereCollider result = new SphereCollider();

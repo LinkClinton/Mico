@@ -195,6 +195,13 @@ namespace Mico.Objects
             m_center += translation;
         }
 
+        public override string ToString()
+        {
+            return m_center.X + " " + m_center.Y + " " + m_center.Z + Environment.NewLine
+                + m_radius.X + " " + m_radius.Y + " " + m_radius.Z + Environment.NewLine
+                + m_rotate.X + " " + m_rotate.Y + " " + m_rotate.Z + " " + m_rotate.W + Environment.NewLine;
+        }
+
         public BoxCollider()
         {
             m_radius = Vector3.One;
