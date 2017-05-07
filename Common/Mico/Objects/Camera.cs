@@ -40,5 +40,9 @@ namespace Mico.Objects
             get => m_project;
             set => m_project = value;
         }
+
+        public static float NdcX(float x, float width) => 2.0f * x / width - 1.0f;
+
+        public static float NdcY(float y, float height) => -2.0f * y / height + 1.0f;
     }
 }

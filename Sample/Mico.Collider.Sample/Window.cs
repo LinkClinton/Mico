@@ -96,8 +96,8 @@ namespace Mico.Collider.Sample
 
         public void OnMouseDown()
         {
-            Cube cube = Micos.Pick(2.0f * MousePos.X / (Width * Direct3D.DpiScale) - 1.0f,
-               -2.0f * MousePos.Y / (Height * Direct3D.DpiScale) + 1.0f) as Cube;
+            Cube cube = Micos.Pick(Camera.NdcX(MousePos.X, Width * Direct3D.DpiScale),
+                Camera.NdcY(MousePos.Y, Height * Direct3D.DpiScale)) as Cube;
 
             if (cube is null) return;
             Micos.Remove(cube);
@@ -170,6 +170,8 @@ namespace Mico.Collider.Sample
                     PostQuitMessage(0);
                     break;
                 case MessageType.SizeChange:
+                    Width = (int)(Message.LowWord(lParam) / Direct3D.DpiScale);
+                    Height = (int)(Message.HighWord(lParam) / Direct3D.DpiScale);
                     break;
                 case MessageType.Quit:
                     break;
