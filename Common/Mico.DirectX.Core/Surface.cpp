@@ -101,6 +101,23 @@ void SurfaceCreate(Surface** source, HWND hwnd, bool windowed, Manager* manager)
 
 	This->surfaceHWND = hwnd;
 
+	D2D1_BITMAP_PROPERTIES1 bitmapProperties =
+		D2D1::BitmapProperties1(
+			D2D1_BITMAP_OPTIONS_TARGET | D2D1_BITMAP_OPTIONS_CANNOT_DRAW,
+			D2D1::PixelFormat(DXGI_FORMAT_UNKNOWN, D2D1_ALPHA_MODE_PREMULTIPLIED),
+			manager->dpiX,
+			manager->dpiY
+		);
+
+	IDXGISurface* Surface = nullptr;
+	result = This->swapchain->GetBuffer(0, IID_PPV_ARGS(&Surface));
+
+	DEBUG_RESULT(DEBUG_DXGI "SwapChain getbuffer failed");
+
+	result = manager->context2d->CreateBitmapFromDxgiSurface(Surface,
+		&bitmapProperties, &This->surfaceTarget);
+
+	DEBUG_RESULT(DEBUG_DIRECT2D "Create Bitmap to render failed");
 }
 
 void SurfaceDestory(Surface* source) 

@@ -76,6 +76,26 @@ void ManagerCreate(Manager** source)
 
 	This->d2d1factory->GetDesktopDpi(&This->dpiX, &This->dpiY);
 
+	ID3D11RasterizerState* rasterizer_state = nullptr;
+	D3D11_RASTERIZER_DESC desc;
+
+	desc.FillMode = D3D11_FILL_SOLID;
+	desc.CullMode = D3D11_CULL_NONE;
+	desc.FrontCounterClockwise = FALSE;
+	desc.DepthBias = 0;
+	desc.SlopeScaledDepthBias = 0.0f;
+	desc.DepthBiasClamp = 0.0f;
+	desc.DepthClipEnable = TRUE;
+	desc.ScissorEnable = FALSE;
+	desc.MultisampleEnable = FALSE;
+	desc.AntialiasedLineEnable = FALSE;
+
+	result = This->device3d->CreateRasterizerState(&desc, &rasterizer_state);
+
+	DEBUG_RESULT(DEBUG_DIRECT3D "Create RasterizerState failed");
+
+	This->context3d->RSSetState(rasterizer_state);
+
 };
 
 void ManagerDestory(Manager* source)
@@ -110,48 +130,7 @@ void ManagerSetSurface(Manager* source, Surface* surface)
 	ViewPort.TopLeftY = 0.f;
 	This.context3d->RSSetViewports(1, &ViewPort);
 
-	ID3D11RasterizerState* rasterizer_state = nullptr;
-	D3D11_RASTERIZER_DESC desc;
-
-	desc.FillMode = D3D11_FILL_SOLID;
-	desc.CullMode = D3D11_CULL_NONE;
-	desc.FrontCounterClockwise = FALSE;
-	desc.DepthBias = 0;
-	desc.SlopeScaledDepthBias = 0.0f;
-	desc.DepthBiasClamp = 0.0f;
-	desc.DepthClipEnable = TRUE;
-	desc.ScissorEnable = FALSE;
-	desc.MultisampleEnable = FALSE;
-	desc.AntialiasedLineEnable = FALSE;
-	
-	result = This.device3d->CreateRasterizerState(&desc, &rasterizer_state);
-
-	DEBUG_RESULT(DEBUG_DIRECT3D "Create RasterizerState failed");
-
-	This.context3d->RSSetState(rasterizer_state);
-
-
-	D2D1_BITMAP_PROPERTIES1 bitmapProperties =
-		D2D1::BitmapProperties1(
-			D2D1_BITMAP_OPTIONS_TARGET | D2D1_BITMAP_OPTIONS_CANNOT_DRAW,
-			D2D1::PixelFormat(DXGI_FORMAT_UNKNOWN, D2D1_ALPHA_MODE_PREMULTIPLIED),
-			This.dpiX,
-			This.dpiY
-		);
-
-	IDXGISurface* Surface = nullptr;
-	result = This.currentChain->GetBuffer(0, IID_PPV_ARGS(&Surface));
-
-	DEBUG_RESULT(DEBUG_DXGI "SwapChain getbuffer failed");
-
-	ID2D1Bitmap1* TargetBitmap = nullptr;
-
-	result = This.context2d->CreateBitmapFromDxgiSurface(Surface,
-		&bitmapProperties, &TargetBitmap);
-
-	DEBUG_RESULT(DEBUG_DIRECT2D "Create Bitmap to render failed");
-
-	This.context2d->SetTarget(TargetBitmap);
+	This.context2d->SetTarget(surface->surfaceTarget);
 
 }
 

@@ -153,6 +153,8 @@ public:
 	ID3D11RenderTargetView* surfaceRTV;
 	ID3D11DepthStencilView* surfaceDSV;
 
+	ID2D1Bitmap1*			surfaceTarget;
+
 	HWND surfaceHWND;
 
 	~Surface();

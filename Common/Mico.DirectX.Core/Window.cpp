@@ -17,6 +17,8 @@ EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 const float default_dpix = 96.0f;
 const float default_dpiy = 96.0f;
 
+HINSTANCE GetHinstance() { return HINST_THISCOMPONENT; };
+
 HWND CreateWindow(LPCWSTR Title, LPCWSTR Ico,
 	int Width, int Height, WNDPROC proc)
 {
