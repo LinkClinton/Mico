@@ -110,7 +110,7 @@ namespace Mico.Collider.Sample
 
         public void OnRender()
         {
-            Direct3D.Clear(new TVector4(1, 1, 1, 1));
+            Direct3D.Clear();
             Micos.Exports();
             Direct3D.DrawText(fps.Fps.ToString(), new TVector2(0, 0), font, brush);
             Direct3D.DrawText("Click cube to destory it!", new TVector2(0, font.Size),

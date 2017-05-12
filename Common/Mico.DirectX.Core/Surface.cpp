@@ -120,6 +120,13 @@ void SurfaceCreate(Surface** source, HWND hwnd, bool windowed, Manager* manager)
 	DEBUG_RESULT(DEBUG_DIRECT2D "Create Bitmap to render failed");
 }
 
+void SurfaceResize(Surface* source, float width, float height)
+{
+	This.swapchain->ResizeBuffers(1, (UINT)width, (UINT)height, DXGI_FORMAT_R8G8B8A8_UNORM, 0);
+	throw "WTF";
+	//Need Fix
+}
+
 void SurfaceDestory(Surface* source) 
 {
 	if (source == nullptr) return;

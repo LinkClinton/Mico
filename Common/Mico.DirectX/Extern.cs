@@ -50,7 +50,7 @@ namespace Mico.DirectX
         static extern void ManagerSetSurface(IntPtr source, IntPtr surface);
 
         [DllImport(Extern.DLLName)]
-        static extern void ManagerClear(IntPtr source, TVector4 color);
+        static extern void ManagerClear(IntPtr source);
 
         [DllImport(Extern.DLLName)]
         static extern void ManagerPresent(IntPtr source);
@@ -119,6 +119,9 @@ namespace Mico.DirectX
         [DllImport(Extern.DLLName)]
         static extern void SurfaceCreate(out IntPtr source, IntPtr hwnd, 
             bool windowed, IntPtr manager);
+
+        [DllImport(Extern.DLLName)]
+        static extern void SurfaceResize(IntPtr source, float width, float height);
 
         [DllImport(Extern.DLLName)]
         static extern void SurfaceDestory(IntPtr source);

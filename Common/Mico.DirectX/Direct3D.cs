@@ -34,8 +34,8 @@ namespace Mico.DirectX
         /// Clear Surface
         /// </summary>
         /// <param name="Color">Color</param>
-        public static void Clear(TVector4 Color)
-            => ManagerClear(source, Color);
+        public static void Clear()
+            => ManagerClear(source);
 
         /// <summary>
         /// Present Surface

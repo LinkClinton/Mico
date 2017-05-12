@@ -134,9 +134,9 @@ void ManagerSetSurface(Manager* source, Surface* surface)
 
 }
 
-void ManagerClear(Manager* source, D2D1::ColorF* color)
+void ManagerClear(Manager* source)
 {
-	float rgba[4] = { color->r,color->g,color->b,color->a };
+	float rgba[4] = { 1,1,1,1 };
 
 	DEBUG_BOOL(This.currentRTV == nullptr, DEBUG_MANAGER "Clear failed, Surface's RTV is not set");
 	DEBUG_BOOL(This.currentDSV == nullptr, DEBUG_MANAGER "Clear failed, Surface's DSV is not set");

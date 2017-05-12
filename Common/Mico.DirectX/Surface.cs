@@ -24,7 +24,13 @@ namespace Mico.DirectX
         ~Surface() => SurfaceDestory(source);
 
 
-
+        /// <summary>
+        /// Resize Buffer
+        /// </summary>
+        /// <param name="Width">new Width</param>
+        /// <param name="Height">new Height</param>
+        public void Resize(float Width, float Height)
+            => SurfaceResize(source, Width, Height);
 
 
         public static implicit operator IntPtr(Surface surface)

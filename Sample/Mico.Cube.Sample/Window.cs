@@ -62,7 +62,7 @@ namespace Mico.Cube.Sample
 
         public void OnRender()
         {
-            Direct3D.Clear(new TVector4(1, 1, 1, 1));
+            Direct3D.Clear();
             Micos.Exports();
             Direct3D.Present();
         }
