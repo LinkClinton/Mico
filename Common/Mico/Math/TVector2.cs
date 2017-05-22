@@ -10,7 +10,7 @@ namespace Mico.Math
 {
 
     [StructLayout(LayoutKind.Sequential)]
-    public class TVector2
+    public struct TVector2
     {
         float m_x;
         float m_y;

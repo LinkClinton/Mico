@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 namespace Mico.Math
 {
     [StructLayout(LayoutKind.Sequential)]
-    public class TSize
+    public struct TSize
     {
         float m_with;
         float m_height;

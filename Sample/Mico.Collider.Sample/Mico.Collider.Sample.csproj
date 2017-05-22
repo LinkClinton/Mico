@@ -8,7 +8,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>Mico.Collider.Sample</RootNamespace>
     <AssemblyName>Mico.Collider.Sample</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -51,7 +51,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cube.cs" />
-    <Compile Include="Message.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransformMatrix.cs" />
@@ -63,9 +62,13 @@
     <None Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\Mico.DirectX\Mico.DirectX.csproj">
-      <Project>{bb74337e-b279-4cd5-93bb-c11659d6238a}</Project>
-      <Name>Mico.DirectX</Name>
+    <ProjectReference Include="..\..\..\APILibrary\APILibrary\APILibrary.csproj">
+      <Project>{5359e988-f8fb-4597-9655-9f976b5f1cf5}</Project>
+      <Name>APILibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Presenter\Presenter\Presenter.csproj">
+      <Project>{517b86eb-b3e9-4fa5-8034-c54475dd3009}</Project>
+      <Name>Presenter</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Common\Mico\Mico.csproj">
       <Project>{5809f77e-dbd1-462c-92c1-358cd212fc71}</Project>

@@ -10,7 +10,7 @@ namespace Mico.Cube.Sample
     class Program
     {
         public static TransformMatrix matrix = new TransformMatrix();
-        public static Mico.DirectX.ConstBuffer MatrixBuffer = new Mico.DirectX.ConstBuffer(matrix);
+        public static Presenter.ConstantBuffer<TransformMatrix> MatrixBuffer = new Presenter.ConstantBuffer<TransformMatrix>(matrix);
 
         static void Main(string[] args)
         {

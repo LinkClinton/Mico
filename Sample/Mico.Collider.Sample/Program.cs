@@ -14,8 +14,11 @@ namespace Mico.Collider.Sample
 
         public static TransformMatrix matrix = new TransformMatrix();
         public static TVector4 color = new TVector4(0, 0, 0, 1);
-        public static Mico.DirectX.ConstBuffer MatrixBuffer = new Mico.DirectX.ConstBuffer(matrix);
-        public static Mico.DirectX.ConstBuffer ColorBuffer = new Mico.DirectX.ConstBuffer(color);
+        public static Presenter.ConstantBuffer<TransformMatrix> MatrixBuffer 
+            = new Presenter.ConstantBuffer<TransformMatrix>(matrix);
+
+        public static Presenter.ConstantBuffer<TVector4> ColorBuffer
+            = new Presenter.ConstantBuffer<TVector4>(color);
 
         static void Main(string[] args)
         {

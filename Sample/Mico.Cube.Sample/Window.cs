@@ -10,19 +10,16 @@ using System.Runtime.InteropServices;
 using Mico.Math;
 using Mico.Shapes;
 using Mico.Objects;
-using Mico.DirectX;
 
+using Presenter;
 
 namespace Mico.Cube.Sample
 {
     public partial class Window
     {
-        public delegate IntPtr WndProc(IntPtr Hwnd, uint message,
-            IntPtr wParam, IntPtr lParam);
-
         IntPtr Hwnd;
 
-        event WndProc WindowProc;
+        event APILibrary.Win32.Internal.WndProc WindowProc;
 
         int Width = 800;
         int Height = 600;
@@ -34,19 +31,43 @@ namespace Mico.Cube.Sample
         public Window()
         {
             WindowProc += Window_proc;
-            Hwnd = CreateWindow("Mico", "", Width * (int)Direct3D.DpiScale,
-                Height * (int)Direct3D.DpiScale, WindowProc);
 
-            surface = new Surface(Hwnd);
+            APILibrary.Win32.AppInfo appinfo = new APILibrary.Win32.AppInfo()
+            {
+                style = (uint)(APILibrary.Win32.AppInfoStyle.CS_HREDRAW | APILibrary.Win32.AppInfoStyle.CS_VREDRAW),
+                lpfnWndProc = WindowProc,
+                cbClsExtra = 0,
+                cbWndExtra = 0,
+                hInstance = APILibrary.Win32.Internal.GetModuleHandle(null),
+                hIcon = IntPtr.Zero,
+                hbrBackground = IntPtr.Zero,
+                hCursor = APILibrary.Win32.Internal.LoadCursor(IntPtr.Zero, (uint)APILibrary.Win32.CursorType.IDC_ARROW),
+                lpszClassName = "Mico",
+                lpszMenuName = null
+            };
+
+            APILibrary.Win32.Internal.RegisterAppinfo(ref appinfo);
+
+            Hwnd = APILibrary.Win32.Internal.CreateWindowEx(0, "Mico", "Mico",
+                (uint)APILibrary.Win32.WindowStyles.WS_OVERLAPPEDWINDOW, 0, 0, (int)(Width * Manager.DpiX / 96),
+                (int)(Height * Manager.DpiY / 96), IntPtr.Zero, IntPtr.Zero, appinfo.hInstance, IntPtr.Zero);
+
+            APILibrary.Win32.Internal.ShowWindow(Hwnd, (int)APILibrary.Win32.ShowWindowStyles.SW_NORMAL);
+
+
+            surface = new Surface(Hwnd, true);
             vertex = new VertexShader(@"..\..\Sample\Mico.Cube.Sample\VertexShader.hlsl", "main");
             pixel = new PixelShader(@"..\..\Sample\Mico.Cube.Sample\PixelShader.hlsl", "main");
 
 
-            Direct3D.SetSurface(surface);
-            Direct3D.SetShader(vertex);
-            Direct3D.SetShader(pixel);
-            Direct3D.FillMode = FillMode.Solid;
-            Direct3D.CullMode = CullMode.CullNone;
+            Manager.Surface = surface;
+
+            Manager.VertexShader = vertex as VertexShader;
+            Manager.PixelShader = pixel as PixelShader;
+
+            Manager.FillMode = FillMode.Solid;
+            Manager.CullMode = CullMode.CullNone;
+
             Micos.Camera = new Camera();
 
             Micos.Add(IObject.CreateBox(3, 3, 3));
@@ -62,20 +83,20 @@ namespace Mico.Cube.Sample
 
         public void OnRender()
         {
-            Direct3D.Clear();
+            Manager.ClearObject();
             Micos.Exports();
-            Direct3D.Present();
+            Manager.FlushObject();
         }
 
         public void Run()
         {
-            Message message = new Message();
-            while (message.Type != MessageType.Quit) 
+            APILibrary.Win32.Message message = new APILibrary.Win32.Message();
+            while (message.type != (uint)APILibrary.Win32.WinMsg.WM_QUIT) 
             {
-                if (PeekMessage(out message, IntPtr.Zero, 0, 0, 1))
+                if (APILibrary.Win32.Internal.PeekMessage(out message, IntPtr.Zero, 0, 0, 1))
                 {
-                    TranslateMessage(ref message);
-                    DispatchMessage(ref message);
+                    APILibrary.Win32.Internal.TranslateMessage(ref message);
+                    APILibrary.Win32.Internal.DispatchMessage(ref message);
                 }
                 OnRender();
                 System.Threading.Thread.Sleep(1);
@@ -83,57 +104,17 @@ namespace Mico.Cube.Sample
             }
         }
 
-        [DllImport("Mico.DirectX.Core.dll", CallingConvention = CallingConvention.StdCall,
-             CharSet = CharSet.Auto)]
-        public static extern IntPtr CreateWindow([MarshalAs(UnmanagedType.LPStr)] string Title,
-            [MarshalAs(UnmanagedType.LPStr)]  string Ico, int Width, int Height, WndProc proc);
-
-        [DllImport("user32.dll", CallingConvention = CallingConvention.StdCall)]
-        internal static extern IntPtr DefWindowProc(IntPtr Hwnd, uint message,
-            IntPtr wParam, IntPtr lParam);
-
-        [DllImport("user32.dll")]
-        internal static extern bool PeekMessage(out Message message, IntPtr hwnd,
-           int wMSGfilterMin, int wMsgFilterMax, int wRemoveMsg);
-
-        [DllImport("user32.dll")]
-        internal static extern bool TranslateMessage(ref Message message);
-
-        [DllImport("user32.dll")]
-        internal static extern bool DispatchMessage(ref Message message);
-
-        [DllImport("user32.dll")]
-        internal static extern void PostQuitMessage(int exitCode);
-
-        [DllImport("user32.dll")]
-        internal static extern short GetKeyState(int keyCode);
-
         protected IntPtr Window_proc(IntPtr Hwnd, uint message, IntPtr wParam, IntPtr lParam)
         {
-            MessageType type = (MessageType)message;
+            APILibrary.Win32.WinMsg type = (APILibrary.Win32.WinMsg)message;
             switch (type)
             {
-                case MessageType.Destroy:
-                    PostQuitMessage(0);
-                    break;
-                case MessageType.SizeChange:
-                    break;
-                case MessageType.Quit:
-                    break;
-                case MessageType.KeyDown:
-                    break;
-                case MessageType.KeyUp:
-                    break;
-                case MessageType.MiddleButtonDown:
-                    break;
-                case MessageType.MiddleButtonUp:
-                    break;
-                case MessageType.MouseWheelMove:
+                case APILibrary.Win32.WinMsg.WM_DESTROY:
+                    APILibrary.Win32.Internal.PostQuitMessage(0);
                     break;
                 default:
-                    return DefWindowProc(Hwnd, message, wParam, lParam);
+                    return APILibrary.Win32.Internal.DefWindowProc(Hwnd, message, wParam, lParam);
             }
-
             return IntPtr.Zero;
         }
     }

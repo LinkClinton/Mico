@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 namespace Mico.Math
 {
     [StructLayout(LayoutKind.Sequential)]
-    public class TRect
+    public struct TRect
     {
         float m_left;
         float m_top;

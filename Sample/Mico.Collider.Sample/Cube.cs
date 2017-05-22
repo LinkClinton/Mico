@@ -9,15 +9,16 @@ using System.Numerics;
 using Mico.Math;
 using Mico.Shapes;
 using Mico.Objects;
-using Mico.DirectX;
+
+using Presenter;
 
 namespace Mico.Collider.Sample
 {
     class Cube : Shape
     {
-        static DirectX.Buffer vertexbuffer;
-        static DirectX.Buffer indexbuffer;
-        static DirectX.BufferLayout layout;
+        static Presenter.Buffer vertexbuffer;
+        static Presenter.Buffer indexbuffer;
+        static Presenter.BufferLayout layout;
 
         Vector3 rotate_speed = new Vector3(1, 1, 0);
         Vector3 translation_direct = TVector3.Forward;
@@ -64,17 +65,16 @@ namespace Mico.Collider.Sample
             Program.matrix.view = Micos.Camera;
             Program.matrix.world = Transform;
             Program.matrix.projection = Micos.Camera.Project;
-            Program.MatrixBuffer.Update(Program.matrix);
-            Program.ColorBuffer.Update(color);
+            Program.MatrixBuffer.Update(ref Program.matrix);
+            Program.ColorBuffer.Update(ref color);
 
-          
+            Manager.ConstantBuffer[(Manager.VertexShader, 0)] = Program.MatrixBuffer;
+            Manager.ConstantBuffer[(Manager.PixelShader, 0)] = Program.ColorBuffer;
+            Manager.BufferLayout = layout;
+            Manager.VertexBuffer = vertexbuffer;
+            Manager.IndexBuffer = indexbuffer;
 
-            Direct3D.SetBufferToVertexShader(Program.MatrixBuffer, 0);
-            Direct3D.SetBufferToPixelShader(Program.ColorBuffer, 0);
-            Direct3D.SetBufferLayout(layout);
-            Direct3D.SetBuffer(vertexbuffer);
-            Direct3D.SetBuffer(indexbuffer);
-            Direct3D.DrawIndexed(36, 0);
+            Manager.DrawObjectIndexed(36, 0);
             base.OnExport(Unknown);
         }
 
@@ -116,9 +116,9 @@ namespace Mico.Collider.Sample
             vertex[6] = new Vertex(halfwidth, halfheight, halfdepth);
             vertex[7] = new Vertex(halfwidth, -halfheight, halfdepth);
 
-            vertexbuffer = new VertexBuffer(vertex, vertex.Length, 28);
+            vertexbuffer = new VertexBuffer<Vertex>(vertex);
 
-            indexbuffer = new IndexBuffer(index);
+            indexbuffer = new IndexBuffer<uint>(index);
 
 
         }
@@ -129,8 +129,10 @@ namespace Mico.Collider.Sample
             Transform.Scale = new Vector3(width, height, depth);
 
             Collider = new BoxCollider(new System.Numerics.Vector3(0, 0, 0),
-                new System.Numerics.Vector3(width / 2.0f, height / 2.0f, depth / 2.0f));
-            Collider.IsPicked = true;
+                new System.Numerics.Vector3(width / 2.0f, height / 2.0f, depth / 2.0f))
+            {
+                IsPicked = true
+            };
         }
 
 

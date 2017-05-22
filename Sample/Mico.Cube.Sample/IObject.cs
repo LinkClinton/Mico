@@ -8,7 +8,8 @@ using System.Runtime.InteropServices;
 
 using Mico.Shapes;
 using Mico.Objects;
-using Mico.DirectX;
+
+using Presenter;
 
 namespace Mico.Cube.Sample
 {
@@ -28,22 +29,23 @@ namespace Mico.Cube.Sample
             Program.matrix.view = Micos.Camera;
             Program.matrix.world = Transform;
             Program.matrix.projection = Micos.Camera.Project;
-            Program.MatrixBuffer.Update(Program.matrix);
+            Program.MatrixBuffer.Update(ref Program.matrix);
 
-            Direct3D.SetBufferToVertexShader(Program.MatrixBuffer, 0);
-            Direct3D.SetBufferLayout(layout);
-            Direct3D.SetBuffer(vertexbuffer);
-            Direct3D.SetBuffer(indexbuffer);
-            Direct3D.DrawIndexed(index.Length);
+            Manager.ConstantBuffer[(Manager.VertexShader, 0)] = Program.MatrixBuffer;
+            Manager.BufferLayout = layout;
+            Manager.VertexBuffer = vertexbuffer;
+            Manager.IndexBuffer = indexbuffer;
+            Manager.DrawObjectIndexed(index.Length);
+
             base.OnExport(Unknown);
         }
 
         public Vertex[] vertex;
         public uint[] index;
 
-        public Mico.DirectX.Buffer vertexbuffer;
-        public Mico.DirectX.Buffer indexbuffer;
-        public Mico.DirectX.BufferLayout layout;
+        public Presenter.Buffer vertexbuffer;
+        public Presenter.Buffer indexbuffer;
+        public Presenter.BufferLayout layout;
 
         public IObject()
         {
@@ -113,9 +115,9 @@ namespace Mico.Cube.Sample
                 20,21,22,20,22,23
             };
 
-            result.vertexbuffer = new VertexBuffer(result.vertex, result.vertex.Length, 28);
-            result.indexbuffer = new IndexBuffer(result.index);
-            
+            result.vertexbuffer = new VertexBuffer<Vertex>(result.vertex);
+            result.indexbuffer = new IndexBuffer<uint>(result.index);
+           
             return result;
         }
     }
