@@ -134,8 +134,8 @@ namespace Mico.Collider.Sample
 
             Micos.Exports();
 
-            Manager.PutObject(fps.Fps.ToString(), (0, 0), brush, font);
-            Manager.PutObject("Click cube to destory it!", (0, font.Size), brush, font);
+            Manager.PutText(fps.Fps.ToString(), (0, 0), brush, font);
+            Manager.PutText("Click cube to destory it!", (0, font.Size), brush, font);
 
             Manager.FlushObject();
         }

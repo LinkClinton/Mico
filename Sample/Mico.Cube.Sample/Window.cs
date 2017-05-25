@@ -27,6 +27,7 @@ namespace Mico.Cube.Sample
         Surface surface;
         Shader vertex;
         Shader pixel;
+        Texture texture;
 
         public Window()
         {
@@ -59,6 +60,7 @@ namespace Mico.Cube.Sample
             vertex = new VertexShader(@"..\..\Sample\Mico.Cube.Sample\VertexShader.hlsl", "main");
             pixel = new PixelShader(@"..\..\Sample\Mico.Cube.Sample\PixelShader.hlsl", "main");
 
+            texture = new Texture(@"..\..\Sample\Mico.Cube.Sample\Dream.png");
 
             Manager.Surface = surface;
 
@@ -66,13 +68,16 @@ namespace Mico.Cube.Sample
             Manager.PixelShader = pixel as PixelShader;
 
             Manager.FillMode = FillMode.Solid;
-            Manager.CullMode = CullMode.CullNone;
+            Manager.CullMode = CullMode.CullBack;
+
+            Manager.ShaderResource[(pixel, 0)] = texture;
 
             Micos.Camera = new Camera();
 
-            Micos.Add(IObject.CreateBox(3, 3, 3));
+            Micos.Add(IObject.CreateBox(4, 4, 4));
 
             Micos.Camera.Transform.Position = new Vector3(0, 0, -10);
+            Micos.Camera.Transform.Forward = Vector3.Zero - Micos.Camera.Transform.Position;
 
             Micos.Camera.Project =
                  TMatrix.CreatePerspectiveFieldOfViewLH(

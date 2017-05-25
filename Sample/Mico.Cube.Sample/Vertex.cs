@@ -13,8 +13,9 @@ namespace Mico.Cube.Sample
     {
         public float x, y, z;
         public float r, g, b, a;
+        public float u, v;
 
-        public Vertex(float _x = 0, float _y = 0, float _z = 0)
+        public Vertex(float _x = 0, float _y = 0, float _z = 0, float _u = 0, float _v = 0)
         {
             x = _x;
             y = _y;
@@ -24,6 +25,9 @@ namespace Mico.Cube.Sample
             g = 0;
             b = 0;
             a = 1;
+
+            u = _u;
+            v = _v;
         }
     }
 

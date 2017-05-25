@@ -5,6 +5,7 @@ struct Input
 {
     float3 pos : POSITION;
     float4 color : COLOR;
+    float2 tex : TEXCOORD;
 };
 
 struct Output
@@ -12,6 +13,7 @@ struct Output
     float3 pos : POSITION;
     float4 posH : SV_POSITION;
     float4 color : COLOR;
+    float2 tex : TEXCOORD;
     float3 ori_pos : POSITIONT;
 };
 
@@ -35,6 +37,8 @@ Output main(Input input)
     result.posH = mul(result.posH, (transform.view));
     result.posH = mul(result.posH, (transform.projection));
   
+    result.tex = input.tex;
+
     result.color = input.color;
 
     return result;
