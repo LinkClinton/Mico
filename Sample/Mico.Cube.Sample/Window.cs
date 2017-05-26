@@ -117,6 +117,10 @@ namespace Mico.Cube.Sample
                 case APILibrary.Win32.WinMsg.WM_DESTROY:
                     APILibrary.Win32.Internal.PostQuitMessage(0);
                     break;
+                case APILibrary.Win32.WinMsg.WM_SIZE:
+                    surface?.Reset(APILibrary.Win32.Message.LowWord(lParam),
+                        APILibrary.Win32.Message.HighWord(lParam));
+                    break;
                 default:
                     return APILibrary.Win32.Internal.DefWindowProc(Hwnd, message, wParam, lParam);
             }

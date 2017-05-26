@@ -167,6 +167,8 @@ namespace Mico.Collider.Sample
                 case APILibrary.Win32.WinMsg.WM_SIZE:
                     Width = (int)(APILibrary.Win32.Message.LowWord(lParam) / Manager.AppScale);
                     Height = (int)(APILibrary.Win32.Message.HighWord(lParam) / Manager.AppScale);
+                    surface?.Reset(APILibrary.Win32.Message.LowWord(lParam),
+                        APILibrary.Win32.Message.HighWord(lParam));
                     break;
                 case APILibrary.Win32.WinMsg.WM_MOUSEMOVE:
                     MousePos = new TVector2(APILibrary.Win32.Message.LowWord(lParam), 
