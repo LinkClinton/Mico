@@ -20,10 +20,15 @@ namespace Mico.Collider.Sample
         public static Presenter.ConstantBuffer<TVector4> ColorBuffer
             = new Presenter.ConstantBuffer<TVector4>(color);
 
+        public static Builder.GenericApplication app = new Builder.GenericApplication(null);
+
         static void Main(string[] args)
         {
-            Window window = new Window();
-            window.Run();
+            app.Add(new Window(("Mico.Collider.Sample", (int)(800 * Presenter.Manager.AppScale),
+                (int)(600 * Presenter.Manager.AppScale))));
+
+            app.RunLoop(60);
+
         }
     }
 }
