@@ -66,7 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IObject.cs" />
+    <Compile Include="Cube.cs" />
     <Compile Include="TransformMatrix.cs" />
     <Compile Include="Vertex.cs" />
     <Compile Include="Program.cs" />
@@ -86,18 +86,14 @@
       <Project>{d6e4e0ba-fe87-46a7-8e1e-a1b869c5f72b}</Project>
       <Name>Builder</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Presenter\Presenter\Presenter.csproj">
-      <Project>{517b86eb-b3e9-4fa5-8034-c54475dd3009}</Project>
-      <Name>Presenter</Name>
+    <ProjectReference Include="..\..\..\Presenter\PresenterDX12\PresenterDX12.csproj">
+      <Project>{e0ff994a-36ac-4522-a81b-d85327286ed3}</Project>
+      <Name>PresenterDX12</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Common\Mico\Mico.csproj">
       <Project>{5809f77e-dbd1-462c-92c1-358cd212fc71}</Project>
       <Name>Mico</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="PixelShader.hlsl" />
-    <Content Include="VertexShader.hlsl" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.2">
@@ -110,6 +106,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="shader.hlsl" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

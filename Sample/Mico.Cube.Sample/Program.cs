@@ -11,7 +11,6 @@ namespace Mico.Cube.Sample
     {
         public static TransformMatrix matrix = new TransformMatrix();
         public static Presenter.ConstantBuffer<TransformMatrix> MatrixBuffer = new Presenter.ConstantBuffer<TransformMatrix>(matrix);
-
         public static Builder.GenericApplication app = new Builder.GenericApplication(null);
 
 

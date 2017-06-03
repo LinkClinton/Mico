@@ -14,7 +14,7 @@ using Presenter;
 
 namespace Mico.Collider.Sample
 {
-    class Cube : Shape
+    public class Cube : Shape
     {
         static Presenter.Buffer vertexbuffer;
         static Presenter.Buffer indexbuffer;

@@ -20,30 +20,44 @@ namespace Mico.Cube.Sample
         private Surface surface;
         private Shader vertexshader;
         private Shader pixelshader;
-        private Texture texture;
 
+        private GraphicsPipelineState pipelinestate;
+        private BufferLayout bufferlayout;
+        private ResourceLayout resourcelayout;
 
         public Window((string Title, int Width, int Height) Definition) : base(Definition)
         {
             surface = new Surface(Handle, true);
 
-            vertexshader = new VertexShader(@"..\..\Sample\Mico.Cube.Sample\VertexShader.hlsl", "main");
-            pixelshader = new PixelShader(@"..\..\Sample\Mico.Cube.Sample\PixelShader.hlsl", "main");
-            texture = new Texture(@"..\..\Sample\Mico.Cube.Sample\Dream.png");
+            vertexshader = new VertexShader(@"..\..\Sample\Mico.Cube.Sample\shader.hlsl", "VSmain");
+            pixelshader = new PixelShader(@"..\..\Sample\Mico.Cube.Sample\shader.hlsl", "PSmain");
 
+
+            BufferLayout.Element[] bufferElements
+                = new BufferLayout.Element[3] {
+                    new BufferLayout.Element(){ Tag = "POSITION", Size = BufferLayout.ElementSize.eFloat3 },
+                    new BufferLayout.Element(){ Tag = "COLOR",    Size = BufferLayout.ElementSize.eFlaot4 },
+                    new BufferLayout.Element(){ Tag = "TEXCOORD", Size = BufferLayout.ElementSize.eFloat2 }
+                };
+
+            ResourceLayout.Element[] resouceElements
+                = new ResourceLayout.Element[1]
+                {
+                    new ResourceLayout.Element(ResourceLayout.ResourceType.ConstantBufferView, 0)
+                };
+        
+            bufferlayout = new BufferLayout(bufferElements);
+
+            resourcelayout = new ResourceLayout(resouceElements);
+
+            pipelinestate = new GraphicsPipelineState(vertexshader as VertexShader,
+                pixelshader as PixelShader, bufferlayout, resourcelayout);
+            
             Manager.Surface = surface;
 
-            Manager.VertexShader = vertexshader as VertexShader;
-            Manager.PixelShader = pixelshader as PixelShader;
-
-            Manager.FillMode = FillMode.Solid;
-            Manager.CullMode = CullMode.CullBack;
-
-            PixelShader.Resource[0] = texture;
+            Manager.GraphicsPipelineState = pipelinestate;
 
             Micos.Camera = new Camera();
-
-            Micos.Add(IObject.CreateBox(4, 4, 4));
 
             Micos.Camera.Transform.Position = new Vector3(0, 0, -10);
             Micos.Camera.Transform.Forward = Vector3.Zero - Micos.Camera.Transform.Position;
@@ -52,13 +66,14 @@ namespace Mico.Cube.Sample
                  TMatrix.CreatePerspectiveFieldOfViewLH(
                      (float)System.Math.PI * 0.55f, 800.0f / 600.0f, 1.0f, 2000.0f);
 
+            Micos.Add(new Cube(3, 3, 3));
+
             Show();
         }
 
         public override void OnDestroyed(object sender)
         {
             base.OnDestroyed(sender);
-            Program.app.Destory();
         }
 
         public override void OnUpdate(object sender)
