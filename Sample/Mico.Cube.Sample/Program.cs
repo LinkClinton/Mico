@@ -13,6 +13,8 @@ namespace Mico.Cube.Sample
         public static Presenter.ConstantBuffer<TransformMatrix> MatrixBuffer = new Presenter.ConstantBuffer<TransformMatrix>(matrix);
         public static Builder.GenericApplication app = new Builder.GenericApplication(null);
 
+        public static Presenter.Texture texture = new Presenter.Texture(@"..\..\Sample\Mico.Cube.Sample\Dream.png");
+
 
         static void Main(string[] args)
         {

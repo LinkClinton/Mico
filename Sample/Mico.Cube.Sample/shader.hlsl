@@ -22,10 +22,18 @@ struct Transform
 };
 
 Transform transform : register(b0);
+Texture2D cube_texture : register(t0);
+
+SamplerState Sampler
+{
+    Filter = MIN_MAG_MIP_LINEAR;
+    AddressU = CLAMP;
+    AddressV = CLAMP;
+};
 
 PsInput VSmain(VsInput input)
 {
-    PsInput result;
+    PsInput result = (PsInput) 0;
 
     result.position = mul(float4(input.position, 1.f), transform.world);
     result.position = mul(result.position, transform.view);
@@ -37,7 +45,9 @@ PsInput VSmain(VsInput input)
     return result;
 }
 
+
+
 float4 PSmain(PsInput input) : SV_TARGET
 {
-    return input.color;
+    return cube_texture.Sample(Sampler, input.tex);
 }

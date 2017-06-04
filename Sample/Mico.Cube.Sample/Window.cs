@@ -31,19 +31,20 @@ namespace Mico.Cube.Sample
 
             vertexshader = new VertexShader(@"..\..\Sample\Mico.Cube.Sample\shader.hlsl", "VSmain");
             pixelshader = new PixelShader(@"..\..\Sample\Mico.Cube.Sample\shader.hlsl", "PSmain");
-
+           
 
             BufferLayout.Element[] bufferElements
-                = new BufferLayout.Element[3] {
+                = new BufferLayout.Element[] {
                     new BufferLayout.Element(){ Tag = "POSITION", Size = BufferLayout.ElementSize.eFloat3 },
                     new BufferLayout.Element(){ Tag = "COLOR",    Size = BufferLayout.ElementSize.eFlaot4 },
                     new BufferLayout.Element(){ Tag = "TEXCOORD", Size = BufferLayout.ElementSize.eFloat2 }
                 };
 
             ResourceLayout.Element[] resouceElements
-                = new ResourceLayout.Element[1]
+                = new ResourceLayout.Element[]
                 {
-                    new ResourceLayout.Element(ResourceLayout.ResourceType.ConstantBufferView, 0)
+                    new ResourceLayout.Element(ResourceLayout.ResourceType.ConstantBufferView, 0),
+                    new ResourceLayout.Element(ResourceLayout.ResourceType.ShaderResourceView, 0)
                 };
         
             bufferlayout = new BufferLayout(bufferElements);
