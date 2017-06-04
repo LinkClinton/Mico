@@ -39,17 +39,24 @@ namespace Mico.Collider.Sample
         public Window((string Title, int Width, int Height) Definition) : base(Definition)
         {
             surface = new Surface(Handle, true);
+
             vertexshader = new VertexShader(@"ColliderVertexShader.hlsl", "main");
             pixelshader = new PixelShader(@"ColliderPixelShader.hlsl", "main");
+
+            BufferLayout bufferlayout = new BufferLayout(
+                new BufferLayout.Element[]
+                {
+                    new BufferLayout.Element() { Tag = "POSITION", Size = BufferLayout.ElementSize.eFloat3 },
+                    new BufferLayout.Element() { Tag = "COLOR",    Size = BufferLayout.ElementSize.eFlaot4 }
+                });
 
             Micos.Add(fps = new FpsCounter());
 
             Manager.Surface = surface;
-            Manager.VertexShader = vertexshader as VertexShader;
-            Manager.PixelShader = pixelshader as PixelShader;
 
-            Manager.FillMode = FillMode.Wireframe;
-            Manager.CullMode = CullMode.CullNone;
+            Manager.GraphicsPipelineState = new GraphicsPipelineState(vertexshader as VertexShader,
+                pixelshader as PixelShader, bufferlayout);
+          
 
             Micos.Camera = new Camera();
             Micos.Camera.Transform.Position = new Vector3(0, 0, -100);

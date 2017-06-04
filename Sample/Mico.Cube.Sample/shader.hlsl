@@ -49,5 +49,6 @@ PsInput VSmain(VsInput input)
 
 float4 PSmain(PsInput input) : SV_TARGET
 {
+    //return float4(1, 0, 0, 1);
     return cube_texture.Sample(Sampler, input.tex);
 }

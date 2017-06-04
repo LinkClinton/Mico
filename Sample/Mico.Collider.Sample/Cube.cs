@@ -18,7 +18,6 @@ namespace Mico.Collider.Sample
     {
         static Presenter.Buffer vertexbuffer;
         static Presenter.Buffer indexbuffer;
-        static Presenter.BufferLayout layout;
 
         Vector3 rotate_speed = new Vector3(1, 1, 0);
         Vector3 translation_direct = TVector3.Forward;
@@ -68,9 +67,9 @@ namespace Mico.Collider.Sample
             Program.MatrixBuffer.Update(ref Program.matrix);
             Program.ColorBuffer.Update(ref color);
 
-            Manager.ConstantBuffer[(Manager.VertexShader, 0)] = Program.MatrixBuffer;
-            Manager.ConstantBuffer[(Manager.PixelShader, 0)] = Program.ColorBuffer;
-            Manager.BufferLayout = layout;
+            Manager.ConstantBuffer[(Manager.GraphicsPipelineState.VertexShader, 0)] = Program.MatrixBuffer;
+            Manager.ConstantBuffer[(Manager.GraphicsPipelineState.PixelShader, 0)] = Program.ColorBuffer;
+            
             Manager.VertexBuffer = vertexbuffer;
             Manager.IndexBuffer = indexbuffer;
 
@@ -80,21 +79,6 @@ namespace Mico.Collider.Sample
 
         static Cube()
         { 
-            BufferLayout.Element[] element = new BufferLayout.Element[2];
-
-            element[0] = new BufferLayout.Element()
-            {
-                Size = BufferLayout.ElementSize.eFloat3,
-                Tag = "POSITION"
-            };
-            element[1] = new BufferLayout.Element()
-            {
-                Size = BufferLayout.ElementSize.eFlaot4,
-                Tag = "COLOR"
-            };
-
-            layout = new BufferLayout(element);
-
             uint[] index = new uint[36] {
                 0,1,2,0,2,3,4,6,5,4,7,6,
                 4,5,1,4,1,0,3,2,6,3,6,7,
@@ -128,8 +112,8 @@ namespace Mico.Collider.Sample
 
             Transform.Scale = new Vector3(width, height, depth);
 
-            Collider = new BoxCollider(new System.Numerics.Vector3(0, 0, 0),
-                new System.Numerics.Vector3(width / 2.0f, height / 2.0f, depth / 2.0f))
+            Collider = new BoxCollider(new Vector3(0, 0, 0),
+                new Vector3(width / 2.0f, height / 2.0f, depth / 2.0f))
             {
                 IsPicked = true
             };
