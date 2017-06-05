@@ -44,12 +44,12 @@ namespace Mico.Cube.Sample
                 = new ResourceLayout.Element[]
                 {
                     new ResourceLayout.Element(ResourceLayout.ResourceType.ConstantBufferView, 0),
-                    new ResourceLayout.Element(ResourceLayout.ResourceType.ShaderResourceView, 0)
+                    new ResourceLayout.Element(null,new ResourceLayout.SubResource(0,1))
                 };
         
             bufferlayout = new BufferLayout(bufferElements);
 
-            resourcelayout = new ResourceLayout(resouceElements);
+            resourcelayout = new ResourceLayout(resouceElements, 1);
 
             pipelinestate = new GraphicsPipelineState(vertexshader as VertexShader,
                 pixelshader as PixelShader, bufferlayout, resourcelayout);

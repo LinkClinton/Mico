@@ -24,7 +24,7 @@ struct Transform
 Transform transform : register(b0);
 Texture2D cube_texture : register(t0);
 
-SamplerState Sampler
+SamplerState Sampler : register(s0)
 {
     Filter = MIN_MAG_MIP_LINEAR;
     AddressU = CLAMP;
@@ -49,6 +49,5 @@ PsInput VSmain(VsInput input)
 
 float4 PSmain(PsInput input) : SV_TARGET
 {
-    //return float4(1, 0, 0, 1);
     return cube_texture.Sample(Sampler, input.tex);
 }
