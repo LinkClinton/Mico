@@ -22,6 +22,7 @@ struct Transform
 };
 
 Transform transform : register(b0);
+
 Texture2D cube_texture : register(t0);
 
 SamplerState Sampler : register(s0)

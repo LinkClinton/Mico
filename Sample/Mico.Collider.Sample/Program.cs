@@ -13,21 +13,19 @@ namespace Mico.Collider.Sample
     {
 
         public static TransformMatrix matrix = new TransformMatrix();
-        public static TVector4 color = new TVector4(0, 0, 0, 1);
         public static Presenter.ConstantBuffer<TransformMatrix> MatrixBuffer 
             = new Presenter.ConstantBuffer<TransformMatrix>(matrix);
 
-        public static Presenter.ConstantBuffer<TVector4> ColorBuffer
-            = new Presenter.ConstantBuffer<TVector4>(color);
-
         public static Builder.GenericApplication app = new Builder.GenericApplication(null);
+
+        public static string AppTitle => "Mico.Collider.Sample";
 
         static void Main(string[] args)
         {
-            app.Add(new Window(("Mico.Collider.Sample", (int)(800 * Presenter.Manager.AppScale),
+            app.Add(new Window((AppTitle, (int)(800 * Presenter.Manager.AppScale),
                 (int)(600 * Presenter.Manager.AppScale))));
-
-            app.RunLoop(60);
+          
+            app.RunLoop(0);
 
         }
     }

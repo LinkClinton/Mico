@@ -25,6 +25,8 @@ namespace Mico.Cube.Sample
         private BufferLayout bufferlayout;
         private ResourceLayout resourcelayout;
 
+        private FpsCounter fps;
+
         public Window((string Title, int Width, int Height) Definition) : base(Definition)
         {
             surface = new Surface(Handle, true);
@@ -35,15 +37,15 @@ namespace Mico.Cube.Sample
 
             BufferLayout.Element[] bufferElements
                 = new BufferLayout.Element[] {
-                    new BufferLayout.Element(){ Tag = "POSITION", Size = BufferLayout.ElementSize.eFloat3 },
-                    new BufferLayout.Element(){ Tag = "COLOR",    Size = BufferLayout.ElementSize.eFlaot4 },
-                    new BufferLayout.Element(){ Tag = "TEXCOORD", Size = BufferLayout.ElementSize.eFloat2 }
+                    new BufferLayout.Element(){ Tag = "POSITION", Size = ElementSize.eFloat3 },
+                    new BufferLayout.Element(){ Tag = "COLOR",    Size = ElementSize.eFlaot4 },
+                    new BufferLayout.Element(){ Tag = "TEXCOORD", Size = ElementSize.eFloat2 }
                 };
 
             ResourceLayout.Element[] resouceElements
                 = new ResourceLayout.Element[]
                 {
-                    new ResourceLayout.Element(ResourceLayout.ResourceType.ConstantBufferView, 0),
+                    new ResourceLayout.Element(ResourceType.ConstantBufferView, 0),
                     new ResourceLayout.Element(null,new ResourceLayout.SubResource(0,1))
                 };
         
@@ -69,6 +71,8 @@ namespace Mico.Cube.Sample
 
             Micos.Add(new Cube(3, 3, 3));
 
+            Micos.Add(fps = new FpsCounter());
+
             Show();
         }
 
@@ -82,6 +86,8 @@ namespace Mico.Cube.Sample
             Manager.ClearObject();
 
             Micos.Exports();
+
+            SetTitle(Program.AppTitle + " FPS: " + fps.Fps);
 
             Manager.FlushObject();
 

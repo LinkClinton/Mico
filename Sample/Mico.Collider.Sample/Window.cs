@@ -29,7 +29,7 @@ namespace Mico.Collider.Sample
 
         public static int INT => random.Next(1, 70);
         public static float FLOAT => (float)random.NextDouble();
-
+        
         Surface surface;
         Shader vertexshader;
         Shader pixelshader;
@@ -40,14 +40,21 @@ namespace Mico.Collider.Sample
         {
             surface = new Surface(Handle, true);
 
-            vertexshader = new VertexShader(@"ColliderVertexShader.hlsl", "main");
-            pixelshader = new PixelShader(@"ColliderPixelShader.hlsl", "main");
+            vertexshader = new VertexShader(@"..\..\Sample\Mico.Collider.Sample\shader.hlsl", "VSmain");
+            pixelshader = new PixelShader(@"..\..\Sample\Mico.Collider.Sample\shader.hlsl", "PSmain");
 
             BufferLayout bufferlayout = new BufferLayout(
                 new BufferLayout.Element[]
                 {
-                    new BufferLayout.Element() { Tag = "POSITION", Size = BufferLayout.ElementSize.eFloat3 },
-                    new BufferLayout.Element() { Tag = "COLOR",    Size = BufferLayout.ElementSize.eFlaot4 }
+                    new BufferLayout.Element() { Tag = "POSITION", Size = ElementSize.eFloat3 },
+                    new BufferLayout.Element() { Tag = "COLOR",    Size = ElementSize.eFlaot4 }
+                });
+
+            ResourceLayout resourcelayout = new ResourceLayout(
+                new ResourceLayout.Element[]
+                {
+                    new ResourceLayout.Element(ResourceType.ConstantBufferView,0),
+                    new ResourceLayout.Element(ResourceType.ConstantBufferView,1)
                 });
 
             Micos.Add(fps = new FpsCounter());
@@ -55,20 +62,39 @@ namespace Mico.Collider.Sample
             Manager.Surface = surface;
 
             Manager.GraphicsPipelineState = new GraphicsPipelineState(vertexshader as VertexShader,
-                pixelshader as PixelShader, bufferlayout);
+                pixelshader as PixelShader, bufferlayout, resourcelayout);
           
 
             Micos.Camera = new Camera();
             Micos.Camera.Transform.Position = new Vector3(0, 0, -100);
 
-            for (int i = 0; i < CubeCount; i++)
+            /*for (int i = 0; i < CubeCount; i++)
             {
                 Cube cube = new Cube(10, 10, 10);
                 cube.Transform.Position = new Vector3(INT, INT, INT);
                 cube.Forward = Vector3.Normalize(new Vector3(INT, INT, 0));
                 cube.RotateSpeed = new Vector3(FLOAT, FLOAT, 0);
                 Micos.Add(cube);
-            }
+            }*/
+
+            Cube cube1 = new Cube(10, 10, 10)
+            {
+                Color = new TVector4(1, 0, 0, 1), RotateSpeed = new Vector3(0, 0, 0),
+                Speed = 0
+            };
+            cube1.Transform.Position = new Vector3(0, 0, 0);
+
+            Cube cube2 = new Cube(10, 10, 10)
+            {
+                Color = new TVector4(0, 0, 0, 1),
+                RotateSpeed = new Vector3(0, 0, 0),
+                Speed = 0
+            };
+
+            cube2.Transform.Position = new Vector3(0, 0, 20);
+
+            
+            Micos.Add(cube2); Micos.Add(cube1);
 
             Micos.Camera.Project = TMatrix.CreatePerspectiveFieldOfViewLH(
                    (float)System.Math.PI * 0.55f, 800.0f / 600.0f, 1.0f, 2000.0f);
@@ -94,11 +120,7 @@ namespace Mico.Collider.Sample
 
             Micos.Exports();
 
-            Fontface fontface = Fontface.Context[("Consolas", 12 * Manager.AppScale, 400)];
-            Brush brush = Brush.Context[(0, 0, 0, 1)];
-
-            Manager.PutText(fps.Fps.ToString(), (0, 0), brush, fontface);
-            Manager.PutText("Click cube to destory it!", (0, fontface.Size), brush, fontface);
+            SetTitle(Program.AppTitle + " FPS: " + fps.FpsAverage);
 
             Manager.FlushObject();
 

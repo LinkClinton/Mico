@@ -19,11 +19,24 @@ namespace Mico.Collider.Sample
         static Presenter.Buffer vertexbuffer;
         static Presenter.Buffer indexbuffer;
 
+        struct PassObject
+        {
+            public Matrix4x4 world;
+            public Vector4 color;
+        }
+
+        PassObject passObject = new PassObject()
+        {
+            world = Matrix4x4.Identity,
+            color = new Vector4(Window.FLOAT, Window.FLOAT, Window.FLOAT, 1)
+        };
+
+        ConstantBuffer<PassObject> passObjectBufefr = new ConstantBuffer<PassObject>
+            (new PassObject());
+
         Vector3 rotate_speed = new Vector3(1, 1, 0);
         Vector3 translation_direct = TVector3.Forward;
         float speed = 20;
-
-        TVector4 color = new TVector4(Window.FLOAT, Window.FLOAT, Window.FLOAT, 1);
 
         protected override void OnUpdate(object Unknown = null)
         {
@@ -50,7 +63,7 @@ namespace Mico.Collider.Sample
         protected override void OnCollide(Shape target)
         {
             translation_direct = Vector3.Normalize(Transform.Position - target.Transform.Position);
-            color = new TVector4(Window.FLOAT, Window.FLOAT, Window.FLOAT, 1);
+            passObject.color = new TVector4(Window.FLOAT, Window.FLOAT, Window.FLOAT, 1);
             base.OnCollide(target);
         }
 
@@ -62,18 +75,21 @@ namespace Mico.Collider.Sample
         protected override void OnExport(object Unknown = null)
         {
             Program.matrix.view = Micos.Camera;
-            Program.matrix.world = Transform;
             Program.matrix.projection = Micos.Camera.Project;
             Program.MatrixBuffer.Update(ref Program.matrix);
-            Program.ColorBuffer.Update(ref color);
 
-            Manager.ConstantBuffer[(Manager.GraphicsPipelineState.VertexShader, 0)] = Program.MatrixBuffer;
-            Manager.ConstantBuffer[(Manager.GraphicsPipelineState.PixelShader, 0)] = Program.ColorBuffer;
-            
+            passObject.world = Transform;
+
+            passObjectBufefr.Update(ref passObject);
+
+            ResourceLayout.InputSlot[0] = Program.MatrixBuffer;
+            ResourceLayout.InputSlot[1] = passObjectBufefr;
+
             Manager.VertexBuffer = vertexbuffer;
             Manager.IndexBuffer = indexbuffer;
 
             Manager.DrawObjectIndexed(36, 0);
+
             base.OnExport(Unknown);
         }
 
@@ -140,8 +156,8 @@ namespace Mico.Collider.Sample
 
         public TVector4 Color
         {
-            get => color;
-            set => color = value;
+            get => passObject.color;
+            set => passObject.color = value;
         }
 
 

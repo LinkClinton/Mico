@@ -14,6 +14,9 @@ namespace Mico.Objects
         float pass_time = 0;
         int fps = 0;
 
+        long fps_time = 0;
+        long count = 1;
+
         public FpsCounter()
         {
         }
@@ -28,6 +31,9 @@ namespace Mico.Objects
                 fps = export_cnt;
                 export_cnt = 0;
                 pass_time -= 1.0f;
+
+                fps_time += fps;
+                count++;
             }
 
             base.OnUpdate(Unknown);
@@ -40,6 +46,7 @@ namespace Mico.Objects
             base.OnExport(Unknown);
         }
 
+        public float FpsAverage => (fps_time / (float)count);
 
         public int Fps
         {

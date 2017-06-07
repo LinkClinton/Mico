@@ -82,8 +82,12 @@ namespace Mico.Cube.Sample
             //Presenter.ResourceHeap heap = new Presenter.ResourceHeap(1);
             //heap.AddResource(Program.MatrixBuffer);
 
-            Presenter.Manager.ResourceInput[0] = Program.MatrixBuffer;
-            Presenter.Manager.ResourceInput[1] = Program.heap;
+            Presenter.ResourceLayout.InputSlot[0] = Program.MatrixBuffer;
+            Presenter.ResourceLayout.InputSlot[1] = Program.heap;
+
+            //Presenter.VertexShader.ExConstantBuffer[0] = Program.MatrixBuffer;
+            //Presenter.PixelShader.ExResource[0] = Program.texture;
+
             Presenter.Manager.VertexBuffer = vertexbuffer;
             Presenter.Manager.IndexBuffer = indexbuffer;
             

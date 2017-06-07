@@ -13,7 +13,6 @@ namespace Mico.Collider.Sample
     [StructLayout(LayoutKind.Sequential)]
     public struct TransformMatrix
     {
-        public Matrix4x4 world;
         public Matrix4x4 view;
         public Matrix4x4 projection;
     }
