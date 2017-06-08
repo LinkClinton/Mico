@@ -68,33 +68,16 @@ namespace Mico.Collider.Sample
             Micos.Camera = new Camera();
             Micos.Camera.Transform.Position = new Vector3(0, 0, -100);
 
-            /*for (int i = 0; i < CubeCount; i++)
+            Program.matrix.eyePos = new Vector4(Micos.Camera.Transform.Position, 1);
+
+            for (int i = 0; i < CubeCount; i++)
             {
                 Cube cube = new Cube(10, 10, 10);
                 cube.Transform.Position = new Vector3(INT, INT, INT);
                 cube.Forward = Vector3.Normalize(new Vector3(INT, INT, 0));
                 cube.RotateSpeed = new Vector3(FLOAT, FLOAT, 0);
                 Micos.Add(cube);
-            }*/
-
-            Cube cube1 = new Cube(10, 10, 10)
-            {
-                Color = new TVector4(1, 0, 0, 1), RotateSpeed = new Vector3(0, 0, 0),
-                Speed = 0
-            };
-            cube1.Transform.Position = new Vector3(0, 0, 0);
-
-            Cube cube2 = new Cube(10, 10, 10)
-            {
-                Color = new TVector4(0, 0, 0, 1),
-                RotateSpeed = new Vector3(0, 0, 0),
-                Speed = 0
-            };
-
-            cube2.Transform.Position = new Vector3(0, 0, 20);
-
-            
-            Micos.Add(cube2); Micos.Add(cube1);
+            }
 
             Micos.Camera.Project = TMatrix.CreatePerspectiveFieldOfViewLH(
                    (float)System.Math.PI * 0.55f, 800.0f / 600.0f, 1.0f, 2000.0f);
@@ -120,7 +103,7 @@ namespace Mico.Collider.Sample
 
             Micos.Exports();
 
-            SetTitle(Program.AppTitle + " FPS: " + fps.FpsAverage);
+            SetTitle(Program.AppTitle + " FPS: " + fps.Fps);
 
             Manager.FlushObject();
 

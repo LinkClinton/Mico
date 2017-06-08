@@ -15,6 +15,7 @@ namespace Mico.Collider.Sample
     {
         public Matrix4x4 view;
         public Matrix4x4 projection;
+        public Vector4 eyePos;
     }
 
 
